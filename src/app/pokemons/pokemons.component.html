@@ -1,0 +1,11 @@
+<h2>List</h2>
+<ul class="pokemons">
+  <li *ngFor="let pokemon of pokemons" 
+      [class.selected]="pokemon === selectedPokemon"
+      (click)="gotoPokemonDetail(pokemon)">
+    <span class="badge">
+      {{pokemon.id}}
+    </span>
+    {{pokemon.name}}
+  </li>
+</ul>
