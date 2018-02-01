@@ -1,5 +1,3 @@
-<button (click)="goHome()">Home</button>
-<button (click)="goBack()">Back</button>
 <div *ngIf="pokemon">
   <h2>Description:</h2>
   <div> <span> ID: </span> {{pokemon.id}} </div>
@@ -34,10 +32,11 @@
 <div>
   <h2>Abilities:</h2>
     <h3>Normal:</h3>
-    <div> <span> {{abalityOne.name}}: </span> {{abalityOne.description}} </div>
-    <div *ngIf="pokemon.abalityTwo != 0"> <span> {{abalityTwo.name}}: </span> {{abalityTwo.description}} </div>
+    <div (click)="goAbality(abalityOne.id)"> <span> {{abalityOne.name}}: </span> {{abalityOne.description}} </div>
+    <div *ngIf="pokemon.abalityTwo != 0"
+         (click)="goAbality(abalityTwo.id)"> <span> {{abalityTwo.name}}: </span> {{abalityTwo.description}} </div>
     <h3>Hidden:</h3>
-    <div> <span> {{abalityHidden.name}}: </span> {{abalityHidden.description}} </div>
+    <div (click)="goAbality(abalityHidden.id)"> <span> {{abalityHidden.name}}: </span> {{abalityHidden.description}} </div>
 </div>
 <div>
   <h2>Moves:</h2>

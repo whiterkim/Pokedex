@@ -1,0 +1,11 @@
+<div *ngIf="abality">
+  <h2>Description:</h2>
+  <div> <span> ID: </span> {{abality.id}} </div>
+  <div> <span> Name: </span> {{abality.name}} </div>
+  <div> <span> Description: </span> {{abality.description}} </div>
+  <div>
+    <h2>Pokemon List:</h2>
+    <div *ngFor="let pokemon of pokemonList"
+         (click)="goPokemon(pokemon.id)">{{pokemon.name}}</div>
+  </div>
+</div>

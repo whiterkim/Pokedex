@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
 
 import { Pokemon } from '../model/pokemon'
 import { Abality } from '../model/abality';
@@ -23,39 +22,34 @@ export class PokemonDetailComponent implements OnInit {
     private pokemonService: PokemonService,
     private abalityService: AbalityService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private location: Location
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.id = +params['id'];
       this.getPokemon(this.id);
-      this.getAbalities();
     });
   }
 
   getPokemon(id: number): void {
-    this.pokemonService.getPokemon(id).subscribe(x => this.pokemon = x);
+    this.pokemonService.getPokemon(id).subscribe(x => {
+      this.pokemon = x;
+      this.getPokemonAbalities();
+    });
   }
 
-  getAbalities(): void {
-    console.log(this.pokemon.abalityOne);
-    console.log(this.pokemon.abalityTwo != 0);
-    console.log(this.pokemon.abalityHidden);
+  getPokemonAbalities(): void {
     this.abalityService.getAbality(this.pokemon.abalityOne).subscribe(x => this.abalityOne = x);
     this.abalityService.getAbality(this.pokemon.abalityTwo).subscribe(x => this.abalityTwo = x);
     this.abalityService.getAbality(this.pokemon.abalityHidden).subscribe(x => this.abalityHidden = x);
   }
 
-  goPokemon(id: number):void {
+  goPokemon(id: number): void {
     this.router.navigate(['/pokemon', id])
   }
 
-  goHome(): void {
-    this.router.navigate(['/'])
-  }
-  goBack(): void {
-    this.location.back()
+  goAbality(id: number): void {
+    this.router.navigate(['/abality', id])
   }
 }

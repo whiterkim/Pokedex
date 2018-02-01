@@ -9,7 +9,7 @@ export class PokemonService {
 
   constructor() { }
 
-  getPokemons(): Observable<Pokemon[]> {
+  getPokemonList(): Observable<Pokemon[]> {
     return of(PokemonData);
   }
 

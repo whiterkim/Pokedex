@@ -3,14 +3,17 @@ import { Abality } from '../model/abality';
 export const AbalityData: Abality[] = [
     {
         id: 0, name: '(No abality)',
-        description: '-'
+        description: '-',
+        pokemon: []
     },
     {
         id: 34, name: 'Chlorophyll',
-        description: 'Strengthens Grass moves to inflict 1.5* damage at 1/3 max HP or less.'
+        description: 'Double Speed during Strong Sunlight.',
+        pokemon: [1, 2, 3]
     },
     {
         id: 65, name: 'Overgrow',
-        description: 'Double Speed during Strong Sunlight.'
+        description: 'Strengthens Grass moves to inflict 1.5* damage at 1/3 max HP or less.',
+        pokemon: [1, 2, 3]
     }
 ];
