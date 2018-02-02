@@ -2,32 +2,30 @@
   <h2>Description:</h2>
   <div> <span> ID: </span> {{pokemon.id}} </div>
   <div> <span> Name: </span> {{pokemon.name}} </div>
-  <div> <span> Type: </span>{{pokemon.typeOneName}} {{pokemon.typeTwoName}}</div> 
+  <div> <span> Type: </span>{{pokemon.typeOne}} {{pokemon.typeTwo}}</div> 
   <div> <span> Cagegory: </span> {{pokemon.category}} </div>
   <div> <span> Generation: </span> {{pokemon.generation}} </div>
   <div> <span> Egg Groups: </span> {{pokemon.eggGroupOne}}, {{pokemon.eggGroupTwo}} </div>
   <div> <span> Capture Rate: </span> {{pokemon.captureRate}}% </div>
   <div> <span> Gender Rate: </span> {{pokemon.genderRate}} </div>
   <div> <span> EV Yield: </span> {{pokemon.evYield}} </div>
-  <div> <span> Pokedex entry: </span> A strange seed was planted on its back at birth. The plant sprous and grows with this Pokemon. </div>
-</div>
-<div>
+  <div> <span> PokeDex entry: </span> {{pokemon.pokeDexEntry}} </div>
+
   <h2>Base Stats:</h2>
-  <div> <span> HP: </span> 45 </div>
-  <div> <span> ATK: </span> 49 </div>
-  <div> <span> DEF: </span> 49 </div>
-  <div> <span> SPA: </span> 65 </div>
-  <div> <span> SPD: </span> 65 </div>
-  <div> <span> SPE: </span> 45 </div>
-  <div> <span> Total: </span> 318 </div>
+  <div> <span> HP: </span> {{pokemon.baseSatas.hp}} </div>
+  <div> <span> ATK: </span> {{pokemon.baseSatas.atk}} </div>
+  <div> <span> DEF: </span> {{pokemon.baseSatas.def}} </div>
+  <div> <span> SPA: </span> {{pokemon.baseSatas.spAtk}} </div>
+  <div> <span> SPD: </span> {{pokemon.baseSatas.spDef}} </div>
+  <div> <span> SPE: </span> {{pokemon.baseSatas.speed}} </div>
+  <div> <span> Total: </span> {{pokemon.baseSatas.hp + pokemon.baseSatas.atk + pokemon.baseSatas.def + pokemon.baseSatas.spAtk + pokemon.baseSatas.spDef + pokemon.baseSatas.speed}} </div>
 </div>
 <div>
   <h2>Evolutions:</h2>
-  <div> <span (click)="goPokemon(1)"> Bulbasaur </span> </div>
-  <div> <span> Lv16 => </span> </div>
-  <div> <span (click)="goPokemon(2)"> Ivysaur </span> </div>
-  <div> <span> Lv32 => </span> </div>
-  <div> <span (click)="goPokemon(3)"> Venusaur </span> </div>
+  <div *ngFor="let evo of pokemon.evolution">
+    <div (click)="goPokemon(evo.pokemonId)"> {{evo.pokemonName}} </div>
+    <div *ngIf="evo.condition"> {{evo.condition}} => </div>
+  </div>
 </div>
 <div>
   <h2>Abilities:</h2>

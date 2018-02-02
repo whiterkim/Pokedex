@@ -1,10 +1,9 @@
 export class Pokemon {
 	id: number;
+	pokeDexId: number;
+	formId: number;
+	formType: string;
 	name: string;
-	typeOneId: number;
-	typeOneName: string;
-	typeTwoId: number;
-	typeTwoName: string;
 	category: string;
 	generation: number;
 	eggGroupOne: string;
@@ -12,8 +11,28 @@ export class Pokemon {
 	captureRate: number;
 	genderRate: string;
 	evYield: string;
-
+	typeOne: number;
+	typeTwo: number;
+	baseSatas: BaseStats;
 	abalityOne: number;
 	abalityTwo: number;
 	abalityHidden: number;
+	pokeDexEntry: string;
+	evolution: Evolution[];
+}
+
+export class BaseStats {
+    hp: number;
+    atk: number;
+    def: number;
+    spAtk: number;
+    spDef: number;
+    speed: number;
+}
+
+export class Evolution {
+	order: number;
+	pokemonId: number;
+	pokemonName: string;
+	condition: string;
 }
