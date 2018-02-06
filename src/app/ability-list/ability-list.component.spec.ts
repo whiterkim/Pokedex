@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AbalityDetailComponent } from './abality-detail.component';
+import { AbilityListComponent } from './ability-list.component';
 
-describe('AbalityDetailComponent', () => {
-  let component: AbalityDetailComponent;
-  let fixture: ComponentFixture<AbalityDetailComponent>;
+describe('AbilityListComponent', () => {
+  let component: AbilityListComponent;
+  let fixture: ComponentFixture<AbilityListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AbalityDetailComponent ]
+      declarations: [ AbilityListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AbalityDetailComponent);
+    fixture = TestBed.createComponent(AbilityListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

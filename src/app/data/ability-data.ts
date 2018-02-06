@@ -1,8 +1,8 @@
-import { Abality } from '../model/abality';
+import { Ability } from '../model/ability';
 
-export const AbalityData: Abality[] = [
+export const AbilityData: Ability[] = [
     {
-        id: 0, name: '(No abality)',
+        id: 0, name: '(No ability)',
         description: '-',
         pokemon: []
     },

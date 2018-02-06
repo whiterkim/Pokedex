@@ -2,9 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Pokemon } from '../model/pokemon'
-import { Abality } from '../model/abality';
+import { Ability } from '../model/ability';
 import { PokemonService } from '../service/pokemon.service';
-import { AbalityService } from '../service/abality.service';
+import { AbilityService } from '../service/ability.service';
 
 @Component({
   selector: 'app-pokemon-detail',
@@ -13,14 +13,14 @@ import { AbalityService } from '../service/abality.service';
 })
 export class PokemonDetailComponent implements OnInit {
   @Input() pokemon: Pokemon;
-  abalityOne: Abality;
-  abalityTwo: Abality;
-  abalityHidden: Abality;
+  abilityOne: Ability;
+  abilityTwo: Ability;
+  abilityHidden: Ability;
   id: number;
 
   constructor(
     private pokemonService: PokemonService,
-    private abalityService: AbalityService,
+    private abilityService: AbilityService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) { }
@@ -40,16 +40,16 @@ export class PokemonDetailComponent implements OnInit {
   }
 
   getPokemonAbalities(): void {
-    this.abalityService.getAbality(this.pokemon.abalityOne).subscribe(x => this.abalityOne = x);
-    this.abalityService.getAbality(this.pokemon.abalityTwo).subscribe(x => this.abalityTwo = x);
-    this.abalityService.getAbality(this.pokemon.abalityHidden).subscribe(x => this.abalityHidden = x);
+    this.abilityService.getAbility(this.pokemon.abilityOne).subscribe(x => this.abilityOne = x);
+    this.abilityService.getAbility(this.pokemon.abilityTwo).subscribe(x => this.abilityTwo = x);
+    this.abilityService.getAbility(this.pokemon.abilityHidden).subscribe(x => this.abilityHidden = x);
   }
 
   goPokemon(id: number): void {
     this.router.navigate(['/pokemon', id])
   }
 
-  goAbality(id: number): void {
-    this.router.navigate(['/abality', id])
+  goAbility(id: number): void {
+    this.router.navigate(['/ability', id])
   }
 }

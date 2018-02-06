@@ -3,15 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
-import { AbalityListComponent } from './abality-list/abality-list.component';
-import { AbalityDetailComponent } from './abality-detail/abality-detail.component';
+import { AbilityListComponent } from './ability-list/ability-list.component';
+import { AbilityDetailComponent } from './ability-detail/ability-detail.component';
 
 const routes: Routes = [
   {path: '', component: MainComponent},
   {path: 'pokemon-list', component: PokemonListComponent},
-  {path: 'abality-list', component: AbalityListComponent},
+  {path: 'ability-list', component: AbilityListComponent},
   {path: 'pokemon/:id', component: PokemonDetailComponent},
-  {path: 'abality/:id', component: AbalityDetailComponent}
+  {path: 'ability/:id', component: AbilityDetailComponent}
 ];
 
 @NgModule({

@@ -14,9 +14,9 @@ export class Pokemon {
 	typeOne: number;
 	typeTwo: number;
 	baseSatas: BaseStats;
-	abalityOne: number;
-	abalityTwo: number;
-	abalityHidden: number;
+	abilityOne: number;
+	abilityTwo: number;
+	abilityHidden: number;
 	pokeDexEntry: string;
 	evolution: Evolution[];
 }

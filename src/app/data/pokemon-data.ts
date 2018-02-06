@@ -11,7 +11,7 @@ export const PokemonData: Pokemon[] = [
         baseSatas: {
             hp: 45, atk: 49, def: 49, spAtk: 65, spDef: 65, speed: 45
         },
-        abalityOne: 65, abalityTwo: 0, abalityHidden: 34,
+        abilityOne: 65, abilityTwo: 0, abilityHidden: 34,
         pokeDexEntry: 'A strange seed was planted on its back at birth. The plant sprous and grows with this Pokemon.',
         evolution: [
             { order: 1, pokemonId: 1, pokemonName: 'Bulbasaur', condition: 'Lv 16' },
@@ -30,7 +30,7 @@ export const PokemonData: Pokemon[] = [
         baseSatas: {
             hp: 60, atk: 62, def: 63, spAtk: 80, spDef: 80, speed: 60
         },
-        abalityOne: 65, abalityTwo: 0, abalityHidden: 34,
+        abilityOne: 65, abilityTwo: 0, abilityHidden: 34,
         pokeDexEntry: 'When the bulb on its back grows large, it appears to lose the ability to stand on its hind legs.',
         evolution: [
             { order: 1, pokemonId: 1, pokemonName: 'Bulbasaur', condition: 'Lv 16' },
@@ -49,7 +49,7 @@ export const PokemonData: Pokemon[] = [
         baseSatas: {
             hp: 80, atk: 82, def: 83, spAtk: 100, spDef: 100, speed: 80
         },
-        abalityOne: 65, abalityTwo: 0, abalityHidden: 34,
+        abilityOne: 65, abilityTwo: 0, abilityHidden: 34,
         pokeDexEntry: 'The plant blooms when it is absorbing solar energy. It stays on the move to seek sunlight.',
         evolution: [
             { order: 1, pokemonId: 1, pokemonName: 'Bulbasaur', condition: 'Lv 16' },
@@ -68,7 +68,7 @@ export const PokemonData: Pokemon[] = [
         baseSatas: {
             hp: 80, atk: 100, def: 123, spAtk: 122, spDef: 120, speed: 80
         },
-        abalityOne: 47, abalityTwo: 0, abalityHidden: 0,
+        abilityOne: 47, abilityTwo: 0, abilityHidden: 0,
         pokeDexEntry: 'The plant blooms when it is absorbing solar energy. It stays on the move to seek sunlight.',
         evolution: [
             { order: 1, pokemonId: 1, pokemonName: 'Bulbasaur', condition: 'Lv 16' },

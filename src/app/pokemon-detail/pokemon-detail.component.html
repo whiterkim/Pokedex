@@ -30,11 +30,11 @@
 <div>
   <h2>Abilities:</h2>
     <h3>Normal:</h3>
-    <div (click)="goAbality(abalityOne.id)"> <span> {{abalityOne.name}}: </span> {{abalityOne.description}} </div>
-    <div *ngIf="pokemon.abalityTwo != 0"
-         (click)="goAbality(abalityTwo.id)"> <span> {{abalityTwo.name}}: </span> {{abalityTwo.description}} </div>
+    <div (click)="goAbility(abilityOne.id)"> <span> {{abilityOne.name}}: </span> {{abilityOne.description}} </div>
+    <div *ngIf="pokemon.abilityTwo != 0"
+         (click)="goAbility(abilityTwo.id)"> <span> {{abilityTwo.name}}: </span> {{abilityTwo.description}} </div>
     <h3>Hidden:</h3>
-    <div (click)="goAbality(abalityHidden.id)"> <span> {{abalityHidden.name}}: </span> {{abalityHidden.description}} </div>
+    <div (click)="goAbility(abilityHidden.id)"> <span> {{abilityHidden.name}}: </span> {{abilityHidden.description}} </div>
 </div>
 <div>
   <h2>Moves:</h2>
