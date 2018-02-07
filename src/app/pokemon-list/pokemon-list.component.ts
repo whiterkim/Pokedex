@@ -11,6 +11,7 @@ import { PokemonService } from '../service/pokemon.service';
 })
 export class PokemonListComponent implements OnInit {
   pokemonList: Pokemon[];
+  data: Object;
 
   constructor(
     private router: Router,
@@ -18,7 +19,10 @@ export class PokemonListComponent implements OnInit {
   ) { }
 
   getPokemonList(): void {
-    this.pokemonService.getPokemonList().subscribe(x => this.pokemonList = x);
+    this.pokemonService.getPokemonList().subscribe(x => {
+      console.log(x['data']);
+      this.pokemonList = x['data'];
+    });
   }
 
   ngOnInit() {
@@ -26,6 +30,6 @@ export class PokemonListComponent implements OnInit {
   }
 
   goPokemonDetail(pokemon: Pokemon): void {
-    this.router.navigate(['/pokemon', pokemon.id])
+    this.router.navigate(['/pokemon', pokemon.id]);
   }
 }

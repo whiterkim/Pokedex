@@ -18,7 +18,10 @@ export class AbilityListComponent implements OnInit {
   ) { }
 
   getAbilityList(): void {
-    this.abilityService.getAbalities().subscribe(x => this.abilityList = x);
+    this.abilityService.getAbalities().subscribe(x => {
+      console.log(x['data']);
+      this.abilityList = x['data'];
+    });
   }
 
   ngOnInit() {
@@ -26,6 +29,6 @@ export class AbilityListComponent implements OnInit {
   }
 
   goAbilityDetail(ability: Ability): void {
-    this.router.navigate(['/ability', ability.id])
+    this.router.navigate(['/ability', ability.id]);
   }
 }
