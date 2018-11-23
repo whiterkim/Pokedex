@@ -12,6 +12,10 @@ export const PokemonData: Pokemon[] = [
             hp: 45, atk: 49, def: 49, spAtk: 65, spDef: 65, speed: 45
         },
         abilityOne: 65, abilityTwo: 0, abilityHidden: 34,
+        levelMoves: [22, 33, 45, 73],
+        tmhmMoves: [104, 412],
+        eggMoves: [],
+        tutorMoves: [],
         pokeDexEntry: 'A strange seed was planted on its back at birth. The plant sprous and grows with this Pokemon.',
         evolution: [
             { order: 1, pokemonId: 1, pokemonName: 'Bulbasaur', condition: 'Lv 16' },
@@ -31,6 +35,10 @@ export const PokemonData: Pokemon[] = [
             hp: 60, atk: 62, def: 63, spAtk: 80, spDef: 80, speed: 60
         },
         abilityOne: 65, abilityTwo: 0, abilityHidden: 34,
+        levelMoves: [22, 33, 45, 73],
+        tmhmMoves: [104, 412],
+        eggMoves: [],
+        tutorMoves: [],
         pokeDexEntry: 'When the bulb on its back grows large, it appears to lose the ability to stand on its hind legs.',
         evolution: [
             { order: 1, pokemonId: 1, pokemonName: 'Bulbasaur', condition: 'Lv 16' },
@@ -50,6 +58,10 @@ export const PokemonData: Pokemon[] = [
             hp: 80, atk: 82, def: 83, spAtk: 100, spDef: 100, speed: 80
         },
         abilityOne: 65, abilityTwo: 0, abilityHidden: 34,
+        levelMoves: [22, 33, 45, 73],
+        tmhmMoves: [104, 412],
+        eggMoves: [],
+        tutorMoves: [],
         pokeDexEntry: 'The plant blooms when it is absorbing solar energy. It stays on the move to seek sunlight.',
         evolution: [
             { order: 1, pokemonId: 1, pokemonName: 'Bulbasaur', condition: 'Lv 16' },
@@ -69,6 +81,10 @@ export const PokemonData: Pokemon[] = [
             hp: 80, atk: 100, def: 123, spAtk: 122, spDef: 120, speed: 80
         },
         abilityOne: 47, abilityTwo: 0, abilityHidden: 0,
+        levelMoves: [22, 33, 45, 73],
+        tmhmMoves: [104, 412],
+        eggMoves: [],
+        tutorMoves: [],
         pokeDexEntry: 'The plant blooms when it is absorbing solar energy. It stays on the move to seek sunlight.',
         evolution: [
             { order: 1, pokemonId: 1, pokemonName: 'Bulbasaur', condition: 'Lv 16' },

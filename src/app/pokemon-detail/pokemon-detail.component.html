@@ -39,13 +39,14 @@
 <div>
   <h2>Moves:</h2>
     <h3>Level Up:</h3>
-    <div> <span> Tackle </span> Lv1 </div>
-    <div> <span> Growl </span> Lv3 </div>
-    <div> <span> Leech Seed </span> Lv7 </div>
-    <div> <span> Vine Whip </span> Lv9 </div>
+    <div *ngFor="let move of levelMoves">
+      <div (click)="goMove(move.id)"> {{move.name}} </div>
+    </div>
+
     <h3>TM/HM:</h3>
-    <div> <span> Double Team </span> TM32</div>
-    <div> <span> Energy Ball </span> TM53</div>
+    <div *ngFor="let move of tmhmMoves">
+      <div (click)="goMove(move.id)"> {{move.name}} </div>
+    </div>
 </div>
 <div>
   <h2>Location:</h2>

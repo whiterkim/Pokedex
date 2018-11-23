@@ -17,6 +17,10 @@ export class Pokemon {
 	abilityOne: number;
 	abilityTwo: number;
 	abilityHidden: number;
+	levelMoves: number[];
+	tmhmMoves: number[];
+	eggMoves: number[];
+	tutorMoves: number[];
 	pokeDexEntry: string;
 	evolution: Evolution[];
 }

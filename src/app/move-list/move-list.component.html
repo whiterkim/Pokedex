@@ -1,0 +1,5 @@
+<h2>Move List</h2>
+<div *ngFor="let move of moveList" 
+    (click)="goMoveDetail(move)">
+  <span> {{move.id}} </span> {{move.name}}
+</div>

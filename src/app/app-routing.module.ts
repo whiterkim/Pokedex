@@ -5,13 +5,17 @@ import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 import { AbilityListComponent } from './ability-list/ability-list.component';
 import { AbilityDetailComponent } from './ability-detail/ability-detail.component';
+import { MoveListComponent } from './move-list/move-list.component';
+import { MoveDetailComponent } from './move-detail/move-detail.component';
 
 const routes: Routes = [
   {path: '', component: MainComponent},
   {path: 'pokemon-list', component: PokemonListComponent},
   {path: 'ability-list', component: AbilityListComponent},
+  {path: 'move-list', component: MoveListComponent},
   {path: 'pokemon/:id', component: PokemonDetailComponent},
-  {path: 'ability/:id', component: AbilityDetailComponent}
+  {path: 'ability/:id', component: AbilityDetailComponent},
+  {path: 'move/:id', component: MoveDetailComponent},
 ];
 
 @NgModule({
