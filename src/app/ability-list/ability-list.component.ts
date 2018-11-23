@@ -19,8 +19,8 @@ export class AbilityListComponent implements OnInit {
 
   getAbilityList(): void {
     this.abilityService.getAbalities().subscribe(x => {
-      console.log(x['data']);
-      this.abilityList = x['data'];
+      console.log(x);
+      this.abilityList = <Ability[]>x;
     });
   }
 

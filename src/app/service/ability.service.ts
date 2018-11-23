@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Ability } from '../model/ability';
 import { AbilityData } from '../data/ability-data';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class AbilityService {
@@ -13,7 +12,7 @@ export class AbilityService {
   ) { }
 
   getAbalities(): Observable<Object> {
-    return this.http.get('/api/ability-list');
+    return of(AbilityData);
   }
 
   getAbility(id: number): Observable<Ability> {

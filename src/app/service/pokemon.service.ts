@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Pokemon } from '../model/pokemon';
 import { PokemonData } from '../data/pokemon-data';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class PokemonService {
@@ -13,7 +12,7 @@ export class PokemonService {
   ) { }
 
   getPokemonList(): Observable<Object> {
-    return this.http.get('/api/pokemon-list');
+    return of(PokemonData);
   }
 
   getPokemon(id: number): Observable<Pokemon> {

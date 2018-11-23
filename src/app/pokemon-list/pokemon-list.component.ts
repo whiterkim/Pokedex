@@ -20,8 +20,8 @@ export class PokemonListComponent implements OnInit {
 
   getPokemonList(): void {
     this.pokemonService.getPokemonList().subscribe(x => {
-      console.log(x['data']);
-      this.pokemonList = x['data'];
+      console.log(x);
+      this.pokemonList = <Pokemon[]>x;
     });
   }
 
