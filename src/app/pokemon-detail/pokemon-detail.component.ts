@@ -7,6 +7,7 @@ import { Move } from '../model/move';
 import { PokemonService } from '../service/pokemon.service';
 import { AbilityService } from '../service/ability.service';
 import { MoveService } from '../service/move.service';
+import { Utility } from '../utility';
 
 @Component({
   selector: 'app-pokemon-detail',
@@ -70,5 +71,9 @@ export class PokemonDetailComponent implements OnInit {
 
   goMove(id: number): void {
     this.router.navigate(['/move', id]);
+  }
+
+  getTypeName(id: number): string {
+    return Utility.getTypeName(id);
   }
 }

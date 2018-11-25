@@ -21,4 +21,19 @@ export class AppComponent {
   goBack(): void {
     this.location.back()
   }
+
+  OnDropdownSelect(select: string) {
+    if (select === 'Pokemon')
+    {
+      this.router.navigate(['/pokemon-list']);
+    }
+    else if (select === 'Ability')
+    {
+      this.router.navigate(['/ability-list']);
+    }
+    else if (select === 'Move')
+    {
+      this.router.navigate(['/move-list']);
+    }
+  }
 }

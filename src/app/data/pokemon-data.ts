@@ -2,7 +2,7 @@ import { Pokemon } from '../model/pokemon';
 
 export const PokemonData: Pokemon[] = [
     {
-        id: 1, pokeDexId: 1, formId: 1, formType: null, name: 'Bulbasaur', 
+        id: 1, pokeDexId: 1, formId: 1, formType: null, name: 'Bulbasaur',
         category: 'Seed Pokemon', generation: 1,
         eggGroupOne: 'Monster', eggGroupTwo: 'Grass',
         captureRate: 45, genderRate: '87.5%M / 12.5%F',
@@ -25,7 +25,7 @@ export const PokemonData: Pokemon[] = [
         ]
     },
     {
-        id: 2, pokeDexId: 2, formId: 1, formType: null, name: 'Ivysaur', 
+        id: 2, pokeDexId: 2, formId: 1, formType: null, name: 'Ivysaur',
         category: 'Seed Pokemon', generation: 1,
         eggGroupOne: 'Monster', eggGroupTwo: 'Grass',
         captureRate: 45, genderRate: '87.5%M / 12.5%F',
@@ -48,7 +48,7 @@ export const PokemonData: Pokemon[] = [
         ]
     },
     {
-        id: 3, pokeDexId: 3, formId: 1, formType: null, name: 'Venusaur', 
+        id: 3, pokeDexId: 3, formId: 1, formType: null, name: 'Venusaur',
         category: 'Seed Pokemon', generation: 1,
         eggGroupOne: 'Monster', eggGroupTwo: 'Grass',
         captureRate: 45, genderRate: '87.5%M / 12.5%F',

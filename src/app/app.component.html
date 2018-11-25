@@ -1,8 +1,20 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<h1>{{title}}</h1>
-<button (click)="goHome()">Home</button>
-<button (click)="goBack()">Back</button>
-<!-- <nav>
-    <a routerLink="/pokemon-list">Pokemon List</a>
-</nav> -->
-<router-outlet></router-outlet>
+<nav class="navbar fixed-top navbar-light bg-light">
+  <a class="navbar-brand" (click)="goHome()">{{title}}</a>
+  <div class="dropdown">
+    <button class="btn btn-secondary" type="button"
+        (click)="goBack()" >
+        Back
+    </button>
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" (click)="OnDropdownSelect('Pokemon')">Pokemon</a>
+        <a class="dropdown-item" (click)="OnDropdownSelect('Ability')">Ability</a>
+        <a class="dropdown-item" (click)="OnDropdownSelect('Move')">Move</a>
+    </div>
+  </div>
+</nav>
+<div class="page">
+  <router-outlet></router-outlet>
+</div>

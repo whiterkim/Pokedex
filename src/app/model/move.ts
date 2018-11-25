@@ -1,5 +1,5 @@
 export class Move {
-	id: number;
+    id: number;
     name: string;
     accuracy: number;
     pokemon: number[];

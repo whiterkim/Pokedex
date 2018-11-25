@@ -1,0 +1,23 @@
+.pokemon-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 200px;
+}
+.section-evolution {
+    float: left;
+    width: 72px;
+    height: 72px;
+    margin: 4px;
+}
+.evolution-image {
+    display: block;
+    height: 48px;
+}
+.evolution-condition {
+    float: left;
+    margin-right: 4px;
+    margin-left: 4px;
+    width: 48px;
+    height: 72px;
+}

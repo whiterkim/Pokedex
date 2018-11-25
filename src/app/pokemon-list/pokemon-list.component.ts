@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { Pokemon } from '../model/pokemon';
 import { PokemonService } from '../service/pokemon.service';
+import { Utility } from '../utility'
 
 @Component({
   selector: 'app-pokemon-list',
@@ -31,5 +32,9 @@ export class PokemonListComponent implements OnInit {
 
   goPokemonDetail(pokemon: Pokemon): void {
     this.router.navigate(['/pokemon', pokemon.id]);
+  }
+
+  getTypeName(id: number): string {
+    return Utility.getTypeName(id);
   }
 }

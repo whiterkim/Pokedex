@@ -1,55 +1,117 @@
-<div *ngIf="pokemon">
-  <h2>Description:</h2>
-  <div> <span> ID: </span> {{pokemon.id}} </div>
-  <div> <span> Name: </span> {{pokemon.name}} </div>
-  <div> <span> Type: </span>{{pokemon.typeOne}} {{pokemon.typeTwo}}</div> 
-  <div> <span> Cagegory: </span> {{pokemon.category}} </div>
-  <div> <span> Generation: </span> {{pokemon.generation}} </div>
-  <div> <span> Egg Groups: </span> {{pokemon.eggGroupOne}}, {{pokemon.eggGroupTwo}} </div>
-  <div> <span> Capture Rate: </span> {{pokemon.captureRate}}% </div>
-  <div> <span> Gender Rate: </span> {{pokemon.genderRate}} </div>
-  <div> <span> EV Yield: </span> {{pokemon.evYield}} </div>
-  <div> <span> PokeDex entry: </span> {{pokemon.pokeDexEntry}} </div>
-
-  <h2>Base Stats:</h2>
-  <div> <span> HP: </span> {{pokemon.baseSatas.hp}} </div>
-  <div> <span> ATK: </span> {{pokemon.baseSatas.atk}} </div>
-  <div> <span> DEF: </span> {{pokemon.baseSatas.def}} </div>
-  <div> <span> SPA: </span> {{pokemon.baseSatas.spAtk}} </div>
-  <div> <span> SPD: </span> {{pokemon.baseSatas.spDef}} </div>
-  <div> <span> SPE: </span> {{pokemon.baseSatas.speed}} </div>
-  <div> <span> Total: </span> {{pokemon.baseSatas.hp + pokemon.baseSatas.atk + pokemon.baseSatas.def + pokemon.baseSatas.spAtk + pokemon.baseSatas.spDef + pokemon.baseSatas.speed}} </div>
-</div>
-<div>
-  <h2>Evolutions:</h2>
-  <div *ngFor="let evo of pokemon.evolution">
-    <div (click)="goPokemon(evo.pokemonId)"> {{evo.pokemonName}} </div>
-    <div *ngIf="evo.condition"> {{evo.condition}} => </div>
+<div class="detail-page" *ngIf="pokemon">
+  <div class="page-section">
+    <img class="pokemon-image" src="../../assets/poke/{{pokemon.id}}.png" alt="{{pokemon.name}}">
+    <h2 class="card-title text-center"> {{pokemon.name}} </h2>
+    <div class="text-center"> #{{(pokemon.id).toString().padStart(3, '0')}} {{pokemon.category}} </div>
+    <div class="text-center">
+      {{getTypeName(pokemon.typeOne)}}
+      {{getTypeName(pokemon.typeTwo)}}
+    </div>
   </div>
-</div>
-<div>
-  <h2>Abilities:</h2>
-    <h3>Normal:</h3>
-    <div (click)="goAbility(abilityOne.id)"> <span> {{abilityOne.name}}: </span> {{abilityOne.description}} </div>
-    <div *ngIf="pokemon.abilityTwo != 0"
-         (click)="goAbility(abilityTwo.id)"> <span> {{abilityTwo.name}}: </span> {{abilityTwo.description}} </div>
-    <h3>Hidden:</h3>
-    <div (click)="goAbility(abilityHidden.id)"> <span> {{abilityHidden.name}}: </span> {{abilityHidden.description}} </div>
-</div>
-<div>
-  <h2>Moves:</h2>
-    <h3>Level Up:</h3>
-    <div *ngFor="let move of levelMoves">
-      <div (click)="goMove(move.id)"> {{move.name}} </div>
-    </div>
 
-    <h3>TM/HM:</h3>
-    <div *ngFor="let move of tmhmMoves">
-      <div (click)="goMove(move.id)"> {{move.name}} </div>
+  <div class="page-section">
+    <table class="table">
+      <tr>
+        <td>Generation:</td>
+        <td>{{pokemon.generation}}</td>
+      </tr>
+      <tr>
+        <td>Egg Groups:</td>
+        <td>{{pokemon.eggGroupOne}}, {{pokemon.eggGroupTwo}}</td>
+      </tr>
+      <tr>
+        <td>Capture Rate:</td>
+        <td>{{pokemon.captureRate}}%</td>
+      </tr>
+      <tr>
+        <td>Gender Rate:</td>
+        <td>{{pokemon.genderRate}}</td>
+      </tr>
+      <tr>
+        <td>EV Yield:</td>
+        <td>{{pokemon.evYield}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="page-section">
+    <h4 class="card-title text-center">PokeDex entry</h4>
+    <div>{{pokemon.pokeDexEntry}}</div>
+  </div>
+
+  <div class="page-section">
+    <h4 class="card-title text-center">Base Stats</h4>
+    <table class="table">
+      <tr>
+        <td>HP:</td>
+        <td>{{pokemon.baseSatas.hp}}</td>
+      </tr>
+      <tr>
+        <td>ATK:</td>
+        <td>{{pokemon.baseSatas.atk}}</td>
+      </tr>
+      <tr>
+        <td>DEF:</td>
+        <td>{{pokemon.baseSatas.def}}</td>
+      </tr>
+      <tr>
+        <td>SPA:</td>
+        <td>{{pokemon.baseSatas.spAtk}}</td>
+      </tr>
+      <tr>
+        <td>SPD:</td>
+        <td>{{pokemon.baseSatas.spDef}}</td>
+      </tr>
+      <tr>
+        <td>SPE:</td>
+        <td>{{pokemon.baseSatas.speed}}</td>
+      </tr>
+      <tr>
+        <td>Total:</td>
+        <td>{{pokemon.baseSatas.hp + pokemon.baseSatas.atk + pokemon.baseSatas.def + pokemon.baseSatas.spAtk + pokemon.baseSatas.spDef + pokemon.baseSatas.speed}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="page-section">
+    <h4 class="card-title text-center">Evolutions</h4>
+    <div *ngFor="let evo of pokemon.evolution">
+      <div class="section-evolution border">
+        <img class="evolution-image" src="../../assets/poke/{{evo.pokemonId}}.png" alt="{{evo.pokemonName}}">
+        <div (click)="goPokemon(evo.pokemonId)"> {{evo.pokemonName}} </div>
+      </div>
+      <span class="evolution-condition align-middle" *ngIf="evo.condition">
+        {{evo.condition}}
+      </span>
     </div>
-</div>
-<div>
-  <h2>Location:</h2>
-  <div> <span> Kanto: </span> Pallet Town/Initial Pokemon </div>
-  <div> <span> Alola: </span> Route 2/Island Scan/Grassy Terrain </div>
+  </div>
+
+  <div class="page-section">
+      <h4 class="card-title text-center">Abilities</h4>
+      <h5 class="card-subtitle">Normal</h5>
+      <div (click)="goAbility(abilityOne.id)"> <span> {{abilityOne.name}}: </span> {{abilityOne.description}} </div>
+      <div *ngIf="pokemon.abilityTwo != 0"
+            (click)="goAbility(abilityTwo.id)"> <span> {{abilityTwo.name}}: </span> {{abilityTwo.description}} </div>
+      <h5 class="card-subtitle">Hidden</h5>
+      <div (click)="goAbility(abilityHidden.id)"> <span> {{abilityHidden.name}}: </span> {{abilityHidden.description}} </div>
+  </div>
+
+  <div class="page-section">
+      <h4 class="card-title text-center">Moves</h4>
+      <h5 class="card-subtitle">Level Up</h5>
+      <div *ngFor="let move of levelMoves">
+        <div (click)="goMove(move.id)"> {{move.name}} </div>
+      </div>
+  
+      <h5 class="card-subtitle">TM/HM</h5>
+      <div *ngFor="let move of tmhmMoves">
+        <div (click)="goMove(move.id)"> {{move.name}} </div>
+      </div>
+  </div>
+
+  <div class="page-section">
+    <h4 class="card-title text-center">Location</h4>
+    <div> <span> Kanto: </span> Pallet Town/Initial Pokemon </div>
+    <div> <span> Alola: </span> Route 2/Island Scan/Grassy Terrain </div>
+  </div>
 </div>

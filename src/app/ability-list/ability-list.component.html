@@ -1,5 +1,7 @@
-<h2>Ability List</h2>
-<div *ngFor="let ability of abilityList" 
-    (click)="goAbilityDetail(ability)">
-  <span> {{ability.id}} </span> {{ability.name}}
-</div>
+<table class="table">
+  <tr *ngFor="let ability of abilityList" 
+      (click)="goAbilityDetail(ability)">
+    <td>{{ability.id}}</td>
+    <td>{{ability.name}}</td>
+  </tr>
+</table>
