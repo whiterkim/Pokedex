@@ -1,6 +1,6 @@
 <div class="detail-page" *ngIf="pokemon">
   <div class="page-section">
-    <img class="pokemon-image" src="../../assets/poke/{{pokemon.id}}.png" alt="{{pokemon.name}}">
+    <img class="pokemon-image" src="{{getImageURL('poke', pokemon.id)}}" alt="{{pokemon.name}}">
     <h2 class="card-title text-center"> {{pokemon.name}} </h2>
     <div class="text-center"> #{{(pokemon.id).toString().padStart(3, '0')}} {{pokemon.category}} </div>
     <div class="text-center">
@@ -77,36 +77,59 @@
     <h4 class="card-title text-center">Evolutions</h4>
     <div *ngFor="let evo of pokemon.evolution">
       <div class="section-evolution border">
-        <img class="evolution-image" src="../../assets/poke/{{evo.pokemonId}}.png" alt="{{evo.pokemonName}}">
-        <div (click)="goPokemon(evo.pokemonId)"> {{evo.pokemonName}} </div>
+        <img class="evolution-image" 
+          (click)="goPokemon(evo.pokemonId)"
+          src="{{getImageURL('poke', evo.pokemonId)}}"
+          alt="{{evo.pokemonName}}">
       </div>
-      <span class="evolution-condition align-middle" *ngIf="evo.condition">
+      <div class="evolution-condition text-center">
         {{evo.condition}}
-      </span>
+      </div>
     </div>
   </div>
 
   <div class="page-section">
       <h4 class="card-title text-center">Abilities</h4>
-      <h5 class="card-subtitle">Normal</h5>
-      <div (click)="goAbility(abilityOne.id)"> <span> {{abilityOne.name}}: </span> {{abilityOne.description}} </div>
-      <div *ngIf="pokemon.abilityTwo != 0"
-            (click)="goAbility(abilityTwo.id)"> <span> {{abilityTwo.name}}: </span> {{abilityTwo.description}} </div>
-      <h5 class="card-subtitle">Hidden</h5>
-      <div (click)="goAbility(abilityHidden.id)"> <span> {{abilityHidden.name}}: </span> {{abilityHidden.description}} </div>
+      <div class="section-ability"
+        (click)="goAbility(abilityOne.id)">
+        <h5 class="card-subtitle">{{abilityOne.name}}</h5>
+        {{abilityOne.description}}
+      </div>
+
+      <div class="section-ability"
+        *ngIf="pokemon.abilityTwo != 0"
+        (click)="goAbility(abilityTwo.id)">
+        <h5 class="card-subtitle">{{abilityTwo.name}}</h5>
+        {{abilityTwo.description}}
+      </div>
+
+      <div class="section-ability"
+        *ngIf="pokemon.abilityHidden != 0"
+        (click)="goAbility(abilityHidden.id)">
+        <h5 class="card-subtitle">{{abilityHidden.name}}</h5>(Hidden)
+        {{abilityHidden.description}}
+      </div>
   </div>
 
   <div class="page-section">
       <h4 class="card-title text-center">Moves</h4>
-      <h5 class="card-subtitle">Level Up</h5>
-      <div *ngFor="let move of levelMoves">
-        <div (click)="goMove(move.id)"> {{move.name}} </div>
-      </div>
-  
-      <h5 class="card-subtitle">TM/HM</h5>
-      <div *ngFor="let move of tmhmMoves">
-        <div (click)="goMove(move.id)"> {{move.name}} </div>
-      </div>
+      <table class="table">
+        <th>Level Up</th>
+        <tr *ngFor="let move of levelMoves"
+          (click)="goMove(move.id)">
+          <td>{{move.name}}</td>
+          <td>{{getTypeName(move.type)}}</td>
+        </tr>
+      </table>
+
+      <table class="table">
+        <th>TM/HM</th>
+        <tr *ngFor="let move of tmhmMoves"
+          (click)="goMove(move.id)">
+          <td>{{move.name}}</td>
+          <td>{{getTypeName(move.type)}}</td>
+        </tr>
+      </table>
   </div>
 
   <div class="page-section">

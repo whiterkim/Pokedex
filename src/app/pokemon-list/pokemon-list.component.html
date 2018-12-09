@@ -1,7 +1,7 @@
 <table class="table">
   <tr *ngFor="let pokemon of pokemonList"
     (click)="goPokemonDetail(pokemon)">
-    <td><img src="../../assets/icon/{{pokemon.id}}.png" alt="{{pokemon.name}}"></td>
+    <td><img src="{{getImageURL('icon', pokemon.id)}}" alt="{{pokemon.name}}"></td>
     <td>{{pokemon.name}}</td>
     <td>{{getTypeName(pokemon.typeOne)}}</td>
     <td>{{getTypeName(pokemon.typeTwo)}}</td>

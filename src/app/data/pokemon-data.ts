@@ -2,7 +2,7 @@ import { Pokemon } from '../model/pokemon';
 
 export const PokemonData: Pokemon[] = [
     {
-        id: 1, pokeDexId: 1, formId: 1, formType: null, name: 'Bulbasaur',
+        id: 1, pokeDexId: 1, formId: 0, formType: null, name: 'Bulbasaur',
         category: 'Seed Pokemon', generation: 1,
         eggGroupOne: 'Monster', eggGroupTwo: 'Grass',
         captureRate: 45, genderRate: '87.5%M / 12.5%F',
@@ -20,12 +20,12 @@ export const PokemonData: Pokemon[] = [
         evolution: [
             { order: 1, pokemonId: 1, pokemonName: 'Bulbasaur', condition: 'Lv 16' },
             { order: 2, pokemonId: 2, pokemonName: 'Ivysaur', condition: 'Lv 32' },
-            { order: 3, pokemonId: 3, pokemonName: 'Venusaur', condition: 'Mega Evolution' },
-            { order: 4, pokemonId: 3.2, pokemonName: 'Mega Venusaur', condition: null }
+            { order: 3, pokemonId: 3, pokemonName: 'Venusaur', condition: 'Mega' },
+            { order: 4, pokemonId: 3.1, pokemonName: 'Mega Venusaur', condition: null }
         ]
     },
     {
-        id: 2, pokeDexId: 2, formId: 1, formType: null, name: 'Ivysaur',
+        id: 2, pokeDexId: 2, formId: 0, formType: null, name: 'Ivysaur',
         category: 'Seed Pokemon', generation: 1,
         eggGroupOne: 'Monster', eggGroupTwo: 'Grass',
         captureRate: 45, genderRate: '87.5%M / 12.5%F',
@@ -43,12 +43,12 @@ export const PokemonData: Pokemon[] = [
         evolution: [
             { order: 1, pokemonId: 1, pokemonName: 'Bulbasaur', condition: 'Lv 16' },
             { order: 2, pokemonId: 2, pokemonName: 'Ivysaur', condition: 'Lv 32' },
-            { order: 3, pokemonId: 3, pokemonName: 'Venusaur', condition: 'Mega Evolution' },
-            { order: 4, pokemonId: 3.2, pokemonName: 'Mega Venusaur', condition: null }
+            { order: 3, pokemonId: 3, pokemonName: 'Venusaur', condition: 'Mega' },
+            { order: 4, pokemonId: 3.1, pokemonName: 'Mega Venusaur', condition: null }
         ]
     },
     {
-        id: 3, pokeDexId: 3, formId: 1, formType: null, name: 'Venusaur',
+        id: 3, pokeDexId: 3, formId: 0, formType: null, name: 'Venusaur',
         category: 'Seed Pokemon', generation: 1,
         eggGroupOne: 'Monster', eggGroupTwo: 'Grass',
         captureRate: 45, genderRate: '87.5%M / 12.5%F',
@@ -66,12 +66,12 @@ export const PokemonData: Pokemon[] = [
         evolution: [
             { order: 1, pokemonId: 1, pokemonName: 'Bulbasaur', condition: 'Lv 16' },
             { order: 2, pokemonId: 2, pokemonName: 'Ivysaur', condition: 'Lv 32' },
-            { order: 3, pokemonId: 3, pokemonName: 'Venusaur', condition: 'Mega Evolution' },
-            { order: 4, pokemonId: 3.2, pokemonName: 'Mega Venusaur', condition: null }
+            { order: 3, pokemonId: 3, pokemonName: 'Venusaur', condition: 'Mega' },
+            { order: 4, pokemonId: 3.1, pokemonName: 'Mega Venusaur', condition: null }
         ]
     },
     {
-        id: 3.2, pokeDexId: 3, formId: 2, formType: 'mega', name: 'Mega Venusaur',
+        id: 3.1, pokeDexId: 3, formId: 1, formType: 'mega', name: 'Mega Venusaur',
         category: 'Seed Pokemon', generation: 1,
         eggGroupOne: 'Monster', eggGroupTwo: 'Grass',
         captureRate: 45, genderRate: '87.5%M / 12.5%F',
@@ -89,8 +89,8 @@ export const PokemonData: Pokemon[] = [
         evolution: [
             { order: 1, pokemonId: 1, pokemonName: 'Bulbasaur', condition: 'Lv 16' },
             { order: 2, pokemonId: 2, pokemonName: 'Ivysaur', condition: 'Lv 32' },
-            { order: 3, pokemonId: 3, pokemonName: 'Venusaur', condition: 'Mega Evolution' },
-            { order: 4, pokemonId: 3.2, pokemonName: 'Mega Venusaur', condition: null }
+            { order: 3, pokemonId: 3, pokemonName: 'Venusaur', condition: 'Mega' },
+            { order: 4, pokemonId: 3.1, pokemonName: 'Mega Venusaur', condition: null }
         ]
     }
 ];

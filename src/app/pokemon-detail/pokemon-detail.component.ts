@@ -76,4 +76,8 @@ export class PokemonDetailComponent implements OnInit {
   getTypeName(id: number): string {
     return Utility.getTypeName(id);
   }
+
+  getImageURL(folder:string, id:number): string {
+    return Utility.getImageURL(folder, id);
+  }
 }
