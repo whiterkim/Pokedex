@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Ability } from '../model/ability';
-import { AbilityService } from '../service/ability.service';
+import { PokeApiService } from '../service/pokeapi.service';
+import { NamedAPIResourceList, NamedAPIResource } from '../model/utility';
+import { Utility } from '../utility';
 
 @Component({
   selector: 'app-ability-list',
@@ -10,17 +11,17 @@ import { AbilityService } from '../service/ability.service';
   styleUrls: ['./ability-list.component.css']
 })
 export class AbilityListComponent implements OnInit {
-  abilityList: Ability[];
+  abilityList: NamedAPIResourceList[];
 
   constructor(
     private router: Router,
-    private abilityService: AbilityService
+    private pokeApiService: PokeApiService
   ) { }
 
   getAbilityList(): void {
-    this.abilityService.getAbalities().subscribe(x => {
+    this.pokeApiService.getFromApi('https://pokeapi.co/api/v2/ability/').subscribe(x => {
       console.log(x);
-      this.abilityList = <Ability[]>x;
+      this.abilityList = x;
     });
   }
 
@@ -28,7 +29,7 @@ export class AbilityListComponent implements OnInit {
     this.getAbilityList();
   }
 
-  goAbilityDetail(ability: Ability): void {
-    this.router.navigate(['/ability', ability.id]);
+  goAbilityDetail(ability: NamedAPIResource): void {
+    this.router.navigate(['/ability', Utility.getIDFromUrl(ability.url)]);
   }
 }

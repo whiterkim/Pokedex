@@ -18,6 +18,8 @@ import { MoveService } from './service/move.service';
 import { MoveDetailComponent } from './move-detail/move-detail.component';
 import { MoveListComponent } from './move-list/move-list.component';
 
+import { PokeApiService } from './service/pokeapi.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,7 @@ import { MoveListComponent } from './move-list/move-list.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [PokemonService, AbilityService, MoveService],
+  providers: [PokemonService, AbilityService, MoveService, PokeApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

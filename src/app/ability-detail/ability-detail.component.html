@@ -2,10 +2,10 @@
   <h2>Description:</h2>
   <div> <span> ID: </span> {{ability.id}} </div>
   <div> <span> Name: </span> {{ability.name}} </div>
-  <div> <span> Description: </span> {{ability.description}} </div>
+  <div> <span> Description: </span> {{ability.flavor_text_entries[2].flavor_text}} </div>
   <div>
     <h2>Pokemon List:</h2>
-    <div *ngFor="let pokemon of pokemonList"
-         (click)="goPokemon(pokemon.id)">{{pokemon.name}}</div>
+    <div *ngFor="let pokemon of ability.pokemon"
+         (click)="goPokemon(pokemon.pokemon.url)">{{pokemon.pokemon.name}}</div>
   </div>
 </div>

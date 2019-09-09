@@ -21,4 +21,8 @@ export class Utility {
 
     return path + file;
   }
+
+  static getIDFromUrl(url: string): number {
+    return +url.split('/')[6];
+  }
 }

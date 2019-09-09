@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Move } from '../model/move';
-import { MoveService } from '../service/move.service';
+import { PokeApiService } from '../service/pokeapi.service';
+import { NamedAPIResourceList, NamedAPIResource } from '../model/utility';
+import { Utility } from '../utility';
 
 @Component({
   selector: 'app-move-list',
@@ -10,17 +11,17 @@ import { MoveService } from '../service/move.service';
   styleUrls: ['./move-list.component.css']
 })
 export class MoveListComponent implements OnInit {
-  moveList: Move[];
+  moveList: NamedAPIResourceList[];
 
   constructor(
     private router: Router,
-    private moveService: MoveService
+    private pokeApiService: PokeApiService,
   ) { }
 
   getMoveList(): void {
-    this.moveService.getMoves().subscribe(x => {
+    this.pokeApiService.getFromApi('https://pokeapi.co/api/v2/move/').subscribe(x => {
       console.log(x);
-      this.moveList = <Move[]>x;
+      this.moveList = x;
     });
   }
 
@@ -28,7 +29,7 @@ export class MoveListComponent implements OnInit {
     this.getMoveList();
   }
 
-  goMoveDetail(move: Move): void {
-    this.router.navigate(['/move', move.id]);
+  goMoveDetail(move: NamedAPIResource): void {
+    this.router.navigate(['/move', Utility.getIDFromUrl(move.url)]);
   }
 }

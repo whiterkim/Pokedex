@@ -1,10 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Ability } from '../model/ability';
-import { Pokemon } from '../model/pokemon';
-import { AbilityService } from '../service/ability.service';
-import { PokemonService } from '../service/pokemon.service';
+import { PokeApiService } from '../service/pokeapi.service';
+import { Ability } from '../model/pokemon2';
+import { Utility } from '../utility';
 
 @Component({
   selector: 'app-ability-detail',
@@ -13,18 +12,15 @@ import { PokemonService } from '../service/pokemon.service';
 })
 export class AbilityDetailComponent implements OnInit {
   @Input() ability: Ability;
-  pokemonList: Pokemon[];
   id: number;
 
   constructor(
-    private abilityService: AbilityService,
-    private pokemonService: PokemonService,
+    private pokeApiService: PokeApiService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) { }
 
   ngOnInit() {
-    this.pokemonList = [];
     this.activatedRoute.params.subscribe(params => {
       this.id = +params['id'];
       this.getAbility(this.id);
@@ -32,7 +28,8 @@ export class AbilityDetailComponent implements OnInit {
   }
 
   getAbility(id: number): void {
-    this.abilityService.getAbility(id).subscribe(x => {
+    var url = "https://pokeapi.co/api/v2/ability/" + id + "/";
+    this.pokeApiService.getFromApi(url).subscribe(x => {
       this.ability = x;
       this.getAbilityPokemons();
     });
@@ -41,7 +38,6 @@ export class AbilityDetailComponent implements OnInit {
   getAbilityPokemons(): void {
     for (let i = 0; i < this.ability.pokemon.length; i++) {
       let id = this.ability.pokemon[i];
-      this.pokemonService.getPokemon(+id).subscribe(x => this.pokemonList[i] = x);
     }
   }
 
@@ -49,7 +45,7 @@ export class AbilityDetailComponent implements OnInit {
     this.router.navigate(['/ability', id]);
   }
 
-  goPokemon(id: number): void {
-    this.router.navigate(['/pokemon', id]);
+  goPokemon(url: string): void {
+    this.router.navigate(['/pokemon', Utility.getIDFromUrl(url)]);
   }
 }

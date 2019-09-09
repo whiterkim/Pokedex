@@ -2,10 +2,10 @@
   <div class="page-section">
     <img class="pokemon-image" src="{{getImageURL('poke', pokemon.id)}}" alt="{{pokemon.name}}">
     <h2 class="card-title text-center"> {{pokemon.name}} </h2>
-    <div class="text-center"> #{{(pokemon.id).toString().padStart(3, '0')}} {{pokemon.category}} </div>
+    <div class="text-center"> #{{(pokemon.id).toString().padStart(3, '0')}} {{species.genera[2].genus}} </div>
     <div class="text-center">
-      {{getTypeName(pokemon.typeOne)}}
-      {{getTypeName(pokemon.typeTwo)}}
+      {{getSlot(pokemon.types, 1).type.name}}
+      {{getSlot(pokemon.types, 2).type.name}}
     </div>
   </div>
 
@@ -13,30 +13,30 @@
     <table class="table">
       <tr>
         <td>Generation:</td>
-        <td>{{pokemon.generation}}</td>
+        <td>{{species.generation.name}}</td>
       </tr>
       <tr>
         <td>Egg Groups:</td>
-        <td>{{pokemon.eggGroupOne}}, {{pokemon.eggGroupTwo}}</td>
+        <td>{{species.egg_groups[0].name}}, {{species.egg_groups[1].name}}</td>
       </tr>
       <tr>
         <td>Capture Rate:</td>
-        <td>{{pokemon.captureRate}}%</td>
+        <td>{{species.capture_rate}}%</td>
       </tr>
       <tr>
         <td>Gender Rate:</td>
-        <td>{{pokemon.genderRate}}</td>
+        <td>{{species.gender_rate}}</td>
       </tr>
-      <tr>
+      <!-- <tr>
         <td>EV Yield:</td>
         <td>{{pokemon.evYield}}</td>
-      </tr>
+      </tr> -->
     </table>
   </div>
 
   <div class="page-section">
-    <h4 class="card-title text-center">PokeDex entry</h4>
-    <div>{{pokemon.pokeDexEntry}}</div>
+    <h4 class="card-title text-center">PokeDex Entry</h4>
+    <div>{{species.flavor_text_entries[1].flavor_text}}</div>
   </div>
 
   <div class="page-section">
@@ -44,36 +44,39 @@
     <table class="table">
       <tr>
         <td>HP:</td>
-        <td>{{pokemon.baseSatas.hp}}</td>
+        <td>{{getStat('hp')}}</td>
       </tr>
       <tr>
         <td>ATK:</td>
-        <td>{{pokemon.baseSatas.atk}}</td>
+        <td>{{getStat('attack')}}</td>
       </tr>
       <tr>
         <td>DEF:</td>
-        <td>{{pokemon.baseSatas.def}}</td>
+        <td>{{getStat('defense')}}</td>
       </tr>
       <tr>
         <td>SPA:</td>
-        <td>{{pokemon.baseSatas.spAtk}}</td>
+        <td>{{getStat('special-attack')}}</td>
       </tr>
       <tr>
         <td>SPD:</td>
-        <td>{{pokemon.baseSatas.spDef}}</td>
+        <td>{{getStat('special-defense')}}</td>
       </tr>
       <tr>
         <td>SPE:</td>
-        <td>{{pokemon.baseSatas.speed}}</td>
+        <td>{{getStat('speed')}}</td>
       </tr>
       <tr>
         <td>Total:</td>
-        <td>{{pokemon.baseSatas.hp + pokemon.baseSatas.atk + pokemon.baseSatas.def + pokemon.baseSatas.spAtk + pokemon.baseSatas.spDef + pokemon.baseSatas.speed}}</td>
+        <td>{{
+          pokemon.stats[5].base_stat + pokemon.stats[4].base_stat + pokemon.stats[3].base_stat +
+          pokemon.stats[2].base_stat + pokemon.stats[1].base_stat + pokemon.stats[0].base_stat}}
+        </td>
       </tr>
     </table>
   </div>
 
-  <div class="page-section">
+  <!-- <div class="page-section">
     <h4 class="card-title text-center">Evolutions</h4>
     <div *ngFor="let evo of pokemon.evolution">
       <div class="section-evolution border">
@@ -86,28 +89,15 @@
         {{evo.condition}}
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="page-section">
       <h4 class="card-title text-center">Abilities</h4>
       <div class="section-ability"
-        (click)="goAbility(abilityOne.id)">
-        <h5 class="card-subtitle">{{abilityOne.name}}</h5>
-        {{abilityOne.description}}
-      </div>
-
-      <div class="section-ability"
-        *ngIf="pokemon.abilityTwo != 0"
-        (click)="goAbility(abilityTwo.id)">
-        <h5 class="card-subtitle">{{abilityTwo.name}}</h5>
-        {{abilityTwo.description}}
-      </div>
-
-      <div class="section-ability"
-        *ngIf="pokemon.abilityHidden != 0"
-        (click)="goAbility(abilityHidden.id)">
-        <h5 class="card-subtitle">{{abilityHidden.name}}</h5>(Hidden)
-        {{abilityHidden.description}}
+        *ngFor="let ability of pokemon.abilities"
+        (click)="goAbility(ability.ability)">
+        <h5 class="card-subtitle">{{ability.ability.name}}</h5>
+        <div *ngIf="ability.is_hidden === true">(Hidden)</div>
       </div>
   </div>
 
@@ -116,25 +106,23 @@
       <table class="table">
         <th>Level Up</th>
         <tr *ngFor="let move of levelMoves"
-          (click)="goMove(move.id)">
-          <td>{{move.name}}</td>
-          <td>{{getTypeName(move.type)}}</td>
+          (click)="goMove(move.move)">
+          <td>{{move.move.name}}</td>
         </tr>
       </table>
 
       <table class="table">
         <th>TM/HM</th>
-        <tr *ngFor="let move of tmhmMoves"
-          (click)="goMove(move.id)">
-          <td>{{move.name}}</td>
-          <td>{{getTypeName(move.type)}}</td>
+        <tr *ngFor="let move of machineMoves"
+          (click)="goMove(move.move)">
+          <td>{{move.move.name}}</td>
         </tr>
       </table>
   </div>
 
-  <div class="page-section">
+  <!-- <div class="page-section">
     <h4 class="card-title text-center">Location</h4>
     <div> <span> Kanto: </span> Pallet Town/Initial Pokemon </div>
     <div> <span> Alola: </span> Route 2/Island Scan/Grassy Terrain </div>
-  </div>
+  </div> -->
 </div>

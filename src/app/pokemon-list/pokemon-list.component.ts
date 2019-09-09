@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Pokemon } from '../model/pokemon';
-import { PokemonService } from '../service/pokemon.service';
+import { PokeApiService } from '../service/pokeapi.service';
 import { Utility } from '../utility'
+import { NamedAPIResourceList, NamedAPIResource } from '../model/utility';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -11,18 +11,18 @@ import { Utility } from '../utility'
   styleUrls: ['./pokemon-list.component.css']
 })
 export class PokemonListComponent implements OnInit {
-  pokemonList: Pokemon[];
+  pokemonList: NamedAPIResourceList[];
   data: Object;
 
   constructor(
     private router: Router,
-    private pokemonService: PokemonService
+    private pokeApiService: PokeApiService
   ) { }
 
   getPokemonList(): void {
-    this.pokemonService.getPokemonList().subscribe(x => {
+    this.pokeApiService.getFromApi('https://pokeapi.co/api/v2/pokemon/').subscribe(x => {
       console.log(x);
-      this.pokemonList = <Pokemon[]>x;
+      this.pokemonList = x;
     });
   }
 
@@ -30,15 +30,11 @@ export class PokemonListComponent implements OnInit {
     this.getPokemonList();
   }
 
-  goPokemonDetail(pokemon: Pokemon): void {
-    this.router.navigate(['/pokemon', pokemon.id]);
+  goPokemonDetail(pokemon: NamedAPIResource): void {
+    this.router.navigate(['/pokemon', Utility.getIDFromUrl(pokemon.url)]);
   }
 
-  getTypeName(id: number): string {
-    return Utility.getTypeName(id);
-  }
-
-  getImageURL(folder:string, id:number): string {
-    return Utility.getImageURL(folder, id);
+  getImageURL(folder: string, pokemon: NamedAPIResource): string {
+    return Utility.getImageURL(folder, Utility.getIDFromUrl(pokemon.url));
   }
 }

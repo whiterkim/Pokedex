@@ -1,12 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Pokemon } from '../model/pokemon'
-import { Ability } from '../model/ability';
-import { Move } from '../model/move';
-import { PokemonService } from '../service/pokemon.service';
-import { AbilityService } from '../service/ability.service';
-import { MoveService } from '../service/move.service';
+import { PokeApiService } from '../service/pokeapi.service';
+import { Pokemon, PokemonSpecies, PokemonMove } from '../model/pokemon2';
+import { NamedAPIResource } from '../model/utility';
 import { Utility } from '../utility';
 
 @Component({
@@ -16,19 +13,15 @@ import { Utility } from '../utility';
 })
 export class PokemonDetailComponent implements OnInit {
   @Input() pokemon: Pokemon;
-  abilityOne: Ability;
-  abilityTwo: Ability;
-  abilityHidden: Ability;
-  levelMoves: Move[];
-  tmhmMoves: Move[];
-  eggMoves: Move[];
-  tutorMoves: Move[];
+  species: PokemonSpecies;
+  levelMoves: PokemonMove[];
+  machineMoves: PokemonMove[];
+  eggMoves: PokemonMove[];
+  tutorMoves: PokemonMove[];
   id: number;
 
   constructor(
-    private pokemonService: PokemonService,
-    private abilityService: AbilityService,
-    private moveService: MoveService,
+    private pokeApiService: PokeApiService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) { }
@@ -36,48 +29,77 @@ export class PokemonDetailComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.id = +params['id'];
-      this.getPokemon(this.id);
+      this.getPokemon();
     });
   }
 
-  getPokemon(id: number): void {
-    this.pokemonService.getPokemon(id).subscribe(x => {
+  getPokemon(): void {
+    var url = 'https://pokeapi.co/api/v2/pokemon/' + this.id + '/';
+
+    this.pokeApiService.getFromApi(url).subscribe(x => {
+      console.log(x);
       this.pokemon = x;
-      this.getPokemonAbalities();
-      this.getPokemonMoves();
+      this.getPokemonSpeciesFromApi();
+
+      // Sort abilities by slot
+      this.pokemon.abilities.sort((x, y) => x.slot > y.slot ? 1 : x.slot < y.slot ? -1 : 0);
+
+      // Filter level-up moves and sort by level
+      this.levelMoves = this.pokemon.moves.filter(x =>
+        x.version_group_details.find(x => x.version_group.name === 'omega-ruby-alpha-sapphire') &&
+        x.version_group_details.find(x => x.move_learn_method.name === 'level-up'));
+      this.levelMoves.sort((x, y) => {
+        var xn = x.version_group_details.find(x => x.version_group.name === 'omega-ruby-alpha-sapphire').level_learned_at;
+        var yn = y.version_group_details.find(x => x.version_group.name === 'omega-ruby-alpha-sapphire').level_learned_at;
+        return xn > yn ? 1 : xn < yn ? -1 : 0;
+      });
+
+      // Filter machine moves
+      this.machineMoves = this.pokemon.moves.filter(x =>
+        x.version_group_details.find(x => x.version_group.name === 'omega-ruby-alpha-sapphire') &&
+        x.version_group_details.find(x => x.move_learn_method.name === 'machine'));
+
+      // Filter egg moves
+      this.eggMoves = this.pokemon.moves.filter(x =>
+        x.version_group_details.find(x => x.version_group.name === 'omega-ruby-alpha-sapphire') &&
+        x.version_group_details.find(x => x.move_learn_method.name === 'egg'));
+
+      // Filter tutuor moves
+      this.tutorMoves = this.pokemon.moves.filter(x =>
+        x.version_group_details.find(x => x.version_group.name === 'omega-ruby-alpha-sapphire') &&
+        x.version_group_details.find(x => x.move_learn_method.name === 'tutor'));
     });
   }
 
-  getPokemonAbalities(): void {
-    this.abilityService.getAbility(this.pokemon.abilityOne).subscribe(x => this.abilityOne = x);
-    this.abilityService.getAbility(this.pokemon.abilityTwo).subscribe(x => this.abilityTwo = x);
-    this.abilityService.getAbility(this.pokemon.abilityHidden).subscribe(x => this.abilityHidden = x);
-  }
-
-  getPokemonMoves(): void {
-    this.moveService.getMoves().subscribe(x => this.levelMoves = x.filter(x => this.pokemon.levelMoves.includes(x.id)));
-    this.moveService.getMoves().subscribe(x => this.tmhmMoves = x.filter(x => this.pokemon.tmhmMoves.includes(x.id)));
-    this.moveService.getMoves().subscribe(x => this.eggMoves = x.filter(x => this.pokemon.eggMoves.includes(x.id)));
-    this.moveService.getMoves().subscribe(x => this.tutorMoves = x.filter(x => this.pokemon.tutorMoves.includes(x.id)));
+  getPokemonSpeciesFromApi(): void {
+    this.pokeApiService.getFromApi(this.pokemon.species.url).subscribe(x => {
+      this.species = x;
+      console.log(this.species);
+    });
   }
 
   goPokemon(id: number): void {
     this.router.navigate(['/pokemon', id]);
   }
 
-  goAbility(id: number): void {
-    this.router.navigate(['/ability', id]);
+  goAbility(ability: NamedAPIResource): void {
+    console.log(ability);
+    this.router.navigate(['/ability', Utility.getIDFromUrl(ability.url)]);
   }
 
-  goMove(id: number): void {
-    this.router.navigate(['/move', id]);
+  goMove(move: NamedAPIResource): void {
+    this.router.navigate(['/move', Utility.getIDFromUrl(move.url)]);
   }
 
-  getTypeName(id: number): string {
-    return Utility.getTypeName(id);
-  }
-
-  getImageURL(folder:string, id:number): string {
+  getImageURL(folder: string, id: number): string {
     return Utility.getImageURL(folder, id);
+  }
+
+  getSlot(list: any[], slot: number): any {
+    return list.find(x => x.slot == slot);
+  }
+
+  getStat(name: string): number {
+    return this.pokemon.stats.find(x => x.stat.name == name).base_stat;
   }
 }

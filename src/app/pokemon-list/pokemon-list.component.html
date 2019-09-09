@@ -1,9 +1,9 @@
 <table class="table">
-  <tr *ngFor="let pokemon of pokemonList"
+  <tr *ngFor="let pokemon of pokemonList.results"
     (click)="goPokemonDetail(pokemon)">
-    <td><img src="{{getImageURL('icon', pokemon.id)}}" alt="{{pokemon.name}}"></td>
+    <td><img src="{{getImageURL('icon', pokemon)}}" alt="{{pokemon.name}}"></td>
     <td>{{pokemon.name}}</td>
-    <td>{{getTypeName(pokemon.typeOne)}}</td>
-    <td>{{getTypeName(pokemon.typeTwo)}}</td>
+    <!-- <td>{{getTypeName(pokemon.typeOne)}}</td> -->
+    <!-- <td>{{getTypeName(pokemon.typeTwo)}}</td> -->
   </tr>
 </table>

@@ -11,7 +11,7 @@ export class AbilityService {
     private http: HttpClient
   ) { }
 
-  getAbalities(): Observable<Ability[]> {
+  getAbilities(): Observable<Ability[]> {
     return of(AbilityData);
   }
 

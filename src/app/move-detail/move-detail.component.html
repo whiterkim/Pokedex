@@ -3,10 +3,5 @@
     <div> <span> ID: </span> {{move.id}} </div>
     <div> <span> Name: </span> {{move.name}} </div>
     <div> <span> Accuracy: </span> {{move.accuracy}} </div>
-    <div>
-      <h2>Pokemon List:</h2>
-      <div *ngFor="let pokemon of pokemonList"
-           (click)="goPokemon(pokemon.id)">{{pokemon.name}}</div>
-    </div>
   </div>
   

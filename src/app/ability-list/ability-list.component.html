@@ -1,7 +1,6 @@
 <table class="table">
-  <tr *ngFor="let ability of abilityList" 
+  <tr *ngFor="let ability of abilityList.results" 
       (click)="goAbilityDetail(ability)">
-    <td>{{ability.id}}</td>
     <td>{{ability.name}}</td>
   </tr>
 </table>
