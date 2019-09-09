@@ -1,7 +1,7 @@
-<div class="detail-page" *ngIf="pokemon">
+<div class="detail-page" *ngIf="pokemon && species">
   <div class="page-section">
     <img class="pokemon-image" src="{{getImageURL('poke', pokemon.id)}}" alt="{{pokemon.name}}">
-    <h2 class="card-title text-center"> {{pokemon.name}} </h2>
+    <h2 class="card-title text-center"> {{getMatchedLanguage(species.names).name}} </h2>
     <div class="text-center"> #{{(pokemon.id).toString().padStart(3, '0')}} {{getMatchedLanguage(species.genera).genus}} </div>
     <div class="text-center">
       {{getSlot(pokemon.types, 1).type.name}}
@@ -31,6 +31,10 @@
         <td>EV Yield:</td>
         <td>{{pokemon.evYield}}</td>
       </tr> -->
+      <tr>
+        <td>Base Experience:</td>
+        <td>{{pokemon.base_experience}}</td>
+      </tr>
     </table>
   </div>
 
@@ -76,20 +80,20 @@
     </table>
   </div>
 
-  <!-- <div class="page-section">
+  <div class="page-section">
     <h4 class="card-title text-center">Evolutions</h4>
-    <div *ngFor="let evo of pokemon.evolution">
+    <div *ngFor="let evolution_node of evolution_list">
       <div class="section-evolution border">
         <img class="evolution-image" 
-          (click)="goPokemon(evo.pokemonId)"
-          src="{{getImageURL('poke', evo.pokemonId)}}"
-          alt="{{evo.pokemonName}}">
+          (click)="goPokemon(evolution_node.species)"
+          src="{{getImageURL('poke', getIDFromUrl(evolution_node.species.url))}}"
+          alt="{{evolution_node.species.name}}">
       </div>
-      <div class="evolution-condition text-center">
+      <!-- <div class="evolution-condition text-center">
         {{evo.condition}}
-      </div>
+      </div> -->
     </div>
-  </div> -->
+  </div>
 
   <div class="page-section">
       <h4 class="card-title text-center">Abilities</h4>

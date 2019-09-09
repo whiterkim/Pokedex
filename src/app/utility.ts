@@ -12,7 +12,7 @@ export class Utility {
     return TypeData.find(x => x.id === id).name;
   }
 
-  static getImageURL(folder:string, id:number): string {
+  static getImageURL(folder: string, id: number): string {
     var path = "../../assets/" + folder + "/";
 
     var pokeDexId = Math.floor(id);

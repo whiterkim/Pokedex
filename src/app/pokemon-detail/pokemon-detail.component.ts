@@ -5,6 +5,7 @@ import { PokeApiService } from '../service/pokeapi.service';
 import { Pokemon, PokemonSpecies, PokemonMove } from '../model/pokemon2';
 import { NamedAPIResource } from '../model/utility';
 import { Utility } from '../utility';
+import { EvolutionChain, ChainLink } from '../model/evolution';
 
 @Component({
   selector: 'app-pokemon-detail',
@@ -14,6 +15,8 @@ import { Utility } from '../utility';
 export class PokemonDetailComponent implements OnInit {
   @Input() pokemon: Pokemon;
   species: PokemonSpecies;
+  evolution_chain: EvolutionChain;
+  evolution_list: ChainLink[];
   levelMoves: PokemonMove[];
   machineMoves: PokemonMove[];
   eggMoves: PokemonMove[];
@@ -31,6 +34,8 @@ export class PokemonDetailComponent implements OnInit {
   getMatchedLanguageVersion = Utility.getMatchedLanguageVersion;
 
   getMatchedLanguage = Utility.getMatchedLanguage;
+
+  getIDFromUrl = Utility.getIDFromUrl;
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -81,15 +86,25 @@ export class PokemonDetailComponent implements OnInit {
     this.pokeApiService.getFromApi(this.pokemon.species.url).subscribe(x => {
       this.species = x;
       console.log(this.species);
+
+      this.pokeApiService.getFromApi(this.species.evolution_chain.url).subscribe(x => {
+        this.evolution_chain = x;
+        console.log(this.evolution_chain);
+
+        this.evolution_list = [];
+        for (let current_node = this.evolution_chain.chain; current_node; current_node = current_node.evolves_to[0]) {
+          this.evolution_list.push(current_node);
+        }
+        console.log(this.evolution_list);
+      });
     });
   }
 
-  goPokemon(id: number): void {
-    this.router.navigate(['/pokemon', id]);
+  goPokemon(pokemon: NamedAPIResource): void {
+    this.router.navigate(['/pokemon', Utility.getIDFromUrl(pokemon.url)]);
   }
 
   goAbility(ability: NamedAPIResource): void {
-    console.log(ability);
     this.router.navigate(['/ability', Utility.getIDFromUrl(ability.url)]);
   }
 
