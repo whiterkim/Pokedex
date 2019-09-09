@@ -26,6 +26,12 @@ export class PokemonDetailComponent implements OnInit {
     private router: Router
   ) { }
 
+  getImageURL = Utility.getImageURL;
+
+  getMatchedLanguageVersion = Utility.getMatchedLanguageVersion;
+
+  getMatchedLanguage = Utility.getMatchedLanguage;
+
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.id = +params['id'];
@@ -46,27 +52,27 @@ export class PokemonDetailComponent implements OnInit {
 
       // Filter level-up moves and sort by level
       this.levelMoves = this.pokemon.moves.filter(x =>
-        x.version_group_details.find(x => x.version_group.name === 'omega-ruby-alpha-sapphire') &&
+        x.version_group_details.find(x => x.version_group.name === Utility.selected_version_group) &&
         x.version_group_details.find(x => x.move_learn_method.name === 'level-up'));
       this.levelMoves.sort((x, y) => {
-        var xn = x.version_group_details.find(x => x.version_group.name === 'omega-ruby-alpha-sapphire').level_learned_at;
-        var yn = y.version_group_details.find(x => x.version_group.name === 'omega-ruby-alpha-sapphire').level_learned_at;
+        var xn = x.version_group_details.find(x => x.version_group.name === Utility.selected_version_group).level_learned_at;
+        var yn = y.version_group_details.find(x => x.version_group.name === Utility.selected_version_group).level_learned_at;
         return xn > yn ? 1 : xn < yn ? -1 : 0;
       });
 
       // Filter machine moves
       this.machineMoves = this.pokemon.moves.filter(x =>
-        x.version_group_details.find(x => x.version_group.name === 'omega-ruby-alpha-sapphire') &&
+        x.version_group_details.find(x => x.version_group.name === Utility.selected_version_group) &&
         x.version_group_details.find(x => x.move_learn_method.name === 'machine'));
 
       // Filter egg moves
       this.eggMoves = this.pokemon.moves.filter(x =>
-        x.version_group_details.find(x => x.version_group.name === 'omega-ruby-alpha-sapphire') &&
+        x.version_group_details.find(x => x.version_group.name === Utility.selected_version_group) &&
         x.version_group_details.find(x => x.move_learn_method.name === 'egg'));
 
       // Filter tutuor moves
       this.tutorMoves = this.pokemon.moves.filter(x =>
-        x.version_group_details.find(x => x.version_group.name === 'omega-ruby-alpha-sapphire') &&
+        x.version_group_details.find(x => x.version_group.name === Utility.selected_version_group) &&
         x.version_group_details.find(x => x.move_learn_method.name === 'tutor'));
     });
   }
@@ -89,10 +95,6 @@ export class PokemonDetailComponent implements OnInit {
 
   goMove(move: NamedAPIResource): void {
     this.router.navigate(['/move', Utility.getIDFromUrl(move.url)]);
-  }
-
-  getImageURL(folder: string, id: number): string {
-    return Utility.getImageURL(folder, id);
   }
 
   getSlot(list: any[], slot: number): any {

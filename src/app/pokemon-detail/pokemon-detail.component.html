@@ -2,7 +2,7 @@
   <div class="page-section">
     <img class="pokemon-image" src="{{getImageURL('poke', pokemon.id)}}" alt="{{pokemon.name}}">
     <h2 class="card-title text-center"> {{pokemon.name}} </h2>
-    <div class="text-center"> #{{(pokemon.id).toString().padStart(3, '0')}} {{species.genera[2].genus}} </div>
+    <div class="text-center"> #{{(pokemon.id).toString().padStart(3, '0')}} {{getMatchedLanguage(species.genera).genus}} </div>
     <div class="text-center">
       {{getSlot(pokemon.types, 1).type.name}}
       {{getSlot(pokemon.types, 2).type.name}}
@@ -36,7 +36,7 @@
 
   <div class="page-section">
     <h4 class="card-title text-center">PokeDex Entry</h4>
-    <div>{{species.flavor_text_entries[1].flavor_text}}</div>
+    <div>{{getMatchedLanguageVersion(species.flavor_text_entries).flavor_text}}</div>
   </div>
 
   <div class="page-section">

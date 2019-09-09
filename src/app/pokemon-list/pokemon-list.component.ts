@@ -19,6 +19,8 @@ export class PokemonListComponent implements OnInit {
     private pokeApiService: PokeApiService
   ) { }
 
+  getImageURL = Utility.getImageURL;
+
   getPokemonList(): void {
     this.pokeApiService.getFromApi('https://pokeapi.co/api/v2/pokemon/').subscribe(x => {
       console.log(x);
@@ -32,9 +34,5 @@ export class PokemonListComponent implements OnInit {
 
   goPokemonDetail(pokemon: NamedAPIResource): void {
     this.router.navigate(['/pokemon', Utility.getIDFromUrl(pokemon.url)]);
-  }
-
-  getImageURL(folder: string, pokemon: NamedAPIResource): string {
-    return Utility.getImageURL(folder, Utility.getIDFromUrl(pokemon.url));
   }
 }

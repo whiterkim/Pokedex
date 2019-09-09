@@ -20,6 +20,8 @@ export class AbilityDetailComponent implements OnInit {
     private router: Router
   ) { }
 
+  getMatchedLanguageVersion = Utility.getMatchedLanguageVersion;
+
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.id = +params['id'];
