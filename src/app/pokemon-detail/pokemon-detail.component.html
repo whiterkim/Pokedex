@@ -1,11 +1,11 @@
-<div class="detail-page" *ngIf="pokemon && species">
+<div class="detail-page" *ngIf="pokemon">
   <div class="page-section">
-    <img class="pokemon-image" src="{{getImageURL('poke', pokemon.id)}}" alt="{{pokemon.name}}">
-    <h2 class="card-title text-center"> {{getMatchedLanguage(species.names).name}} </h2>
-    <div class="text-center"> #{{(pokemon.id).toString().padStart(3, '0')}} {{getMatchedLanguage(species.genera).genus}} </div>
+    <img class="pokemon-image" src="{{getImageURL('poke', id)}}" alt="{{pokemon.name}}">
+    <h2 class="card-title text-center"> {{pokemon.name}} </h2>
+    <div class="text-center"> #{{(id).toString().padStart(3, '0')}} {{pokemon.species.genus}} </div>
     <div class="text-center">
-      {{getSlot(pokemon.types, 1).type.name}}
-      {{getSlot(pokemon.types, 2).type.name}}
+      {{pokemon.types[0].type.name}}
+      {{pokemon.types[1] ? pokemon.types[1].type.name : ''}}
     </div>
   </div>
 
@@ -13,19 +13,20 @@
     <table class="table">
       <tr>
         <td>Generation:</td>
-        <td>{{species.generation.name}}</td>
+        <td>{{pokemon.species.generation.name}}</td>
       </tr>
       <tr>
         <td>Egg Groups:</td>
-        <td>{{species.egg_groups[0].name}}, {{species.egg_groups[1].name}}</td>
+        <td>{{pokemon.species.egg_groups[0].name}},
+          {{pokemon.species.egg_groups[1] ? pokemon.species.egg_groups[1].name : ''}}</td>
       </tr>
       <tr>
         <td>Capture Rate:</td>
-        <td>{{species.capture_rate}}%</td>
+        <td>{{pokemon.species.capture_rate}}%</td>
       </tr>
       <tr>
         <td>Gender Rate:</td>
-        <td>{{species.gender_rate}}</td>
+        <td>{{pokemon.species.gender_rate}}</td>
       </tr>
       <!-- <tr>
         <td>EV Yield:</td>
@@ -40,7 +41,7 @@
 
   <div class="page-section">
     <h4 class="card-title text-center">PokeDex Entry</h4>
-    <div>{{getMatchedLanguageVersion(species.flavor_text_entries).flavor_text}}</div>
+    <div>{{pokemon.species.flavor_text}}</div>
   </div>
 
   <div class="page-section">
@@ -48,33 +49,32 @@
     <table class="table">
       <tr>
         <td>HP:</td>
-        <td>{{getStat('hp')}}</td>
+        <td>{{pokemon.stats.hp}}</td>
       </tr>
       <tr>
         <td>ATK:</td>
-        <td>{{getStat('attack')}}</td>
+        <td>{{pokemon.stats.attack}}</td>
       </tr>
       <tr>
         <td>DEF:</td>
-        <td>{{getStat('defense')}}</td>
+        <td>{{pokemon.stats.defense}}</td>
       </tr>
       <tr>
         <td>SPA:</td>
-        <td>{{getStat('special-attack')}}</td>
+        <td>{{pokemon.stats.special_attack}}</td>
       </tr>
       <tr>
         <td>SPD:</td>
-        <td>{{getStat('special-defense')}}</td>
+        <td>{{pokemon.stats.special_defense}}</td>
       </tr>
       <tr>
         <td>SPE:</td>
-        <td>{{getStat('speed')}}</td>
+        <td>{{pokemon.stats.speed}}</td>
       </tr>
       <tr>
         <td>Total:</td>
-        <td>{{
-          pokemon.stats[5].base_stat + pokemon.stats[4].base_stat + pokemon.stats[3].base_stat +
-          pokemon.stats[2].base_stat + pokemon.stats[1].base_stat + pokemon.stats[0].base_stat}}
+        <td>{{pokemon.stats.hp + pokemon.stats.attack + pokemon.stats.defense +
+            pokemon.stats.special_attack + pokemon.stats.special_defense + pokemon.stats.speed}}
         </td>
       </tr>
     </table>
@@ -82,7 +82,7 @@
 
   <div class="page-section">
     <h4 class="card-title text-center">Evolutions</h4>
-    <div *ngFor="let evolution_node of evolution_list">
+    <div *ngFor="let evolution_node of pokemon.evolution_list">
       <div class="section-evolution border">
         <img class="evolution-image" 
           (click)="goPokemon(evolution_node.species)"
@@ -109,7 +109,7 @@
       <h4 class="card-title text-center">Moves</h4>
       <table class="table">
         <th>Level Up</th>
-        <tr *ngFor="let move of levelMoves"
+        <tr *ngFor="let move of pokemon.level_moves"
           (click)="goMove(move.move)">
           <td>{{move.move.name}}</td>
         </tr>
@@ -117,7 +117,7 @@
 
       <table class="table">
         <th>TM/HM</th>
-        <tr *ngFor="let move of machineMoves"
+        <tr *ngFor="let move of pokemon.machine_moves"
           (click)="goMove(move.move)">
           <td>{{move.move.name}}</td>
         </tr>

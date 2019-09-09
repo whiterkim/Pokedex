@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { PokeApiService } from '../service/pokeapi.service';
+import { PokemonService } from '../service/pokemon.service';
 import { Utility } from '../utility'
 import { NamedAPIResourceList, NamedAPIResource } from '../model/utility';
 
@@ -16,13 +16,15 @@ export class PokemonListComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private pokeApiService: PokeApiService
+    private pokemonService: PokemonService
   ) { }
 
   getImageURL = Utility.getImageURL;
 
+  getIDFromUrl = Utility.getIDFromUrl;
+
   getPokemonList(): void {
-    this.pokeApiService.getFromApi('https://pokeapi.co/api/v2/pokemon/').subscribe(x => {
+    this.pokemonService.getPokemonList().then(x => {
       console.log(x);
       this.pokemonList = x;
     });
