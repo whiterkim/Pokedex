@@ -1,9 +1,4 @@
 <table class="table" *ngIf="pokemonList">
-  <tr *ngFor="let pokemon of pokemonList"
-    (click)="goPokemonDetail(pokemon)">
-    <td><img src="{{getImageURL('icon', pokemon.id)}}" alt="{{pokemon.name}}"></td>
-    <td>{{pokemon.name}}</td>
-    <td>{{pokemon.types[0].type.name}}</td>
-    <td>{{pokemon.types[1] ? pokemon.types[1].type.name : ''}}</td>
-  </tr>
+  <app-pokemon-list-item *ngFor="let pokemon of pokemonList.results" key='{{pokemon.name}}'>
+  </app-pokemon-list-item>
 </table>

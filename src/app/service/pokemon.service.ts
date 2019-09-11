@@ -16,9 +16,14 @@ export class PokemonService {
     return <NamedAPIResourceList> await this.http.get("https://pokeapi.co/api/v2/pokemon/").toPromise();
   }
 
-  getPokemon(key: string): Promise<any> {
+  getPokemon(key: string): Promise<Pokemon> {
     let url = "https://pokeapi.co/api/v2/pokemon/" + key + "/";
-    return this.http.get(url).toPromise();
+    return <any> this.http.get(url).toPromise();
+  }
+
+  getSpecies(key: string): Promise<PokemonSpecies> {
+    let url = "https://pokeapi.co/api/v2/pokemon-species/" + key + "/";
+    return <any> this.http.get(url).toPromise();
   }
 
   async getPokemonBasis(key: string): Promise<PokemonBasis> {

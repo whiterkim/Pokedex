@@ -1,0 +1,9 @@
+<tr *ngIf="pokemon && species"
+    (click)="goPokemonDetail()">
+    <td><img src="{{getImageURL('icon', pokemon.id)}}" alt="{{pokemon.name}}"></td>
+    <td>{{(species.names | language)[0].name}}</td>
+    <td>{{pokemon.types[0].type.name}}</td>
+    <td>{{pokemon.types[1] ? pokemon.types[1].type.name : ''}}</td>
+</tr>
+
+
