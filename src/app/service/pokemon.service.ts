@@ -4,6 +4,7 @@ import { NamedAPIResourceList, NamedAPIResource } from '../model/utility';
 import { Utility } from '../utility';
 import { PokemonDetail, PokemonBasis } from '../model/pokemon';
 import { Pokemon, PokemonSpecies } from '../model/pokemon2';
+import { EvolutionChain } from '../model/evolution';
 
 @Injectable()
 export class PokemonService {
@@ -23,6 +24,10 @@ export class PokemonService {
 
   getSpecies(key: string): Promise<PokemonSpecies> {
     let url = "https://pokeapi.co/api/v2/pokemon-species/" + key + "/";
+    return <any> this.http.get(url).toPromise();
+  }
+
+  getEvolutionChain(url: string): Promise<EvolutionChain> {
     return <any> this.http.get(url).toPromise();
   }
 

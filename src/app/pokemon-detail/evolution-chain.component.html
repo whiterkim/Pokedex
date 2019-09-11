@@ -1,0 +1,11 @@
+<div class="page-section">
+    <h4 class="card-title text-center">Evolutions</h4>
+    <div *ngFor="let evolutionNode of evolutionList">
+        <div class="section-evolution border">
+        <img class="evolution-image" 
+            (click)="goPokemon(evolutionNode.species)"
+            src="{{getImageURL('poke', getIDFromUrl(evolutionNode.species.url))}}"
+            alt="{{evolutionNode.species.name}}">
+        </div>
+    </div>
+</div>

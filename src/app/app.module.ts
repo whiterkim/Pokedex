@@ -8,8 +8,9 @@ import { AppRoutingModule } from './/app-routing.module';
 
 import { PokemonService } from './service/pokemon.service';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
-import { PokemonListItemComponent } from './pokemon-list-item/pokemon-list-item.component';
+import { PokemonListItemComponent } from './pokemon-list/pokemon-list-item.component';
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
+import { EvolutionChainComponent } from './pokemon-detail/evolution-chain.component';
 
 import { AbilityService } from './service/ability.service';
 import { AbilityDetailComponent } from './ability-detail/ability-detail.component';
@@ -29,6 +30,7 @@ import { LanguagePipe } from './pipe/language.pipe';
     PokemonListComponent,
     PokemonListItemComponent,
     PokemonDetailComponent,
+    EvolutionChainComponent,
     AbilityListComponent,
     AbilityDetailComponent,
     MoveListComponent,

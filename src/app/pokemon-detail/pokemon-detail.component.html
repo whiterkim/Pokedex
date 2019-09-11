@@ -80,48 +80,36 @@
     </table>
   </div>
 
+  <app-evolution-chain url='{{species.evolution_chain.url}}'>
+  </app-evolution-chain>
+
   <div class="page-section">
-    <h4 class="card-title text-center">Evolutions</h4>
-    <div *ngFor="let evolution_node of pokemon.evolution_list">
-      <div class="section-evolution border">
-        <img class="evolution-image" 
-          (click)="goPokemon(evolution_node.species)"
-          src="{{getImageURL('poke', getIDFromUrl(evolution_node.species.url))}}"
-          alt="{{evolution_node.species.name}}">
-      </div>
-      <!-- <div class="evolution-condition text-center">
-        {{evo.condition}}
-      </div> -->
+    <h4 class="card-title text-center">Abilities</h4>
+    <div class="section-ability"
+      *ngFor="let ability of pokemon.abilities"
+      (click)="goAbility(ability.ability)">
+      <h5 class="card-subtitle">{{ability.ability.name}}</h5>
+      <div *ngIf="ability.is_hidden === true">(Hidden)</div>
     </div>
   </div>
 
   <div class="page-section">
-      <h4 class="card-title text-center">Abilities</h4>
-      <div class="section-ability"
-        *ngFor="let ability of pokemon.abilities"
-        (click)="goAbility(ability.ability)">
-        <h5 class="card-subtitle">{{ability.ability.name}}</h5>
-        <div *ngIf="ability.is_hidden === true">(Hidden)</div>
-      </div>
-  </div>
+    <h4 class="card-title text-center">Moves</h4>
+    <table class="table">
+      <th>Level Up</th>
+      <tr *ngFor="let move of pokemon.level_moves"
+        (click)="goMove(move.move)">
+        <td>{{move.move.name}}</td>
+      </tr>
+    </table>
 
-  <div class="page-section">
-      <h4 class="card-title text-center">Moves</h4>
-      <table class="table">
-        <th>Level Up</th>
-        <tr *ngFor="let move of pokemon.level_moves"
-          (click)="goMove(move.move)">
-          <td>{{move.move.name}}</td>
-        </tr>
-      </table>
-
-      <table class="table">
-        <th>TM/HM</th>
-        <tr *ngFor="let move of pokemon.machine_moves"
-          (click)="goMove(move.move)">
-          <td>{{move.move.name}}</td>
-        </tr>
-      </table>
+    <table class="table">
+      <th>TM/HM</th>
+      <tr *ngFor="let move of pokemon.machine_moves"
+        (click)="goMove(move.move)">
+        <td>{{move.move.name}}</td>
+      </tr>
+    </table>
   </div>
 
   <!-- <div class="page-section">
