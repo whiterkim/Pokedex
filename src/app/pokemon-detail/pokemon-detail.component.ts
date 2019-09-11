@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PokemonService } from '../service/pokemon.service';
 import { NamedAPIResource } from '../model/utility';
 import { Utility } from '../utility';
+import { PokemonDetail } from '../model/pokemon';
 
 @Component({
   selector: 'app-pokemon-detail',
@@ -11,8 +12,8 @@ import { Utility } from '../utility';
   styleUrls: ['./pokemon-detail.component.css']
 })
 export class PokemonDetailComponent implements OnInit {
-  pokemon: any;
-  id: number;
+  pokemon: PokemonDetail;
+  key: string;
 
   constructor(
     private pokemonService: PokemonService,
@@ -30,27 +31,27 @@ export class PokemonDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-      this.id = +params['id'];
+      this.key = params['key'];
       this.getPokemon();
     });
   }
 
   getPokemon(): void {
-    this.pokemonService.getPokemonDetail(this.id).then(x => {
+    this.pokemonService.getPokemonDetail(this.key).then(x => {
       console.log(x);
       this.pokemon = x;
     });
   }
 
   goPokemon(pokemon: NamedAPIResource): void {
-    this.router.navigate(['/pokemon', Utility.getIDFromUrl(pokemon.url)]);
+    this.router.navigate(['/pokemon', pokemon.name]);
   }
 
   goAbility(ability: NamedAPIResource): void {
-    this.router.navigate(['/ability', Utility.getIDFromUrl(ability.url)]);
+    this.router.navigate(['/ability', ability.name]);
   }
 
   goMove(move: NamedAPIResource): void {
-    this.router.navigate(['/move', Utility.getIDFromUrl(move.url)]);
+    this.router.navigate(['/move', move.name]);
   }
 }

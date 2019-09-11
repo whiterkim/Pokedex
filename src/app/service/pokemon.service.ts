@@ -1,56 +1,75 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NamedAPIResourceList } from '../model/utility';
+import { NamedAPIResourceList, NamedAPIResource } from '../model/utility';
 import { Utility } from '../utility';
+import { PokemonDetail, PokemonBasis } from '../model/pokemon';
+import { Pokemon, PokemonSpecies } from '../model/pokemon2';
 
 @Injectable()
 export class PokemonService {
-
-  pokemonList: NamedAPIResourceList[];
 
   constructor(
     private http: HttpClient
   ) { }
 
-  getPokemonList(): Promise<any> {
-    return this.http.get("https://pokeapi.co/api/v2/pokemon/").toPromise();
+  async getPokemonList(): Promise<NamedAPIResourceList> {
+    return <NamedAPIResourceList> await this.http.get("https://pokeapi.co/api/v2/pokemon/").toPromise();
   }
 
-  getPokemon(id: number): Promise<any> {
-    let url = "https://pokeapi.co/api/v2/pokemon/" + id + "/";
+  getPokemon(key: string): Promise<any> {
+    let url = "https://pokeapi.co/api/v2/pokemon/" + key + "/";
     return this.http.get(url).toPromise();
   }
 
-  getSpecies(id: number): Promise<any> {
-    let url = "https://pokeapi.co/api/v2/pokemon-species/" + id + "/";
-    return this.http.get(url).toPromise();
+  async getPokemonBasis(key: string): Promise<PokemonBasis> {
+    let pokemonFromApi = <Pokemon> await this.getPokemon(key);
+    let speciesFromApi = <PokemonSpecies> await this.http.get(pokemonFromApi.species.url).toPromise();
+
+    let pokemon = new PokemonBasis();
+    pokemon.id = pokemonFromApi.id;
+    pokemon.key = pokemonFromApi.name;
+    pokemon.name = Utility.getMatchedLanguage(speciesFromApi.names).name;
+
+    // Sort types by slot
+    pokemon.types = pokemonFromApi.types.sort((x, y) => x.slot > y.slot ? 1 : x.slot < y.slot ? -1 : 0);
+
+    return pokemon;
   }
 
-  async getPokemonDetail(id: number) {
-    let pokemon = await this.getPokemon(id);
-    pokemon.species = await this.getSpecies(id);
-    let evolution_chain = <any>await this.http.get(pokemon.species.evolution_chain.url).toPromise();
-    console.log(pokemon);
-    console.log(pokemon.species);
-    console.log(pokemon.evolution_chain);
+  async getPokemonDetail(key: string): Promise<PokemonDetail> {
+    let pokemonFromApi = <Pokemon> await this.getPokemon(key);
+    let speciesFromApi = <PokemonSpecies> await this.http.get(pokemonFromApi.species.url).toPromise();
 
-    // Get localized Pokemon info
-    pokemon.name = Utility.getMatchedLanguage(pokemon.species.names).name;
-    delete pokemon.names;
-
-    pokemon.species.genus = Utility.getMatchedLanguage(pokemon.species.genera).genus;
-    delete pokemon.species.genera;
-
-    pokemon.flavor_text = Utility.getMatchedLanguageVersion(pokemon.species.flavor_text_entries).flavor_text;
-    delete pokemon.species.flavor_text_entries;
+    let pokemon = <PokemonDetail> await this.getPokemonBasis(key);
 
     // Sort abilities by slot
-    pokemon.abilities.sort((x, y) => x.slot > y.slot ? 1 : x.slot < y.slot ? -1 : 0);
-    // Sort types by slot
-    pokemon.types.sort((x, y) => x.slot > y.slot ? 1 : x.slot < y.slot ? -1 : 0);
+    pokemon.abilities = pokemonFromApi.abilities.sort((x, y) => x.slot > y.slot ? 1 : x.slot < y.slot ? -1 : 0);
+
+    pokemon.base_experience = pokemonFromApi.base_experience;
+
+    pokemon.capture_rate = speciesFromApi.capture_rate;
+
+    pokemon.egg_groups = speciesFromApi.egg_groups;
+
+    // Convert evolution tree into a simple list, only the first child is considered.
+    // TODO: use the evolution tree correctly.
+    let evolution_chain = <any>await this.http.get(speciesFromApi.evolution_chain.url).toPromise();
+    pokemon.evolution_list = [];
+    for (let current_node = evolution_chain.chain; current_node; current_node = current_node.evolves_to[0]) {
+      pokemon.evolution_list.push(current_node);
+    }
+    console.log(pokemon.evolution_list);
+
+    pokemon.flavor_text = Utility.getMatchedLanguageVersion(speciesFromApi.flavor_text_entries).flavor_text;
+
+    pokemon.gender_rate = speciesFromApi.gender_rate;
+
+    pokemon.generation = speciesFromApi.generation.name;
+
+    pokemon.genus = Utility.getMatchedLanguage(speciesFromApi.genera).genus;
 
     // Filter level-up moves and sort by level
-    pokemon.level_moves = pokemon.moves.filter(x =>
+    pokemon.level_moves = pokemonFromApi.moves.filter(x =>
       x.version_group_details.find(x => x.version_group.name === Utility.selected_version_group) &&
       x.version_group_details.find(x => x.move_learn_method.name === 'level-up'));
     pokemon.level_moves.sort((x, y) => {
@@ -60,38 +79,28 @@ export class PokemonService {
     });
 
     // Filter machine moves
-    pokemon.machine_moves = pokemon.moves.filter(x =>
+    pokemon.machine_moves = pokemonFromApi.moves.filter(x =>
       x.version_group_details.find(x => x.version_group.name === Utility.selected_version_group) &&
       x.version_group_details.find(x => x.move_learn_method.name === 'machine'));
 
     // Filter egg moves
-    pokemon.egg_moves = pokemon.moves.filter(x =>
+    pokemon.egg_moves = pokemonFromApi.moves.filter(x =>
       x.version_group_details.find(x => x.version_group.name === Utility.selected_version_group) &&
       x.version_group_details.find(x => x.move_learn_method.name === 'egg'));
 
     // Filter tutuor moves
-    pokemon.tutor_moves = pokemon.moves.filter(x =>
+    pokemon.tutor_moves = pokemonFromApi.moves.filter(x =>
       x.version_group_details.find(x => x.version_group.name === Utility.selected_version_group) &&
       x.version_group_details.find(x => x.move_learn_method.name === 'tutor'));
 
-    delete pokemon.moves;
-
     pokemon.stats = {
-      hp: pokemon.stats.find(x => x.stat.name == 'hp').base_stat,
-      attack: pokemon.stats.find(x => x.stat.name == 'attack').base_stat,
-      defense: pokemon.stats.find(x => x.stat.name == 'defense').base_stat,
-      special_attack: pokemon.stats.find(x => x.stat.name == 'special-attack').base_stat,
-      special_defense: pokemon.stats.find(x => x.stat.name == 'special-defense').base_stat,
-      speed: pokemon.stats.find(x => x.stat.name == 'speed').base_stat
+      hp: pokemonFromApi.stats.find(x => x.stat.name == 'hp').base_stat,
+      attack: pokemonFromApi.stats.find(x => x.stat.name == 'attack').base_stat,
+      defense: pokemonFromApi.stats.find(x => x.stat.name == 'defense').base_stat,
+      special_attack: pokemonFromApi.stats.find(x => x.stat.name == 'special-attack').base_stat,
+      special_defense: pokemonFromApi.stats.find(x => x.stat.name == 'special-defense').base_stat,
+      speed: pokemonFromApi.stats.find(x => x.stat.name == 'speed').base_stat
     };
-
-    // Convert evolution tree into a simple list, only the first child is considered.
-    // TODO: use the evolution tree correctly.
-    pokemon.evolution_list = [];
-    for (let current_node = evolution_chain.chain; current_node; current_node = current_node.evolves_to[0]) {
-      pokemon.evolution_list.push(current_node);
-    }
-    console.log(pokemon.evolution_list);
 
     return pokemon;
   }

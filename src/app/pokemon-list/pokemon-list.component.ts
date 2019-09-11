@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { PokemonService } from '../service/pokemon.service';
 import { Utility } from '../utility'
-import { NamedAPIResourceList, NamedAPIResource } from '../model/utility';
+import { PokemonBasis } from '../model/pokemon';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -11,7 +11,7 @@ import { NamedAPIResourceList, NamedAPIResource } from '../model/utility';
   styleUrls: ['./pokemon-list.component.css']
 })
 export class PokemonListComponent implements OnInit {
-  pokemonList: NamedAPIResourceList[];
+  pokemonList: PokemonBasis[];
   data: Object;
 
   constructor(
@@ -23,18 +23,20 @@ export class PokemonListComponent implements OnInit {
 
   getIDFromUrl = Utility.getIDFromUrl;
 
-  getPokemonList(): void {
-    this.pokemonService.getPokemonList().then(x => {
-      console.log(x);
-      this.pokemonList = x;
-    });
+  async getPokemonList(): Promise<void> {
+    let pokemonListFromApi = await this.pokemonService.getPokemonList();
+
+    this.pokemonList = [];
+    for (let pokemonFromApi of pokemonListFromApi.results) {
+      this.pokemonList.push(await this.pokemonService.getPokemonBasis(pokemonFromApi.name));
+    }
   }
 
   ngOnInit() {
     this.getPokemonList();
   }
 
-  goPokemonDetail(pokemon: NamedAPIResource): void {
-    this.router.navigate(['/pokemon', Utility.getIDFromUrl(pokemon.url)]);
+  goPokemonDetail(pokemon: PokemonBasis): void {
+    this.router.navigate(['/pokemon', pokemon.key]);
   }
 }

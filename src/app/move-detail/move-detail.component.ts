@@ -11,7 +11,7 @@ import { PokeApiService } from '../service/pokeapi.service';
 })
 export class MoveDetailComponent implements OnInit {
   @Input() move: Move;
-  id: number;
+  key: string;
 
   constructor(
     private pokeApiService: PokeApiService,
@@ -21,13 +21,13 @@ export class MoveDetailComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      this.id = +params['id'];
-      this.getMove(this.id);
+      this.key = params['key'];
+      this.getMove(this.key);
     });
   }
 
-  getMove(id: number): void {
-    var url = "https://pokeapi.co/api/v2/move/" + id + "/"
+  getMove(key: string): void {
+    var url = "https://pokeapi.co/api/v2/move/" + key + "/"
     this.pokeApiService.getFromApi(url).subscribe(x => {
       this.move = x;
     });

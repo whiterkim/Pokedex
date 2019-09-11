@@ -29,7 +29,7 @@ export class AbilityListComponent implements OnInit {
     this.getAbilityList();
   }
 
-  goAbilityDetail(ability: NamedAPIResource): void {
-    this.router.navigate(['/ability', Utility.getIDFromUrl(ability.url)]);
+  goAbility(ability: NamedAPIResource): void {
+    this.router.navigate(['/ability', ability.name]);
   }
 }

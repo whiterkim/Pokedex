@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PokeApiService } from '../service/pokeapi.service';
 import { Ability } from '../model/pokemon2';
 import { Utility } from '../utility';
+import { NamedAPIResource } from '../model/utility';
 
 @Component({
   selector: 'app-ability-detail',
@@ -12,7 +13,7 @@ import { Utility } from '../utility';
 })
 export class AbilityDetailComponent implements OnInit {
   @Input() ability: Ability;
-  id: number;
+  key: string;
 
   constructor(
     private pokeApiService: PokeApiService,
@@ -20,34 +21,23 @@ export class AbilityDetailComponent implements OnInit {
     private router: Router
   ) { }
 
-  getMatchedLanguageVersion = Utility.getMatchedLanguageVersion;
+  getMatchedLanguageVersionGroup = Utility.getMatchedLanguageVersionGroup;
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      this.id = +params['id'];
-      this.getAbility(this.id);
+      this.key = params['key'];
+      this.getAbility(this.key);
     });
   }
 
-  getAbility(id: number): void {
-    var url = "https://pokeapi.co/api/v2/ability/" + id + "/";
+  getAbility(key: string): void {
+    var url = "https://pokeapi.co/api/v2/ability/" + key + "/";
     this.pokeApiService.getFromApi(url).subscribe(x => {
       this.ability = x;
-      this.getAbilityPokemons();
     });
   }
 
-  getAbilityPokemons(): void {
-    for (let i = 0; i < this.ability.pokemon.length; i++) {
-      let id = this.ability.pokemon[i];
-    }
-  }
-
-  goAbility(id: number): void {
-    this.router.navigate(['/ability', id]);
-  }
-
-  goPokemon(url: string): void {
-    this.router.navigate(['/pokemon', Utility.getIDFromUrl(url)]);
+  goPokemon(pokemon: NamedAPIResource): void {
+    this.router.navigate(['/pokemon', pokemon.name]);
   }
 }

@@ -13,9 +13,9 @@ const routes: Routes = [
   {path: 'pokemon-list', component: PokemonListComponent},
   {path: 'ability-list', component: AbilityListComponent},
   {path: 'move-list', component: MoveListComponent},
-  {path: 'pokemon/:id', component: PokemonDetailComponent},
-  {path: 'ability/:id', component: AbilityDetailComponent},
-  {path: 'move/:id', component: MoveDetailComponent},
+  {path: 'pokemon/:key', component: PokemonDetailComponent},
+  {path: 'ability/:key', component: AbilityDetailComponent},
+  {path: 'move/:key', component: MoveDetailComponent},
 ];
 
 @NgModule({

@@ -1,8 +1,8 @@
 <div class="detail-page" *ngIf="pokemon">
   <div class="page-section">
-    <img class="pokemon-image" src="{{getImageURL('poke', id)}}" alt="{{pokemon.name}}">
+    <img class="pokemon-image" src="{{getImageURL('poke', pokemon.id)}}" alt="{{pokemon.name}}">
     <h2 class="card-title text-center"> {{pokemon.name}} </h2>
-    <div class="text-center"> #{{(id).toString().padStart(3, '0')}} {{pokemon.species.genus}} </div>
+    <div class="text-center"> #{{pokemon.id.toString().padStart(3, '0')}} {{pokemon.genus}} </div>
     <div class="text-center">
       {{pokemon.types[0].type.name}}
       {{pokemon.types[1] ? pokemon.types[1].type.name : ''}}
@@ -13,20 +13,20 @@
     <table class="table">
       <tr>
         <td>Generation:</td>
-        <td>{{pokemon.species.generation.name}}</td>
+        <td>{{pokemon.generation.name}}</td>
       </tr>
       <tr>
         <td>Egg Groups:</td>
-        <td>{{pokemon.species.egg_groups[0].name}},
-          {{pokemon.species.egg_groups[1] ? pokemon.species.egg_groups[1].name : ''}}</td>
+        <td>{{pokemon.egg_groups[0].name}},
+          {{pokemon.egg_groups[1] ? pokemon.egg_groups[1].name : ''}}</td>
       </tr>
       <tr>
         <td>Capture Rate:</td>
-        <td>{{pokemon.species.capture_rate}}%</td>
+        <td>{{pokemon.capture_rate}}%</td>
       </tr>
       <tr>
         <td>Gender Rate:</td>
-        <td>{{pokemon.species.gender_rate}}</td>
+        <td>{{pokemon.gender_rate}}</td>
       </tr>
       <!-- <tr>
         <td>EV Yield:</td>
@@ -41,7 +41,7 @@
 
   <div class="page-section">
     <h4 class="card-title text-center">PokeDex Entry</h4>
-    <div>{{pokemon.species.flavor_text}}</div>
+    <div>{{pokemon.flavor_text}}</div>
   </div>
 
   <div class="page-section">

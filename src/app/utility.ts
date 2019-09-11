@@ -36,6 +36,12 @@ export class Utility {
       x.version.name === Utility.selected_version);
   }
 
+  static getMatchedLanguageVersionGroup(list: any[]): any {
+    return list.find(x =>
+      x.language.name === Utility.selected_language &&
+      x.version_group.name === Utility.selected_version_group);
+  }
+
   static getMatchedLanguage(list: any[]): any {
     return list.find(x =>
       x.language.name === Utility.selected_language);

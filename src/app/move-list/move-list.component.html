@@ -1,6 +1,6 @@
-<table class="table">
+<table class="table" *ngIf="moveList">
   <tr *ngFor="let move of moveList.results" 
-      (click)="goMoveDetail(move)">
+      (click)="goMove(move)">
     <td>{{move.name}}</td>
   </tr>
 </table>
