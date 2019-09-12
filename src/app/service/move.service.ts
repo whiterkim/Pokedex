@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Move } from '../model/move';
-import { MoveData } from '../data/move-data';
-import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Move } from '../model/moves';
+import { NamedAPIResourceList } from '../model/utility';
 
 @Injectable()
 export class MoveService {
@@ -11,11 +10,11 @@ export class MoveService {
     private http: HttpClient
   ) { }
 
-  getMoves(): Observable<Move[]> {
-    return of(MoveData);
+  async getMoves(): Promise<NamedAPIResourceList> {
+    return <any> await this.http.get("https://pokeapi.co/api/v2/move/").toPromise();
   }
 
-  getMove(id: number): Observable<Move> {
-    return of(MoveData.find(x => x.id === id));
+  async getMove(url: string): Promise<Move> {
+    return <any> await this.http.get(url).toPromise();
   }
 }

@@ -7,12 +7,12 @@ import { Pokemon, PokemonSpecies } from '../model/pokemon2';
 
 @Component({
   selector: 'app-pokemon-list-item',
-  inputs: ['key'],
+  inputs: ['url'],
   templateUrl: './pokemon-list-item.component.html'
 })
 export class PokemonListItemComponent implements OnInit {
   @Input()
-  key: string;
+  url: string;
   pokemon: Pokemon;
   species: PokemonSpecies;
 
@@ -24,7 +24,7 @@ export class PokemonListItemComponent implements OnInit {
   getImageURL = Utility.getImageURL;
 
   async getPokemon(): Promise<void> {
-      this.pokemon = await this.pokemonService.getPokemon(this.key);
+      this.pokemon = await this.pokemonService.getPokemon(this.url);
       this.species = await this.pokemonService.getSpecies(this.pokemon.species.url);
   }
 
@@ -33,6 +33,6 @@ export class PokemonListItemComponent implements OnInit {
   }
 
   goPokemonDetail(): void {
-    this.router.navigate(['/pokemon', this.key]);
+    this.router.navigate(['/pokemon', this.pokemon.name]);
   }
 }

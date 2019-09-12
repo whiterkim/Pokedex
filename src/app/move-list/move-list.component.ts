@@ -1,27 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { PokeApiService } from '../service/pokeapi.service';
+import { MoveService } from '../service/move.service';
 import { NamedAPIResourceList, NamedAPIResource } from '../model/utility';
 
 @Component({
   selector: 'app-move-list',
-  templateUrl: './move-list.component.html',
-  styleUrls: ['./move-list.component.css']
+  templateUrl: './move-list.component.html'
 })
 export class MoveListComponent implements OnInit {
-  moveList: NamedAPIResourceList[];
+  moveList: NamedAPIResourceList;
 
   constructor(
     private router: Router,
-    private pokeApiService: PokeApiService,
+    private moveService: MoveService,
   ) { }
 
-  getMoveList(): void {
-    this.pokeApiService.getFromApi('https://pokeapi.co/api/v2/move/').subscribe(x => {
-      console.log(x);
-      this.moveList = x;
-    });
+  async getMoveList(): Promise<void> {
+    this.moveList = await this.moveService.getMoves();
   }
 
   ngOnInit() {

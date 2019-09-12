@@ -17,8 +17,9 @@ import { AbilityDetailComponent } from './ability-detail/ability-detail.componen
 import { AbilityListComponent } from './ability-list/ability-list.component';
 
 import { MoveService } from './service/move.service';
-import { MoveDetailComponent } from './move-detail/move-detail.component';
 import { MoveListComponent } from './move-list/move-list.component';
+import { MoveListItemComponent } from './move-list/move-list-item.component';
+import { MoveDetailComponent } from './move-detail/move-detail.component';
 
 import { PokeApiService } from './service/pokeapi.service';
 import { LanguagePipe } from './pipe/language.pipe';
@@ -39,6 +40,7 @@ import { VersionPipe } from './pipe/version.pipe';
     AbilityListComponent,
     AbilityDetailComponent,
     MoveListComponent,
+    MoveListItemComponent,
     MoveDetailComponent,
     LanguagePipe,
     MoveLearnMethodPipe,

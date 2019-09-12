@@ -32,7 +32,7 @@ export class PokemonDetailComponent implements OnInit {
   }
 
   async getPokemon(): Promise<void> {
-    this.pokemon = await this.pokemonService.getPokemon(this.key);
+    this.pokemon = await this.pokemonService.getPokemonFromKey(this.key);
     this.species = await this.pokemonService.getSpecies(this.pokemon.species.url);
   }
 

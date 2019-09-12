@@ -96,22 +96,22 @@
     <h4 class="card-title text-center">Moves</h4>
     <table class="table">
       <th>Level Up</th>
-      <tr *ngFor="let move of pokemon.moves"
-        (click)="goMove(move.move)">
-        <td *ngIf="(move.version_group_details | versionGroup | moveLearnMethod:'level-up').length !== 0">
-          {{move.move.name}}
-        </td>
-      </tr>
+      <div *ngFor="let move of pokemon.moves">
+        <app-move-list-item
+          *ngIf="(move.version_group_details | versionGroup | moveLearnMethod:'level-up').length !== 0"
+          url='{{move.move.url}}'>
+        </app-move-list-item>
+      </div>
     </table>
 
     <table class="table">
       <th>TM/HM</th>
-      <tr *ngFor="let move of pokemon.moves"
-        (click)="goMove(move.move)">
-        <td *ngIf="(move.version_group_details | versionGroup | moveLearnMethod:'machine').length !== 0">
-          {{move.move.name}}
-        </td>
-      </tr>
+      <div *ngFor="let move of pokemon.moves">
+        <app-move-list-item
+          *ngIf="(move.version_group_details | versionGroup | moveLearnMethod:'machine').length !== 0"
+          url='{{move.move.url}}'>
+        </app-move-list-item>
+      </div>
     </table>
   </div>
 
