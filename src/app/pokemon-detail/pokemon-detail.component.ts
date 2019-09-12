@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PokemonService } from '../service/pokemon.service';
 import { NamedAPIResource } from '../model/utility';
 import { Utility } from '../utility';
-import { PokemonDetail } from '../model/pokemon';
 import { Pokemon, PokemonSpecies } from '../model/pokemon2';
 
 @Component({
@@ -13,9 +12,8 @@ import { Pokemon, PokemonSpecies } from '../model/pokemon2';
   styleUrls: ['./pokemon-detail.component.css']
 })
 export class PokemonDetailComponent implements OnInit {
-  pokemon: PokemonDetail;
   key: string;
-  pokemon2: Pokemon;
+  pokemon: Pokemon;
   species: PokemonSpecies;
 
   constructor(
@@ -26,12 +24,6 @@ export class PokemonDetailComponent implements OnInit {
 
   getImageURL = Utility.getImageURL;
 
-  getMatchedLanguageVersion = Utility.getMatchedLanguageVersion;
-
-  getMatchedLanguage = Utility.getMatchedLanguage;
-
-  getIDFromUrl = Utility.getIDFromUrl;
-
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.key = params['key'];
@@ -40,17 +32,12 @@ export class PokemonDetailComponent implements OnInit {
   }
 
   async getPokemon(): Promise<void> {
-    this.pokemonService.getPokemonDetail(this.key).then(x => {
-      console.log(x);
-      this.pokemon = x;
-    });
-
-    this.pokemon2 = await this.pokemonService.getPokemon(this.key);
-    this.species = await this.pokemonService.getSpecies(this.key);
+    this.pokemon = await this.pokemonService.getPokemon(this.key);
+    this.species = await this.pokemonService.getSpecies(this.pokemon.species.url);
   }
 
-  goPokemon(pokemon: NamedAPIResource): void {
-    this.router.navigate(['/pokemon', pokemon.name]);
+  getTotalStats(): number {
+    return this.pokemon.stats.reduce((sum, x) => sum + x.base_stat, 0);
   }
 
   goAbility(ability: NamedAPIResource): void {

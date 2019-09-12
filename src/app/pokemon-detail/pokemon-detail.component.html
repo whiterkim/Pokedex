@@ -1,11 +1,11 @@
-<div class="detail-page" *ngIf="pokemon">
+<div class="detail-page" *ngIf="pokemon && species">
   <div class="page-section">
     <img class="pokemon-image" src="{{getImageURL('poke', pokemon.id)}}" alt="{{pokemon.name}}">
-    <h2 class="card-title text-center"> {{pokemon.name}} </h2>
-    <div class="text-center"> #{{pokemon.id.toString().padStart(3, '0')}} {{pokemon.genus}} </div>
+    <h2 class="card-title text-center"> {{(species.names | language)[0].name}} </h2>
+    <div class="text-center"> #{{pokemon.id.toString().padStart(3, '0')}} {{(species.genera | language)[0].genus}} </div>
     <div class="text-center">
-      {{pokemon.types[0].type.name}}
-      {{pokemon.types[1] ? pokemon.types[1].type.name : ''}}
+      {{(pokemon.types | slot:1).type.name}}
+      {{(pokemon.types | slot:2) ? (pokemon.types | slot:2).type.name : ''}}
     </div>
   </div>
 
@@ -13,20 +13,20 @@
     <table class="table">
       <tr>
         <td>Generation:</td>
-        <td>{{pokemon.generation.name}}</td>
+        <td>{{species.generation.name}}</td>
       </tr>
       <tr>
         <td>Egg Groups:</td>
-        <td>{{pokemon.egg_groups[0].name}},
-          {{pokemon.egg_groups[1] ? pokemon.egg_groups[1].name : ''}}</td>
+        <td>{{species.egg_groups[0].name}},
+          {{species.egg_groups[1] ? species.egg_groups[1].name : ''}}</td>
       </tr>
       <tr>
         <td>Capture Rate:</td>
-        <td>{{pokemon.capture_rate}}%</td>
+        <td>{{species.capture_rate}}%</td>
       </tr>
       <tr>
         <td>Gender Rate:</td>
-        <td>{{pokemon.gender_rate}}</td>
+        <td>{{species.gender_rate}}</td>
       </tr>
       <!-- <tr>
         <td>EV Yield:</td>
@@ -34,14 +34,14 @@
       </tr> -->
       <tr>
         <td>Base Experience:</td>
-        <td>{{pokemon.base_experience}}</td>
+        <td>{{species.base_experience}}</td>
       </tr>
     </table>
   </div>
 
   <div class="page-section">
     <h4 class="card-title text-center">PokeDex Entry</h4>
-    <div>{{pokemon.flavor_text}}</div>
+    <div>{{(species.flavor_text_entries | language | version)[0].flavor_text}}</div>
   </div>
 
   <div class="page-section">
@@ -49,32 +49,31 @@
     <table class="table">
       <tr>
         <td>HP:</td>
-        <td>{{pokemon.stats.hp}}</td>
+        <td>{{pokemon.stats | stats:'hp'}}</td>
       </tr>
       <tr>
         <td>ATK:</td>
-        <td>{{pokemon.stats.attack}}</td>
+        <td>{{pokemon.stats | stats:'attack'}}</td>
       </tr>
       <tr>
         <td>DEF:</td>
-        <td>{{pokemon.stats.defense}}</td>
+        <td>{{pokemon.stats | stats:'defense'}}</td>
       </tr>
       <tr>
         <td>SPA:</td>
-        <td>{{pokemon.stats.special_attack}}</td>
+        <td>{{pokemon.stats | stats:'special-attack'}}</td>
       </tr>
       <tr>
         <td>SPD:</td>
-        <td>{{pokemon.stats.special_defense}}</td>
+        <td>{{pokemon.stats | stats:'special-defense'}}</td>
       </tr>
       <tr>
         <td>SPE:</td>
-        <td>{{pokemon.stats.speed}}</td>
+        <td>{{pokemon.stats | stats:'speed'}}</td>
       </tr>
       <tr>
         <td>Total:</td>
-        <td>{{pokemon.stats.hp + pokemon.stats.attack + pokemon.stats.defense +
-            pokemon.stats.special_attack + pokemon.stats.special_defense + pokemon.stats.speed}}
+        <td>{{getTotalStats()}}
         </td>
       </tr>
     </table>
@@ -97,17 +96,21 @@
     <h4 class="card-title text-center">Moves</h4>
     <table class="table">
       <th>Level Up</th>
-      <tr *ngFor="let move of pokemon.level_moves"
+      <tr *ngFor="let move of pokemon.moves"
         (click)="goMove(move.move)">
-        <td>{{move.move.name}}</td>
+        <td *ngIf="(move.version_group_details | versionGroup | moveLearnMethod:'level-up').length !== 0">
+          {{move.move.name}}
+        </td>
       </tr>
     </table>
 
     <table class="table">
       <th>TM/HM</th>
-      <tr *ngFor="let move of pokemon.machine_moves"
+      <tr *ngFor="let move of pokemon.moves"
         (click)="goMove(move.move)">
-        <td>{{move.move.name}}</td>
+        <td *ngIf="(move.version_group_details | versionGroup | moveLearnMethod:'machine').length !== 0">
+          {{move.move.name}}
+        </td>
       </tr>
     </table>
   </div>

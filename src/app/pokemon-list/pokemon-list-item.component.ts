@@ -25,7 +25,7 @@ export class PokemonListItemComponent implements OnInit {
 
   async getPokemon(): Promise<void> {
       this.pokemon = await this.pokemonService.getPokemon(this.key);
-      this.species = await this.pokemonService.getSpecies(this.key);
+      this.species = await this.pokemonService.getSpecies(this.pokemon.species.url);
   }
 
   ngOnInit() {

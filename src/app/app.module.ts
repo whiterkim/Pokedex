@@ -22,6 +22,11 @@ import { MoveListComponent } from './move-list/move-list.component';
 
 import { PokeApiService } from './service/pokeapi.service';
 import { LanguagePipe } from './pipe/language.pipe';
+import { MoveLearnMethodPipe } from './pipe/move-learn-method.pipe';
+import { SlotPipe } from './pipe/slot.pipe';
+import { StatsPipe } from './pipe/stats.pipe';
+import { VersionGroupPipe } from './pipe/version-group.pipe';
+import { VersionPipe } from './pipe/version.pipe';
 
 @NgModule({
   declarations: [
@@ -36,6 +41,11 @@ import { LanguagePipe } from './pipe/language.pipe';
     MoveListComponent,
     MoveDetailComponent,
     LanguagePipe,
+    MoveLearnMethodPipe,
+    SlotPipe,
+    StatsPipe,
+    VersionGroupPipe,
+    VersionPipe,
   ],
   imports: [
     BrowserModule,
