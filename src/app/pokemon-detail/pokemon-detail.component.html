@@ -4,8 +4,8 @@
     <h2 class="card-title text-center"> {{(species.names | language)[0].name}} </h2>
     <div class="text-center"> #{{pokemon.id.toString().padStart(3, '0')}} {{(species.genera | language)[0].genus}} </div>
     <div class="text-center">
-      {{(pokemon.types | slot:1).type.name}}
-      {{(pokemon.types | slot:2) ? (pokemon.types | slot:2).type.name : ''}}
+      <app-type-name url="{{(pokemon.types | slot:1).type.url}}"></app-type-name>
+      <app-type-name url="{{(pokemon.types | slot:2).type.url}}" *ngIf="pokemon.types | slot:2"></app-type-name>
     </div>
   </div>
 

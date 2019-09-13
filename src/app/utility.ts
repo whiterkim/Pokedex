@@ -4,10 +4,6 @@ export class Utility {
 
   constructor() { }
 
-  static selected_language = 'en';
-  static selected_version = 'omega-ruby';
-  static selected_version_group = 'omega-ruby-alpha-sapphire';
-
   static getTypeName(id: number): string {
     return TypeData.find(x => x.id === id).name;
   }
@@ -28,22 +24,5 @@ export class Utility {
 
   static getIDFromUrl(url: string): number {
     return +url.split('/')[6];
-  }
-
-  static getMatchedLanguageVersion(list: any[]): any {
-    return list.find(x =>
-      x.language.name === Utility.selected_language &&
-      x.version.name === Utility.selected_version);
-  }
-
-  static getMatchedLanguageVersionGroup(list: any[]): any {
-    return list.find(x =>
-      x.language.name === Utility.selected_language &&
-      x.version_group.name === Utility.selected_version_group);
-  }
-
-  static getMatchedLanguage(list: any[]): any {
-    return list.find(x =>
-      x.language.name === Utility.selected_language);
   }
 }

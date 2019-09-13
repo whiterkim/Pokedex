@@ -21,8 +21,6 @@ export class AbilityDetailComponent implements OnInit {
     private router: Router
   ) { }
 
-  getMatchedLanguageVersionGroup = Utility.getMatchedLanguageVersionGroup;
-
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.key = params['key'];

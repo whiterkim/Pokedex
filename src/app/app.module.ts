@@ -21,6 +21,9 @@ import { MoveListComponent } from './move-list/move-list.component';
 import { MoveListItemComponent } from './move-list/move-list-item.component';
 import { MoveDetailComponent } from './move-detail/move-detail.component';
 
+import { TypeService } from './service/type.service';
+import { TypeNameComponent } from './type/type-name.component';
+
 import { PokeApiService } from './service/pokeapi.service';
 import { LanguagePipe } from './pipe/language.pipe';
 import { MoveLearnMethodPipe } from './pipe/move-learn-method.pipe';
@@ -42,6 +45,7 @@ import { VersionPipe } from './pipe/version.pipe';
     MoveListComponent,
     MoveListItemComponent,
     MoveDetailComponent,
+    TypeNameComponent,
     LanguagePipe,
     MoveLearnMethodPipe,
     SlotPipe,
@@ -54,7 +58,7 @@ import { VersionPipe } from './pipe/version.pipe';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [PokemonService, AbilityService, MoveService, PokeApiService],
+  providers: [PokemonService, AbilityService, MoveService, TypeService, PokeApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
