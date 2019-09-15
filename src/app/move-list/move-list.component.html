@@ -1,4 +1,6 @@
 <table class="table" *ngIf="moveList">
-  <app-move-list-item *ngFor="let move of moveList.results"  url='{{move.url}}'>
-  </app-move-list-item>
+  <tr>
+    <app-move-list-item *ngFor="let move of moveList.results"  url='{{move.url}}'>
+    </app-move-list-item>
+  </tr>
 </table>

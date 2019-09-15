@@ -8,7 +8,8 @@ import { Pokemon, PokemonSpecies } from '../model/pokemon2';
 @Component({
   selector: 'app-pokemon-list-item',
   inputs: ['url'],
-  templateUrl: './pokemon-list-item.component.html'
+  templateUrl: './pokemon-list-item.component.html',
+  styleUrls: ['./pokemon-list.css']
 })
 export class PokemonListItemComponent implements OnInit {
   @Input()

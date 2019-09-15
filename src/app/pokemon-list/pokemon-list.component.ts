@@ -5,7 +5,8 @@ import { NamedAPIResourceList } from '../model/utility';
 
 @Component({
   selector: 'app-pokemon-list',
-  templateUrl: './pokemon-list.component.html'
+  templateUrl: './pokemon-list.component.html',
+  styleUrls: ['./pokemon-list.css']
 })
 export class PokemonListComponent implements OnInit {
   pokemonList: NamedAPIResourceList;

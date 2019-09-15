@@ -1,4 +1,6 @@
 <table class="table" *ngIf="pokemonList">
-  <app-pokemon-list-item *ngFor="let pokemon of pokemonList.results" url='{{pokemon.url}}'>
-  </app-pokemon-list-item>
+  <tr>
+    <app-pokemon-list-item *ngFor="let pokemon of pokemonList.results" url='{{pokemon.url}}'>
+    </app-pokemon-list-item>
+  </tr>
 </table>
