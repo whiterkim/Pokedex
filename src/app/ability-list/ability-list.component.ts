@@ -20,7 +20,6 @@ export class AbilityListComponent implements OnInit {
 
   getAbilityList(): void {
     this.pokeApiService.getFromApi('https://pokeapi.co/api/v2/ability/').subscribe(x => {
-      console.log(x);
       this.abilityList = x;
     });
   }

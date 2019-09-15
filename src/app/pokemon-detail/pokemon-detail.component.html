@@ -5,6 +5,7 @@
     <div class="text-center"> #{{pokemon.id.toString().padStart(3, '0')}} {{(species.genera | language)[0].genus}} </div>
     <div class="text-center">
       <app-type-name url="{{(pokemon.types | slot:1).type.url}}"></app-type-name>
+      <span *ngIf="pokemon.types | slot:2">&nbsp;</span>
       <app-type-name url="{{(pokemon.types | slot:2).type.url}}" *ngIf="pokemon.types | slot:2"></app-type-name>
     </div>
   </div>
@@ -32,17 +33,33 @@
         <td>EV Yield:</td>
         <td>{{pokemon.evYield}}</td>
       </tr> -->
-      <tr>
+      <!-- <tr>
         <td>Base Experience:</td>
         <td>{{species.base_experience}}</td>
+      </tr> -->
+      <tr>
+        <td>Abilities:</td>
+        <td>
+          <span *ngFor="let ability of pokemon.abilities"
+            (click)="goAbility(ability.ability)">
+            {{ability.ability.name}}
+            {{ability.is_hidden ? '(Hidden)' : ''}}
+            <br>
+          </span>
+        </td>
       </tr>
     </table>
   </div>
 
-  <div class="page-section">
-    <h4 class="card-title text-center">PokeDex Entry</h4>
-    <div>{{(species.flavor_text_entries | language | version)[0].flavor_text}}</div>
-  </div>
+  <!-- <div class="page-section">
+      <h4 class="card-title text-center">Abilities</h4>
+      <div class="section-ability"
+        *ngFor="let ability of pokemon.abilities"
+        (click)="goAbility(ability.ability)">
+        <h5 class="card-subtitle">{{ability.ability.name}}</h5>
+        <div *ngIf="ability.is_hidden === true">(Hidden)</div>
+      </div>
+    </div> -->
 
   <div class="page-section">
     <h4 class="card-title text-center">Base Stats</h4>
@@ -83,13 +100,8 @@
   </app-evolution-chain>
 
   <div class="page-section">
-    <h4 class="card-title text-center">Abilities</h4>
-    <div class="section-ability"
-      *ngFor="let ability of pokemon.abilities"
-      (click)="goAbility(ability.ability)">
-      <h5 class="card-subtitle">{{ability.ability.name}}</h5>
-      <div *ngIf="ability.is_hidden === true">(Hidden)</div>
-    </div>
+    <h4 class="card-title text-center">PokeDex Entry</h4>
+    <div>{{(species.flavor_text_entries | language | version)[0].flavor_text}}</div>
   </div>
 
   <div class="page-section">

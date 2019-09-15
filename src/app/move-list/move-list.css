@@ -1,0 +1,25 @@
+/* .move-list-table {
+    margin-left: 24px;
+    margin-right: 24px;
+} */
+
+.move-list-item {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+
+.move-name {
+    margin-left: 1rem;
+    width: 120px;
+    float: left;
+}
+
+.move-power {
+    width: 48px;
+    float: left;
+}
+
+.move-type {
+    text-align: right;
+    margin-right: 1rem;
+}

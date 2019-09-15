@@ -6,7 +6,8 @@ import { NamedAPIResourceList, NamedAPIResource } from '../model/utility';
 
 @Component({
   selector: 'app-move-list',
-  templateUrl: './move-list.component.html'
+  templateUrl: './move-list.component.html',
+  styleUrls: ['./move-list.css']
 })
 export class MoveListComponent implements OnInit {
   moveList: NamedAPIResourceList;

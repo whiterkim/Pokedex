@@ -16,7 +16,7 @@ export class EvolutionChainComponent implements OnInit {
   @Input()
   url: string;
   evolutionChain: EvolutionChain;
-  evolutionList: ChainLink[];
+  evolutionLists: ChainLink[][];
 
   constructor(
     private pokemonService: PokemonService,
@@ -35,11 +35,16 @@ export class EvolutionChainComponent implements OnInit {
 
     // Convert evolution tree into a simple list, only the first child is considered.
     // TODO: use the evolution tree correctly.
-    this.evolutionList = [];
+    this.evolutionLists = [];
+
+    this.evolutionLists[0] = [];
     for (let current_node = this.evolutionChain.chain; current_node; current_node = current_node.evolves_to[0]) {
-      this.evolutionList.push(current_node);
+      this.evolutionLists[0].push(current_node);
     }
-    console.log(this.evolutionList);
+
+    this.evolutionLists[1] = [];
+    this.evolutionLists[1].push(null);
+    this.evolutionLists[1].push(this.evolutionChain.chain);
   }
 
   goPokemon(pokemon: NamedAPIResource): void {

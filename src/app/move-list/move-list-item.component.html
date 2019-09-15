@@ -1,6 +1,13 @@
-<div *ngIf="move"
+<div class="move-list-item"
+    *ngIf="move"
     (click)="goMove()">
-    <td>{{(move.names | language)[0].name}}</td>
-    <td><app-type-name url="{{move.type.url}}"></app-type-name></td>
-    <td>{{move.power}}</td>
+    <div class="move-name">
+        {{(move.names | language)[0].name}}
+    </div>
+    <div class="move-power">
+        {{move.power === null ? '-' : move.power}}
+    </div>
+    <div class="move-type">
+        <app-type-name url="{{move.type.url}}"></app-type-name>
+    </div>
 </div>

@@ -1,4 +1,5 @@
-<div *ngIf="pokemon && species" class="pokemon-list-item"
+<div class="pokemon-list-item"
+    *ngIf="pokemon && species"
     (click)="goPokemonDetail()">
     <div class="pokemon-icon">
         <img src="{{getImageURL('icon', pokemon.id)}}" alt="{{pokemon.name}}">
@@ -8,6 +9,7 @@
     </div>
     <div class="pokemon-types">
         <app-type-name url="{{(pokemon.types | slot:1).type.url}}"></app-type-name>
+        <span>&nbsp;</span>
         <app-type-name url="{{(pokemon.types | slot:2).type.url}}" *ngIf="pokemon.types | slot:2"></app-type-name>
     </div>
 </div>

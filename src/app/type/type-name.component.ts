@@ -6,7 +6,8 @@ import { Type } from '../model/pokemon2';
 @Component({
   selector: 'app-type-name',
   inputs: ['url'],
-  templateUrl: './type-name.component.html'
+  templateUrl: './type-name.component.html',
+  styleUrls: ['./type-name.component.css']
 })
 export class TypeNameComponent implements OnInit {
   @Input()
@@ -22,8 +23,6 @@ export class TypeNameComponent implements OnInit {
   }
 
   async getType(): Promise<void> {
-    console.log(this.url);
     this.type = await this.typeService.getType(this.url);
-    console.log(this.type);
   }
 }

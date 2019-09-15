@@ -1,11 +1,22 @@
 <div class="page-section">
     <h4 class="card-title text-center">Evolutions</h4>
-    <div *ngFor="let evolutionNode of evolutionList">
-        <div class="section-evolution border">
-        <img class="evolution-image" 
-            (click)="goPokemon(evolutionNode.species)"
-            src="{{getImageURL('poke', getIDFromUrl(evolutionNode.species.url))}}"
-            alt="{{evolutionNode.species.name}}">
+    <div *ngFor="let evolutionList of evolutionLists; let i = index">
+        <div *ngFor="let evolutionNode of evolutionList; let j = index">
+            <div class="evolution-condition"
+                *ngIf="j !== 0">
+                Lv xx
+            </div>
+            <div class="evolution-node border"
+                *ngIf="evolutionNode !== null">
+                <img class="evolution-image" 
+                    (click)="goPokemon(evolutionNode.species)"
+                    src="{{getImageURL('poke', getIDFromUrl(evolutionNode.species.url))}}"
+                    alt="{{evolutionNode.species.name}}">
+            </div>
+            <div class="evolution-node"
+                *ngIf="evolutionNode === null">
+                &nbsp;
+            </div>
         </div>
     </div>
 </div>
