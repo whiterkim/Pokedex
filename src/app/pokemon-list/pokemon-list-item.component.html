@@ -8,8 +8,7 @@
         {{(species.names | language)[0].name}}
     </div>
     <div class="pokemon-types">
-        <app-type-name url="{{(pokemon.types | slot:1).type.url}}"></app-type-name>
-        <span>&nbsp;</span>
-        <app-type-name url="{{(pokemon.types | slot:2).type.url}}" *ngIf="pokemon.types | slot:2"></app-type-name>
+        <app-type-name style="margin:4px" url="{{(pokemon.types | slot:1).type.url}}"></app-type-name>
+        <app-type-name style="margin:4px" url="{{(pokemon.types | slot:2).type.url}}" *ngIf="pokemon.types | slot:2"></app-type-name>
     </div>
 </div>

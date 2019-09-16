@@ -6,17 +6,16 @@
 .move-list-item {
     margin-top: .5rem;
     margin-bottom: .5rem;
+    display: flex;
 }
 
 .move-name {
     margin-left: 1rem;
     width: 120px;
-    float: left;
 }
 
 .move-power {
     width: 48px;
-    float: left;
 }
 
 .move-type {

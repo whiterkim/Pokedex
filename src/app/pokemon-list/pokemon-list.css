@@ -1,15 +1,14 @@
 .pokemon-list-item {
-    margin: .5rem 1rem;
+    margin: 1rem;
+    display: flex;
 }
 
 .pokemon-icon {
     width: 72px;
-    float: left;
 }
 
 .pokemon-name {
     width: 120px;
-    float: left;
 }
 
 .pokemon-types {

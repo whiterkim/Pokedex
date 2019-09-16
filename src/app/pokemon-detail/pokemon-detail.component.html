@@ -4,96 +4,132 @@
     <h2 class="card-title text-center"> {{(species.names | language)[0].name}} </h2>
     <div class="text-center"> #{{pokemon.id.toString().padStart(3, '0')}} {{(species.genera | language)[0].genus}} </div>
     <div class="text-center">
-      <app-type-name url="{{(pokemon.types | slot:1).type.url}}"></app-type-name>
-      <span *ngIf="pokemon.types | slot:2">&nbsp;</span>
-      <app-type-name url="{{(pokemon.types | slot:2).type.url}}" *ngIf="pokemon.types | slot:2"></app-type-name>
+      <app-type-name
+        *ngIf="pokemon.types | slot:1; let type"
+        style="margin:4px"
+        url="{{type.type.url}}"></app-type-name>
+      <app-type-name
+        *ngIf="pokemon.types | slot:2; let type"
+        style="margin:4px"
+        url="{{type.type.url}}"></app-type-name>
+    </div>
+  </div>
+
+  <div class="info-box-collection">
+    <div class="info-box">
+      <div class="info-box-title">Abilities</div>
+      <div class="info-box-content">
+        <div class="info-box-content-item" (click)="goAbility(ability.ability)" *ngIf="pokemon.abilities | slot:1; let ability">
+          <app-ability-name url="{{ability.ability.url}}"></app-ability-name>
+          <span *ngIf="ability.is_hidden" style="font-size:0.75rem">
+            <br> Hidden
+          </span>
+        </div>
+        <div class="info-box-content-item" (click)="goAbility(ability.ability)" *ngIf="pokemon.abilities | slot:2; let ability">
+          <app-ability-name url="{{ability.ability.url}}"></app-ability-name>
+          <span *ngIf="ability.is_hidden" style="font-size:0.75rem">
+            <br> Hidden
+          </span>
+        </div>
+        <div class="info-box-content-item" (click)="goAbility(ability.ability)" *ngIf="pokemon.abilities | slot:3; let ability">
+          <app-ability-name url="{{ability.ability.url}}"></app-ability-name>
+          <span *ngIf="ability.is_hidden" style="font-size:0.75rem">
+            <br> Hidden
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <div class="info-box-title">Egg Groups</div>
+      <div class="info-box-content">
+        <div class="info-box-content-item" *ngIf="species.egg_groups[0]">
+            {{species.egg_groups[0].name}}
+        </div>
+        <div class="info-box-content-item" *ngIf="species.egg_groups[1]">
+            {{species.egg_groups[1].name}}
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <div class="info-box-title">Capture Rate</div>
+      <div class="info-box-content info-box-content-item">{{species.capture_rate}}</div>
+    </div>
+
+    <div class="info-box">
+      <div class="info-box-title">Gender Rate</div>
+      <div class="info-box-content info-box-content-item">{{species.gender_rate}}</div>
+    </div>
+
+    <div class="info-box">
+      <div class="info-box-title">Height</div>
+      <div class="info-box-content info-box-content-item">{{pokemon.height}}</div>
+    </div>
+
+    <div class="info-box">
+      <div class="info-box-title">Weight</div>
+      <div class="info-box-content info-box-content-item">{{pokemon.weight}}</div>
     </div>
   </div>
 
   <div class="page-section">
-    <table class="table">
-      <tr>
-        <td>Generation:</td>
-        <td>{{species.generation.name}}</td>
-      </tr>
-      <tr>
-        <td>Egg Groups:</td>
-        <td>{{species.egg_groups[0].name}},
-          {{species.egg_groups[1] ? species.egg_groups[1].name : ''}}</td>
-      </tr>
-      <tr>
-        <td>Capture Rate:</td>
-        <td>{{species.capture_rate}}%</td>
-      </tr>
-      <tr>
-        <td>Gender Rate:</td>
-        <td>{{species.gender_rate}}</td>
-      </tr>
-      <!-- <tr>
-        <td>EV Yield:</td>
-        <td>{{pokemon.evYield}}</td>
-      </tr> -->
-      <!-- <tr>
-        <td>Base Experience:</td>
-        <td>{{species.base_experience}}</td>
-      </tr> -->
-      <tr>
-        <td>Abilities:</td>
-        <td>
-          <span *ngFor="let ability of pokemon.abilities"
-            (click)="goAbility(ability.ability)">
-            {{ability.ability.name}}
-            {{ability.is_hidden ? '(Hidden)' : ''}}
-            <br>
-          </span>
-        </td>
-      </tr>
-    </table>
-  </div>
-
-  <!-- <div class="page-section">
-      <h4 class="card-title text-center">Abilities</h4>
-      <div class="section-ability"
-        *ngFor="let ability of pokemon.abilities"
-        (click)="goAbility(ability.ability)">
-        <h5 class="card-subtitle">{{ability.ability.name}}</h5>
-        <div *ngIf="ability.is_hidden === true">(Hidden)</div>
-      </div>
-    </div> -->
-
-  <div class="page-section">
     <h4 class="card-title text-center">Base Stats</h4>
-    <table class="table">
-      <tr>
-        <td>HP:</td>
-        <td>{{pokemon.stats | stats:'hp'}}</td>
-      </tr>
-      <tr>
-        <td>ATK:</td>
-        <td>{{pokemon.stats | stats:'attack'}}</td>
-      </tr>
-      <tr>
-        <td>DEF:</td>
-        <td>{{pokemon.stats | stats:'defense'}}</td>
-      </tr>
-      <tr>
-        <td>SPA:</td>
-        <td>{{pokemon.stats | stats:'special-attack'}}</td>
-      </tr>
-      <tr>
-        <td>SPD:</td>
-        <td>{{pokemon.stats | stats:'special-defense'}}</td>
-      </tr>
-      <tr>
-        <td>SPE:</td>
-        <td>{{pokemon.stats | stats:'speed'}}</td>
-      </tr>
-      <tr>
-        <td>Total:</td>
-        <td>{{getTotalStats()}}
-        </td>
-      </tr>
-    </table>
+    <div class="stats-list">
+      <!-- HP -->
+      <div class="stats-item" *ngIf="pokemon.stats | stats:'hp'; let hp">
+        <div class="stats-header">HP</div>
+        <div class="stats-value">{{hp}}</div>
+        <div class="stats-bar bgl-hp" [style.width.px]="200">
+          <div class="stats-bar bgd-hp" [style.width.px]="hp"></div>
+        </div>
+      </div>
+      <!-- Attack -->
+      <div class="stats-item" *ngIf="pokemon.stats | stats:'attack'; let attack">
+        <div class="stats-header">ATK</div>
+        <div class="stats-value">{{attack}}</div>
+        <div class="stats-bar bgl-attack" [style.width.px]="200">
+          <div class="stats-bar bgd-attack" [style.width.px]="attack"></div>
+        </div>
+      </div>
+      <!-- Defense -->
+      <div class="stats-item" *ngIf="pokemon.stats | stats:'defense'; let defense">
+        <div class="stats-header">DEF</div>
+        <div class="stats-value">{{defense}}</div>
+        <div class="stats-bar bgl-defense" [style.width.px]="200">
+          <div class="stats-bar bgd-defense" [style.width.px]="defense"></div>
+        </div>
+      </div>
+      <!-- Special Attack -->
+      <div class="stats-item" *ngIf="pokemon.stats | stats:'special-attack'; let specialAttack">
+        <div class="stats-header">SPA</div>
+        <div class="stats-value">{{specialAttack}}</div>
+        <div class="stats-bar bgl-special-attack" [style.width.px]="200">
+          <div class="stats-bar bgd-special-attack" [style.width.px]="specialAttack"></div>
+        </div>
+      </div>
+      <!-- Special Defense -->
+      <div class="stats-item" *ngIf="pokemon.stats | stats:'special-defense'; let specialDefense">
+        <div class="stats-header">SPD</div>
+        <div class="stats-value">{{specialDefense}}</div>
+        <div class="stats-bar bgl-special-defense" [style.width.px]="200">
+          <div class="stats-bar bgd-special-defense" [style.width.px]="specialDefense"></div>
+        </div>
+      </div>
+      <!-- Speed -->
+      <div class="stats-item" *ngIf="pokemon.stats | stats:'speed'; let speed">
+        <div class="stats-header">SPD</div>
+        <div class="stats-value">{{speed}}</div>
+        <div class="stats-bar bgl-speed" [style.width.px]="200">
+          <div class="stats-bar bgd-speed" [style.width.px]="speed"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Total -->
+    <div class="stats-item">
+      <div class="stats-header">Total</div>
+      <div class="stats-value">{{getTotalStats()}}</div>
+    </div>
   </div>
 
   <app-evolution-chain url='{{species.evolution_chain.url}}'>
@@ -126,10 +162,4 @@
       </tr>
     </table>
   </div>
-
-  <!-- <div class="page-section">
-    <h4 class="card-title text-center">Location</h4>
-    <div> <span> Kanto: </span> Pallet Town/Initial Pokemon </div>
-    <div> <span> Alola: </span> Route 2/Island Scan/Grassy Terrain </div>
-  </div> -->
 </div>

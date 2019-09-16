@@ -15,6 +15,7 @@ import { EvolutionChainComponent } from './pokemon-detail/evolution-chain.compon
 import { AbilityService } from './service/ability.service';
 import { AbilityDetailComponent } from './ability-detail/ability-detail.component';
 import { AbilityListComponent } from './ability-list/ability-list.component';
+import { AbilityNameComponent } from './ability-detail/ability-name.component';
 
 import { MoveService } from './service/move.service';
 import { MoveListComponent } from './move-list/move-list.component';
@@ -40,8 +41,9 @@ import { VersionPipe } from './pipe/version.pipe';
     PokemonListItemComponent,
     PokemonDetailComponent,
     EvolutionChainComponent,
-    AbilityListComponent,
     AbilityDetailComponent,
+    AbilityListComponent,
+    AbilityNameComponent,
     MoveListComponent,
     MoveListItemComponent,
     MoveDetailComponent,

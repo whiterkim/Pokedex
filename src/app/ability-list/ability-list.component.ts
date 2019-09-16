@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { PokeApiService } from '../service/pokeapi.service';
+import { AbilityService } from '../service/ability.service';
 import { NamedAPIResourceList, NamedAPIResource } from '../model/utility';
-import { Utility } from '../utility';
 
 @Component({
   selector: 'app-ability-list',
@@ -11,17 +10,15 @@ import { Utility } from '../utility';
   styleUrls: ['./ability-list.component.css']
 })
 export class AbilityListComponent implements OnInit {
-  abilityList: NamedAPIResourceList[];
+  abilityList: NamedAPIResourceList;
 
   constructor(
     private router: Router,
-    private pokeApiService: PokeApiService
+    private abilityService: AbilityService
   ) { }
 
-  getAbilityList(): void {
-    this.pokeApiService.getFromApi('https://pokeapi.co/api/v2/ability/').subscribe(x => {
-      this.abilityList = x;
-    });
+  async getAbilityList(): Promise<void> {
+    this.abilityList = await this.abilityService.getAbilities();
   }
 
   ngOnInit() {

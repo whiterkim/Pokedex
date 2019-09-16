@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Ability } from '../model/ability';
-import { AbilityData } from '../data/ability-data';
-import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Ability } from '../model/pokemon2';
+import { NamedAPIResourceList } from '../model/utility';
 
 @Injectable()
 export class AbilityService {
@@ -11,11 +10,11 @@ export class AbilityService {
     private http: HttpClient
   ) { }
 
-  getAbilities(): Observable<Ability[]> {
-    return of(AbilityData);
+  async getAbilities(): Promise<NamedAPIResourceList> {
+    return <any> this.http.get("https://pokeapi.co/api/v2/ability/").toPromise();
   }
 
-  getAbility(id: number): Observable<Ability> {
-    return of(AbilityData.find(x => x.id === id));
+  async getAbility(url: string): Promise<Ability> {
+    return <any> this.http.get(url).toPromise();
   }
 }
