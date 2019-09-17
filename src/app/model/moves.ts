@@ -1,5 +1,5 @@
 import { NamedAPIResource, APIResource, VerboseEffect, MachineVersionDetail, Name, Description } from "./utility";
-import { AbilityEffectChange } from "./pokemon2";
+import { AbilityEffectChange } from "./pokemon";
 
 export interface Move {
     id: number;

@@ -5,27 +5,24 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { AppRoutingModule } from './/app-routing.module';
-
-import { PokemonService } from './service/pokemon.service';
-import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
-import { PokemonListItemComponent } from './pokemon-list/pokemon-list-item.component';
-import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
-import { EvolutionChainComponent } from './pokemon-detail/evolution-chain.component';
-
-import { AbilityService } from './service/ability.service';
+// Controller
 import { AbilityDetailComponent } from './ability-detail/ability-detail.component';
 import { AbilityListComponent } from './ability-list/ability-list.component';
-import { AbilityNameComponent } from './ability-detail/ability-name.component';
-
-import { MoveService } from './service/move.service';
-import { MoveListComponent } from './move-list/move-list.component';
-import { MoveListItemComponent } from './move-list/move-list-item.component';
+import { AbilityNameComponent } from './ability-name/ability-name.component';
+import { EvolutionChainComponent } from './evolution-chain/evolution-chain.component';
 import { MoveDetailComponent } from './move-detail/move-detail.component';
-
-import { TypeService } from './service/type.service';
+import { MoveListComponent } from './move-list/move-list.component';
+import { MoveListItemComponent } from './move-list-item/move-list-item.component';
+import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
+import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
+import { PokemonListItemComponent } from './pokemon-list-item/pokemon-list-item.component';
 import { TypeNameComponent } from './type/type-name.component';
-
-import { PokeApiService } from './service/pokeapi.service';
+// Service
+import { AbilityService } from './service/ability.service';
+import { MoveService } from './service/move.service';
+import { PokemonService } from './service/pokemon.service';
+import { TypeService } from './service/type.service';
+// Pipe
 import { LanguagePipe } from './pipe/language.pipe';
 import { MoveLearnMethodPipe } from './pipe/move-learn-method.pipe';
 import { SlotPipe } from './pipe/slot.pipe';
@@ -37,17 +34,19 @@ import { VersionPipe } from './pipe/version.pipe';
   declarations: [
     AppComponent,
     MainComponent,
-    PokemonListComponent,
-    PokemonListItemComponent,
-    PokemonDetailComponent,
-    EvolutionChainComponent,
+    // Controller
     AbilityDetailComponent,
     AbilityListComponent,
     AbilityNameComponent,
+    EvolutionChainComponent,
+    MoveDetailComponent,
     MoveListComponent,
     MoveListItemComponent,
-    MoveDetailComponent,
+    PokemonDetailComponent,
+    PokemonListComponent,
+    PokemonListItemComponent,
     TypeNameComponent,
+    // Pipe
     LanguagePipe,
     MoveLearnMethodPipe,
     SlotPipe,
@@ -60,7 +59,7 @@ import { VersionPipe } from './pipe/version.pipe';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [PokemonService, AbilityService, MoveService, TypeService, PokeApiService],
+  providers: [PokemonService, AbilityService, MoveService, TypeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

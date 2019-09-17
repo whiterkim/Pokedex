@@ -1,0 +1,17 @@
+.evolution-chain {
+    display: flex;
+}
+.evolution-node {
+    width: 72px;
+    height: 72px;
+    margin: 4px;
+}
+.evolution-image {
+    display: block;
+    margin: 6px;
+    height: 60px;
+}
+.evolution-condition {
+    margin: 4px;
+    height: 72px;
+}

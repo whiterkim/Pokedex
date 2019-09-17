@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { TypeService } from '../service/type.service';
-import { Type } from '../model/pokemon2';
+import { Type } from '../model/pokemon';
 
 @Component({
   selector: 'app-type-name',

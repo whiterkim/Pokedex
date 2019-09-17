@@ -8,7 +8,7 @@ import { Move } from '../model/moves';
   selector: 'app-move-list-item',
   inputs: ['url'],
   templateUrl: './move-list-item.component.html',
-  styleUrls: ['./move-list.css']
+  styleUrls: ['./move-list-item.component.css']
 })
 export class MoveListItemComponent implements OnInit {
   @Input()

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PokemonService } from '../service/pokemon.service';
 import { NamedAPIResource } from '../model/utility';
 import { Utility } from '../utility';
-import { Pokemon, PokemonSpecies } from '../model/pokemon2';
+import { Pokemon, PokemonSpecies } from '../model/pokemon';
 
 @Component({
   selector: 'app-pokemon-detail',

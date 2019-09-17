@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Move } from '../model/moves';
-import { PokeApiService } from '../service/pokeapi.service';
+import { MoveService } from '../service/move.service';
 
 @Component({
   selector: 'app-move-detail',
@@ -14,7 +14,7 @@ export class MoveDetailComponent implements OnInit {
   key: string;
 
   constructor(
-    private pokeApiService: PokeApiService,
+    private moveService: MoveService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) { }
@@ -26,11 +26,9 @@ export class MoveDetailComponent implements OnInit {
     });
   }
 
-  getMove(key: string): void {
+  async getMove(key: string): Promise<void> {
     var url = "https://pokeapi.co/api/v2/move/" + key + "/"
-    this.pokeApiService.getFromApi(url).subscribe(x => {
-      this.move = x;
-    });
+    this.move = await this.moveService.getMove(url);
   }
 
 

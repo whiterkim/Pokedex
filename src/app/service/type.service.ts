@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Type } from '../model/pokemon2';
+import { Type } from '../model/pokemon';
 import { NamedAPIResourceList } from '../model/utility';
 
 @Injectable()

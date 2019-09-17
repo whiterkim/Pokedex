@@ -1,9 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { PokeApiService } from '../service/pokeapi.service';
-import { Ability } from '../model/pokemon2';
-import { Utility } from '../utility';
+import { AbilityService } from '../service/ability.service';
+import { Ability } from '../model/pokemon';
 import { NamedAPIResource } from '../model/utility';
 
 @Component({
@@ -16,7 +15,7 @@ export class AbilityDetailComponent implements OnInit {
   key: string;
 
   constructor(
-    private pokeApiService: PokeApiService,
+    private abilityService: AbilityService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) { }
@@ -28,11 +27,9 @@ export class AbilityDetailComponent implements OnInit {
     });
   }
 
-  getAbility(key: string): void {
+  async getAbility(key: string): Promise<void> {
     var url = "https://pokeapi.co/api/v2/ability/" + key + "/";
-    this.pokeApiService.getFromApi(url).subscribe(x => {
-      this.ability = x;
-    });
+    this.ability = await this.abilityService.getAbility(url);
   }
 
   goPokemon(pokemon: NamedAPIResource): void {

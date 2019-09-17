@@ -3,13 +3,13 @@ import { Router } from '@angular/router';
 
 import { PokemonService } from '../service/pokemon.service';
 import { Utility } from '../utility'
-import { Pokemon, PokemonSpecies } from '../model/pokemon2';
+import { Pokemon, PokemonSpecies } from '../model/pokemon';
 
 @Component({
   selector: 'app-pokemon-list-item',
   inputs: ['url'],
   templateUrl: './pokemon-list-item.component.html',
-  styleUrls: ['./pokemon-list.css']
+  styleUrls: ['./pokemon-list-item.component.css']
 })
 export class PokemonListItemComponent implements OnInit {
   @Input()

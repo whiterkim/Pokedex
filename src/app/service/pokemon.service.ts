@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NamedAPIResourceList } from '../model/utility';
-import { Pokemon, PokemonSpecies } from '../model/pokemon2';
+import { Pokemon, PokemonSpecies } from '../model/pokemon';
 import { EvolutionChain } from '../model/evolution';
 
 @Injectable()

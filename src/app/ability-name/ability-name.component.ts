@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { AbilityService } from '../service/ability.service';
-import { Ability } from '../model/pokemon2';
+import { Ability } from '../model/pokemon';
 
 @Component({
   selector: 'app-ability-name',

@@ -10,7 +10,7 @@ import { Utility } from '../utility';
   selector: 'app-evolution-chain',
   inputs: ['url'],
   templateUrl: './evolution-chain.component.html',
-  styleUrls: ['./pokemon-detail.component.css']
+  styleUrls: ['./evolution-chain.component.css']
 })
 export class EvolutionChainComponent implements OnInit {
   @Input()
