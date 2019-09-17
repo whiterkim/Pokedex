@@ -1,0 +1,8 @@
+.move-category-name-box {
+    display: inline-block;
+    min-width: 64px;
+    font-size: 13px;
+    border: 1px solid #656557;
+    text-align: center;
+    border-radius: 10px;
+}

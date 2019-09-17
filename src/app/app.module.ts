@@ -10,6 +10,7 @@ import { AbilityDetailComponent } from './ability-detail/ability-detail.componen
 import { AbilityListComponent } from './ability-list/ability-list.component';
 import { AbilityNameComponent } from './ability-name/ability-name.component';
 import { EvolutionChainComponent } from './evolution-chain/evolution-chain.component';
+import { MoveCategoryNameComponent } from './move-category-name/move-category-name.component';
 import { MoveDetailComponent } from './move-detail/move-detail.component';
 import { MoveListComponent } from './move-list/move-list.component';
 import { MoveListItemComponent } from './move-list-item/move-list-item.component';
@@ -39,6 +40,7 @@ import { VersionPipe } from './pipe/version.pipe';
     AbilityListComponent,
     AbilityNameComponent,
     EvolutionChainComponent,
+    MoveCategoryNameComponent,
     MoveDetailComponent,
     MoveListComponent,
     MoveListItemComponent,

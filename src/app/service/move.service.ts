@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Move } from '../model/moves';
+import { Move, MoveDamageClass } from '../model/moves';
 import { NamedAPIResourceList } from '../model/utility';
 
 @Injectable()
@@ -15,6 +15,10 @@ export class MoveService {
   }
 
   async getMove(url: string): Promise<Move> {
+    return <any> await this.http.get(url).toPromise();
+  }
+
+  async getMoveDamageClass(url: string): Promise<MoveDamageClass> {
     return <any> await this.http.get(url).toPromise();
   }
 }
