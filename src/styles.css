@@ -7,6 +7,17 @@
   margin-right: 1rem;
 }
 
+.list-page {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.list-item {
+  margin-top: .75rem;
+  margin-bottom: .75rem;
+  display: flex;
+}
+
 .page-section {
   clear: left;
   margin-top: 1rem;

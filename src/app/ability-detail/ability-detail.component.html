@@ -1,11 +1,12 @@
-<div *ngIf="ability">
-  <h2>Description:</h2>
-  <div> <span> ID: </span> {{ability.id}} </div>
-  <div> <span> Name: </span> {{(ability.names | language)[0].name}} </div>
-  <div> <span> Description: </span> {{(ability.flavor_text_entries | language | versionGroup)[0].flavor_text}} </div>
-  <div>
-    <h2>Pokemon List:</h2>
-    <div *ngFor="let pokemon of ability.pokemon"
-         (click)="goPokemon(pokemon.pokemon)">{{pokemon.pokemon.name}}</div>
+<div class="detail-page" *ngIf="ability">
+  <div class="page-section">
+    <h2 class="card-title text-center">{{(ability.names | language)[0].name}}</h2>
+    <div style="margin-bottom:1rem">{{(ability.flavor_text_entries | language | versionGroup)[0].flavor_text}}</div>
+    <div>{{(ability.effect_entries | language)[0].effect}}</div>
+  </div>
+  <div class="page-section">
+    <h2 class="card-title text-center">Pokemon List</h2>
+    <app-pokemon-list-item *ngFor="let pokemon of ability.pokemon" url="{{pokemon.pokemon.url}}">
+    </app-pokemon-list-item>
   </div>
 </div>

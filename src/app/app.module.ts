@@ -8,6 +8,7 @@ import { AppRoutingModule } from './/app-routing.module';
 // Controller
 import { AbilityDetailComponent } from './ability-detail/ability-detail.component';
 import { AbilityListComponent } from './ability-list/ability-list.component';
+import { AbilityListItemComponent } from './ability-list-item/ability-list-item.component';
 import { AbilityNameComponent } from './ability-name/ability-name.component';
 import { EvolutionChainComponent } from './evolution-chain/evolution-chain.component';
 import { MoveCategoryNameComponent } from './move-category-name/move-category-name.component';
@@ -38,6 +39,7 @@ import { VersionPipe } from './pipe/version.pipe';
     // Controller
     AbilityDetailComponent,
     AbilityListComponent,
+    AbilityListItemComponent,
     AbilityNameComponent,
     EvolutionChainComponent,
     MoveCategoryNameComponent,

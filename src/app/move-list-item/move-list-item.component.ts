@@ -20,12 +20,12 @@ export class MoveListItemComponent implements OnInit {
     private moveService: MoveService
   ) { }
 
-  async getPokemon(): Promise<void> {
+  async getMove(): Promise<void> {
       this.move = await this.moveService.getMove(this.url);
   }
 
   ngOnInit() {
-    this.getPokemon();
+    this.getMove();
   }
 
   goMove(): void {

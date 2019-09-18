@@ -16,7 +16,7 @@ export class EvolutionChainComponent implements OnInit {
   @Input()
   url: string;
   evolutionChain: EvolutionChain;
-  evolutionLists: ChainLink[][];
+  evolutionLists: ChainLink[][] = [];
 
   constructor(
     private pokemonService: PokemonService,
@@ -30,21 +30,23 @@ export class EvolutionChainComponent implements OnInit {
     this.getEvolutionChain();
   }
 
+  dfs(node: ChainLink, currentChain: ChainLink[]): void {
+    if (node.evolves_to.length === 0) {
+      this.evolutionLists.push(Object.assign([], currentChain));
+      return;
+    }
+
+    for (let i = 0; i < node.evolves_to.length; i++) {
+      currentChain.push(node.evolves_to[i]);
+      this.dfs(node.evolves_to[i], currentChain);
+      currentChain.pop();
+    }
+  }
+
   async getEvolutionChain(): Promise<void> {
     this.evolutionChain = await this.pokemonService.getEvolutionChain(this.url);
 
-    // Convert evolution tree into a simple list, only the first child is considered.
-    // TODO: use the evolution tree correctly.
-    this.evolutionLists = [];
-
-    this.evolutionLists[0] = [];
-    for (let current_node = this.evolutionChain.chain; current_node; current_node = current_node.evolves_to[0]) {
-      this.evolutionLists[0].push(current_node);
-    }
-
-    this.evolutionLists[1] = [];
-    this.evolutionLists[1].push(null);
-    this.evolutionLists[1].push(this.evolutionChain.chain);
+    this.dfs(this.evolutionChain.chain, [this.evolutionChain.chain]);
   }
 
   goPokemon(pokemon: NamedAPIResource): void {

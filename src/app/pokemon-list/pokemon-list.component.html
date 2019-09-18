@@ -1,6 +1,4 @@
-<div class="table" *ngIf="pokemonList">
-  <app-pokemon-list-item
-    *ngFor="let pokemon of pokemonList.results"
-    url='{{pokemon.url}}'>
+<div class="list-page" *ngIf="pokemonList">
+  <app-pokemon-list-item *ngFor="let pokemon of pokemonList.results" url='{{pokemon.url}}'>
   </app-pokemon-list-item>
 </div>

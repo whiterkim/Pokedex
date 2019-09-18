@@ -1,6 +1,4 @@
-<table class="table" *ngIf="moveList">
-  <tr *ngFor="let move of moveList.results">
-    <app-move-list-item url='{{move.url}}'>
-    </app-move-list-item>
-  </tr>
-</table>
+<div class="list-page" *ngIf="moveList">
+  <app-move-list-item *ngFor="let move of moveList.results" url='{{move.url}}'>
+  </app-move-list-item>
+</div>
