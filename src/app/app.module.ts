@@ -18,6 +18,7 @@ import { MoveListItemComponent } from './move-list-item/move-list-item.component
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { PokemonListItemComponent } from './pokemon-list-item/pokemon-list-item.component';
+import { StatsItemComponent } from './stats-item/stats-item.component';
 import { TypeNameComponent } from './type/type-name.component';
 // Service
 import { AbilityService } from './service/ability.service';
@@ -49,6 +50,7 @@ import { VersionPipe } from './pipe/version.pipe';
     PokemonDetailComponent,
     PokemonListComponent,
     PokemonListItemComponent,
+    StatsItemComponent,
     TypeNameComponent,
     // Pipe
     LanguagePipe,

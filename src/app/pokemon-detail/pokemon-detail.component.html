@@ -76,59 +76,13 @@
   <div class="page-section">
     <h4 class="card-title text-center">Base Stats</h4>
     <div class="stats-list">
-      <!-- HP -->
-      <div class="stats-item" *ngIf="pokemon.stats | stats:'hp'; let hp">
-        <div class="stats-header">HP</div>
-        <div class="stats-value">{{hp}}</div>
-        <div class="stats-bar bgl-hp" [style.width.px]="200">
-          <div class="stats-bar bgd-hp" [style.width.px]="hp"></div>
-        </div>
-      </div>
-      <!-- Attack -->
-      <div class="stats-item" *ngIf="pokemon.stats | stats:'attack'; let attack">
-        <div class="stats-header">ATK</div>
-        <div class="stats-value">{{attack}}</div>
-        <div class="stats-bar bgl-attack" [style.width.px]="200">
-          <div class="stats-bar bgd-attack" [style.width.px]="attack"></div>
-        </div>
-      </div>
-      <!-- Defense -->
-      <div class="stats-item" *ngIf="pokemon.stats | stats:'defense'; let defense">
-        <div class="stats-header">DEF</div>
-        <div class="stats-value">{{defense}}</div>
-        <div class="stats-bar bgl-defense" [style.width.px]="200">
-          <div class="stats-bar bgd-defense" [style.width.px]="defense"></div>
-        </div>
-      </div>
-      <!-- Special Attack -->
-      <div class="stats-item" *ngIf="pokemon.stats | stats:'special-attack'; let specialAttack">
-        <div class="stats-header">SPA</div>
-        <div class="stats-value">{{specialAttack}}</div>
-        <div class="stats-bar bgl-special-attack" [style.width.px]="200">
-          <div class="stats-bar bgd-special-attack" [style.width.px]="specialAttack"></div>
-        </div>
-      </div>
-      <!-- Special Defense -->
-      <div class="stats-item" *ngIf="pokemon.stats | stats:'special-defense'; let specialDefense">
-        <div class="stats-header">SPD</div>
-        <div class="stats-value">{{specialDefense}}</div>
-        <div class="stats-bar bgl-special-defense" [style.width.px]="200">
-          <div class="stats-bar bgd-special-defense" [style.width.px]="specialDefense"></div>
-        </div>
-      </div>
-      <!-- Speed -->
-      <div class="stats-item" *ngIf="pokemon.stats | stats:'speed'; let speed">
-        <div class="stats-header">SPD</div>
-        <div class="stats-value">{{speed}}</div>
-        <div class="stats-bar bgl-speed" [style.width.px]="200">
-          <div class="stats-bar bgd-speed" [style.width.px]="speed"></div>
-        </div>
-      </div>
-    </div>
-    <!-- Total -->
-    <div class="stats-item">
-      <div class="stats-header">Total</div>
-      <div class="stats-value">{{getTotalStats()}}</div>
+      <app-stats-item header="HP" value="{{pokemon.stats | stats:'hp'}}" key="hp"></app-stats-item>
+      <app-stats-item header="ATK" value="{{pokemon.stats | stats:'attack'}}" key="attack"></app-stats-item>
+      <app-stats-item header="DEF" value="{{pokemon.stats | stats:'defense'}}" key="defense"></app-stats-item>
+      <app-stats-item header="SPA" value="{{pokemon.stats | stats:'special-attack'}}" key="special-attack"></app-stats-item>
+      <app-stats-item header="SPD" value="{{pokemon.stats | stats:'special-defense'}}" key="special-defense"></app-stats-item>
+      <app-stats-item header="SPD" value="{{pokemon.stats | stats:'speed'}}" key="speed"></app-stats-item>
+      <app-stats-item header="Total" value="{{getTotalStats()}}"></app-stats-item>
     </div>
   </div>
 
@@ -142,24 +96,28 @@
 
   <div class="page-section">
     <h4 class="card-title text-center">Moves</h4>
-    <table class="table">
-      <th>Level Up</th>
-      <tr *ngFor="let move of pokemon.moves">
-        <app-move-list-item
-          *ngIf="(move.version_group_details | versionGroup | moveLearnMethod:'level-up').length !== 0"
-          url='{{move.move.url}}'>
-        </app-move-list-item>
-      </tr>
-    </table>
+    <div *ngIf="getMoves('level-up'); let moves">
+      <h5 style="margin-left:1rem">Level Up</h5>
+      <app-move-list-item  *ngFor="let move of moves" url='{{move.move.url}}'>
+      </app-move-list-item>
+    </div>
 
-    <table class="table">
-      <th>TM/HM</th>
-      <tr *ngFor="let move of pokemon.moves">
-        <app-move-list-item
-          *ngIf="(move.version_group_details | versionGroup | moveLearnMethod:'machine').length !== 0"
-          url='{{move.move.url}}'>
-        </app-move-list-item>
-      </tr>
-    </table>
+    <div *ngIf="getMoves('machine'); let moves">
+      <h5 style="margin-left:1rem">TM/HM</h5>
+      <app-move-list-item *ngFor="let move of moves" url='{{move.move.url}}'>
+      </app-move-list-item>
+    </div>
+
+    <div *ngIf="getMoves('egg'); let moves">
+      <h5 style="margin-left:1rem">Egg</h5>
+      <app-move-list-item *ngFor="let move of moves" url='{{move.move.url}}'>
+      </app-move-list-item>
+    </div>
+
+    <div *ngIf="getMoves('tutor'); let moves">
+      <h5 style="margin-left:1rem">Tutor</h5>
+      <app-move-list-item *ngFor="let move of moves" url='{{move.move.url}}'>
+      </app-move-list-item>
+    </div>
   </div>
 </div>

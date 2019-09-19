@@ -30,24 +30,3 @@
 .info-box-content-item {
     margin: 0 1rem;
 }
-
-/* .stats-list {
-
-} */
-.stats-item {
-    display: flex;
-    align-items: center;
-}
-.stats-header {
-    width: 48px;
-    text-align: right;
-    margin: .25rem;
-}
-.stats-value {
-    width: 32px;
-    margin: .25rem;
-}
-.stats-bar {
-    height: .75rem;
-    border-radius: 10px;
-}

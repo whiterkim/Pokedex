@@ -1,0 +1,7 @@
+<div class="stats-item">
+    <div class="stats-header">{{header}}</div>
+    <div class="stats-value">{{value}}</div>
+    <div *ngIf="key" class="stats-bar bgl-{{key}}" [style.width.px]="255">
+        <div class="stats-bar bgd-{{key}}" [style.width.px]="value"></div>
+    </div>
+</div>

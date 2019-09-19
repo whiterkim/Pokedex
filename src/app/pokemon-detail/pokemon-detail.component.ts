@@ -5,11 +5,14 @@ import { PokemonService } from '../service/pokemon.service';
 import { NamedAPIResource } from '../model/utility';
 import { Utility } from '../utility';
 import { Pokemon, PokemonSpecies } from '../model/pokemon';
+import { VersionGroupPipe } from '../pipe/version-group.pipe';
+import { MoveLearnMethodPipe } from '../pipe/move-learn-method.pipe';
 
 @Component({
   selector: 'app-pokemon-detail',
   templateUrl: './pokemon-detail.component.html',
-  styleUrls: ['./pokemon-detail.component.css']
+  styleUrls: ['./pokemon-detail.component.css'],
+  providers: [VersionGroupPipe, MoveLearnMethodPipe]
 })
 export class PokemonDetailComponent implements OnInit {
   key: string;
@@ -19,7 +22,9 @@ export class PokemonDetailComponent implements OnInit {
   constructor(
     private pokemonService: PokemonService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private versionGroupPipe: VersionGroupPipe,
+    private moveLearnMethodPipe: MoveLearnMethodPipe
   ) { }
 
   getImageURL = Utility.getImageURL;
@@ -38,6 +43,19 @@ export class PokemonDetailComponent implements OnInit {
 
   getTotalStats(): number {
     return this.pokemon.stats.reduce((sum, x) => sum + x.base_stat, 0);
+  }
+
+  getMoves(moveLearnMethod: string) {
+    const result = this.pokemon.moves.filter(move => {
+      const versionGroupMatched = this.versionGroupPipe.transform(move.version_group_details);
+      const moveLearnMethodMatched = this.moveLearnMethodPipe.transform(versionGroupMatched, moveLearnMethod);
+      return moveLearnMethodMatched.length > 0;
+    });
+
+    if (result.length === 0)
+      return null;
+
+    return result;
   }
 
   goAbility(ability: NamedAPIResource): void {
