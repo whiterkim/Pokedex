@@ -10,8 +10,6 @@ export class MoveService {
     private apiService: ApiService
   ) { }
 
-  static moveDamageClassCache: Object = {};
-
   getMoves(): Promise<NamedAPIResourceList> {
     return this.apiService.get("https://pokeapi.co/api/v2/move/");
   }

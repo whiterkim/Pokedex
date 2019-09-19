@@ -1,0 +1,4 @@
+<div class="list-page" *ngIf="itemList">
+    <app-item-list-item *ngFor="let item of itemList.results" url="{{item.url}}">
+    </app-item-list-item>
+</div>

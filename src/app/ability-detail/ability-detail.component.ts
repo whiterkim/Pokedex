@@ -11,7 +11,7 @@ import { NamedAPIResource } from '../model/utility';
   styleUrls: ['./ability-detail.component.css']
 })
 export class AbilityDetailComponent implements OnInit {
-  @Input() ability: Ability;
+  ability: Ability;
   key: string;
 
   constructor(

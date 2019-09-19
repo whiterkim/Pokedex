@@ -11,8 +11,8 @@ export class PokemonService {
     private apiService: ApiService
   ) { }
 
-  async getPokemonList(): Promise<NamedAPIResourceList> {
-    return <NamedAPIResourceList> await this.apiService.get("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151");
+  getPokemonList(): Promise<NamedAPIResourceList> {
+    return this.apiService.get("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151");
   }
 
   getPokemonFromKey(key: string): Promise<Pokemon> {

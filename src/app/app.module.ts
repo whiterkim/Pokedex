@@ -11,6 +11,9 @@ import { AbilityListComponent } from './ability-list/ability-list.component';
 import { AbilityListItemComponent } from './ability-list-item/ability-list-item.component';
 import { AbilityNameComponent } from './ability-name/ability-name.component';
 import { EvolutionChainComponent } from './evolution-chain/evolution-chain.component';
+import { ItemDetailComponent } from './item-detail/item-detail.component';
+import { ItemListComponent } from './item-list/item-list.component';
+import { ItemListItemComponent } from './item-list-item/item-list-item.component';
 import { MoveCategoryNameComponent } from './move-category-name/move-category-name.component';
 import { MoveDetailComponent } from './move-detail/move-detail.component';
 import { MoveListComponent } from './move-list/move-list.component';
@@ -23,6 +26,7 @@ import { TypeNameComponent } from './type-name/type-name.component';
 // Service
 import { AbilityService } from './service/ability.service';
 import { ApiService } from './service/api.service';
+import { ItemService } from './service/item.service';
 import { MoveService } from './service/move.service';
 import { PokemonService } from './service/pokemon.service';
 import { TypeService } from './service/type.service';
@@ -44,6 +48,9 @@ import { VersionPipe } from './pipe/version.pipe';
     AbilityListItemComponent,
     AbilityNameComponent,
     EvolutionChainComponent,
+    ItemDetailComponent,
+    ItemListComponent,
+    ItemListItemComponent,
     MoveCategoryNameComponent,
     MoveDetailComponent,
     MoveListComponent,
@@ -66,7 +73,7 @@ import { VersionPipe } from './pipe/version.pipe';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [AbilityService, ApiService, MoveService, PokemonService, TypeService],
+  providers: [AbilityService, ApiService, ItemService, MoveService, PokemonService, TypeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

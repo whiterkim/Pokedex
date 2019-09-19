@@ -23,16 +23,13 @@ export class AppComponent {
   }
 
   OnDropdownSelect(select: string) {
-    if (select === 'Pokemon')
-    {
+    if (select === 'Pokemon') {
       this.router.navigate(['/pokemon-list']);
-    }
-    else if (select === 'Ability')
-    {
+    } else if (select === 'Ability') {
       this.router.navigate(['/ability-list']);
-    }
-    else if (select === 'Move')
-    {
+    } else if (select === 'Item') {
+      this.router.navigate(['/item-list']);
+    } else if (select === 'Move') {
       this.router.navigate(['/move-list']);
     }
   }

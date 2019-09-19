@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { Type } from '../model/pokemon';
 import { NamedAPIResourceList } from '../model/utility';
+import { Item } from '../model/items';
 
 @Injectable()
-export class TypeService {
+export class ItemService {
 
   constructor(
     private apiService: ApiService
   ) { }
 
-  getTypes(): Promise<NamedAPIResourceList> {
-      return <any> this.apiService.get("https://pokeapi.co/api/v2/type/");
+  getItemList(): Promise<NamedAPIResourceList> {
+    return this.apiService.get("https://pokeapi.co/api/v2/item/");
   }
 
-  getType(url: string): Promise<Type> {
+  getItem(url: string): Promise<Item> {
     return this.apiService.get(url);
   }
 }
