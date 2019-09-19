@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ApiService } from './api.service';
 import { Ability } from '../model/pokemon';
 import { NamedAPIResourceList } from '../model/utility';
 
@@ -7,14 +7,14 @@ import { NamedAPIResourceList } from '../model/utility';
 export class AbilityService {
 
   constructor(
-    private http: HttpClient
+    private apiService: ApiService
   ) { }
 
-  async getAbilities(): Promise<NamedAPIResourceList> {
-    return <any> this.http.get("https://pokeapi.co/api/v2/ability/").toPromise();
+  getAbilities(): Promise<NamedAPIResourceList> {
+    return this.apiService.get("https://pokeapi.co/api/v2/ability/");
   }
 
-  async getAbility(url: string): Promise<Ability> {
-    return <any> this.http.get(url).toPromise();
+  getAbility(url: string): Promise<Ability> {
+    return this.apiService.get(url);
   }
 }

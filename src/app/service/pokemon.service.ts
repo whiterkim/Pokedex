@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ApiService } from './api.service';
 import { NamedAPIResourceList } from '../model/utility';
 import { Pokemon, PokemonSpecies } from '../model/pokemon';
 import { EvolutionChain } from '../model/evolution';
@@ -8,11 +8,11 @@ import { EvolutionChain } from '../model/evolution';
 export class PokemonService {
 
   constructor(
-    private http: HttpClient
+    private apiService: ApiService
   ) { }
 
   async getPokemonList(): Promise<NamedAPIResourceList> {
-    return <NamedAPIResourceList> await this.http.get("https://pokeapi.co/api/v2/pokemon/").toPromise();
+    return <NamedAPIResourceList> await this.apiService.get("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151");
   }
 
   getPokemonFromKey(key: string): Promise<Pokemon> {
@@ -21,14 +21,14 @@ export class PokemonService {
   }
 
   getPokemon(url: string): Promise<Pokemon> {
-    return <any> this.http.get(url).toPromise();
+    return this.apiService.get(url);
   }
 
   getSpecies(url: string): Promise<PokemonSpecies> {
-    return <any> this.http.get(url).toPromise();
+    return this.apiService.get(url);
   }
 
   getEvolutionChain(url: string): Promise<EvolutionChain> {
-    return <any> this.http.get(url).toPromise();
+    return this.apiService.get(url);
   }
 }

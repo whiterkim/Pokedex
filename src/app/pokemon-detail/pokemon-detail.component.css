@@ -15,6 +15,7 @@
     border: 1px solid #656557;
     margin: 4px;
     height: 75px;
+    flex-grow: 1;
 }
 .info-box-title {
     font-weight: 500;

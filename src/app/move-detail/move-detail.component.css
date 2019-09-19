@@ -1,0 +1,12 @@
+.info-item {
+    justify-content: center;
+}
+
+.info-header {
+    width: 96px;
+}
+
+.info-value {
+    text-align: right;
+    width: 36px;
+}

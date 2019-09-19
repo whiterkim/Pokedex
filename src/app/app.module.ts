@@ -19,9 +19,10 @@ import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.componen
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { PokemonListItemComponent } from './pokemon-list-item/pokemon-list-item.component';
 import { StatsItemComponent } from './stats-item/stats-item.component';
-import { TypeNameComponent } from './type/type-name.component';
+import { TypeNameComponent } from './type-name/type-name.component';
 // Service
 import { AbilityService } from './service/ability.service';
+import { ApiService } from './service/api.service';
 import { MoveService } from './service/move.service';
 import { PokemonService } from './service/pokemon.service';
 import { TypeService } from './service/type.service';
@@ -65,7 +66,7 @@ import { VersionPipe } from './pipe/version.pipe';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [PokemonService, AbilityService, MoveService, TypeService],
+  providers: [AbilityService, ApiService, MoveService, PokemonService, TypeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

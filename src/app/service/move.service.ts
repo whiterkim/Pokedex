@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ApiService } from './api.service';
 import { Move, MoveDamageClass } from '../model/moves';
 import { NamedAPIResourceList } from '../model/utility';
 
@@ -7,18 +7,20 @@ import { NamedAPIResourceList } from '../model/utility';
 export class MoveService {
 
   constructor(
-    private http: HttpClient
+    private apiService: ApiService
   ) { }
 
-  async getMoves(): Promise<NamedAPIResourceList> {
-    return <any> await this.http.get("https://pokeapi.co/api/v2/move/").toPromise();
+  static moveDamageClassCache: Object = {};
+
+  getMoves(): Promise<NamedAPIResourceList> {
+    return this.apiService.get("https://pokeapi.co/api/v2/move/");
   }
 
-  async getMove(url: string): Promise<Move> {
-    return <any> await this.http.get(url).toPromise();
+  getMove(url: string): Promise<Move> {
+    return this.apiService.get(url);
   }
 
-  async getMoveDamageClass(url: string): Promise<MoveDamageClass> {
-    return <any> await this.http.get(url).toPromise();
+  getMoveDamageClass(url: string): Promise<MoveDamageClass> {
+    return this.apiService.get(url);
   }
 }

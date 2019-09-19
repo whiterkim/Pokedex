@@ -1,7 +1,29 @@
-<div *ngIf="move">
-    <h2>Description:</h2>
-    <div> <span> ID: </span> {{move.id}} </div>
-    <div> <span> Name: </span> {{move.name}} </div>
-    <div> <span> Accuracy: </span> {{move.accuracy}} </div>
+<div class="detail-page" *ngIf="move">
+  <div class = "page-section text-center">
+    <h2 class="card-title">{{(move.names | language)[0].name}}</h2>
+    <app-type-name style="margin:4px" url="{{move.type.url}}"></app-type-name>
+    <app-move-category-name style="margin:4px" url="{{move.damage_class.url}}"></app-move-category-name>
   </div>
-  
+
+  <div class="page-section">
+    <div class="list-item info-item">
+      <div class="info-header">Power</div>
+      <div class="info-value">{{move.power === null ? '-' : move.power}}</div>
+    </div>
+    <div class="list-item info-item">
+      <div class="info-header">PP</div>
+      <div class="info-value">{{move.pp}}</div>
+    </div>
+    <div class="list-item info-item">
+      <div class="info-header">Accuracy</div>
+      <div class="info-value">{{move.accuracy}}</div>
+    </div>
+    <div class="list-item info-item">
+      <div class="info-header">Priority</div>
+      <div class="info-value">{{move.priority}}</div>
+    </div>
+  </div>
+
+  <div class="page-section">{{(move.flavor_text_entries | versionGroup | language)[0].flavor_text}}</div>
+
+</div>

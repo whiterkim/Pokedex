@@ -5,7 +5,7 @@
             <!-- display pokemon -->
             <div class="evolution-chain" *ngIf="i === 0 || evolutionNode.species.name !== evolutionLists[i - 1][j].species.name">
                 <div class="evolution-condition" *ngIf="j !== 0">
-                    Lv xx
+                    {{evolutionNode.evolution_details[0].trigger.name}}
                 </div>
                 <div class="evolution-node border">
                     <img class="evolution-image" 

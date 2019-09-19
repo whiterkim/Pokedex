@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ApiService } from './api.service';
 import { Type } from '../model/pokemon';
 import { NamedAPIResourceList } from '../model/utility';
 
@@ -7,22 +7,16 @@ import { NamedAPIResourceList } from '../model/utility';
 export class TypeService {
 
   constructor(
-    private http: HttpClient
+    private apiService: ApiService
   ) { }
 
-  types: Object = {};
+  static typeCache: Object = {};
 
   getTypes(): Promise<NamedAPIResourceList> {
-      return <any> this.http.get("https://pokeapi.co/api/v2/type/");
+      return <any> this.apiService.get("https://pokeapi.co/api/v2/type/");
   }
 
   getType(url: string): Promise<Type> {
-    // if (this.types[url] === undefined) {
-    //   this.types[url] === <any> this.http.get(url).toPromise();
-    // }
-
-    // return this.types[url];
-
-    return <any> this.http.get(url).toPromise();
+    return this.apiService.get(url);
   }
 }
