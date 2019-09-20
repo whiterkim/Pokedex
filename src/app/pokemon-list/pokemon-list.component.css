@@ -1,0 +1,11 @@
+.quick-navigation {
+    height: 60%;
+    width: 24px;
+    position: fixed;
+    z-index: 1;
+    top: 20%;
+    right: 9px;
+    background-color: lightgray;
+    overflow-x: hidden;
+  }
+  
