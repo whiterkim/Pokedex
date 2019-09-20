@@ -11,6 +11,8 @@ import { AbilityListComponent } from './ability-list/ability-list.component';
 import { AbilityListItemComponent } from './ability-list-item/ability-list-item.component';
 import { AbilityNameComponent } from './ability-name/ability-name.component';
 import { EvolutionChainComponent } from './evolution-chain/evolution-chain.component';
+import { EvolutionNodeComponent } from './evolution-node/evolution-node.component';
+import { ImageComponent } from './image/image.component';
 import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { ItemListComponent } from './item-list/item-list.component';
 import { ItemListItemComponent } from './item-list-item/item-list-item.component';
@@ -48,6 +50,8 @@ import { VersionPipe } from './pipe/version.pipe';
     AbilityListItemComponent,
     AbilityNameComponent,
     EvolutionChainComponent,
+    EvolutionNodeComponent,
+    ImageComponent,
     ItemDetailComponent,
     ItemListComponent,
     ItemListItemComponent,

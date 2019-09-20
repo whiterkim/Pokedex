@@ -1,8 +1,6 @@
 .pokemon-image {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 200px;
+    display: flex;
+    justify-content: center;
 }
 
 .info-box-collection {

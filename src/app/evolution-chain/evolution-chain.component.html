@@ -7,12 +7,8 @@
                 <div class="evolution-condition" *ngIf="j !== 0">
                     {{evolutionNode.evolution_details[0].trigger.name}}
                 </div>
-                <div class="evolution-node border">
-                    <img class="evolution-image" 
-                        (click)="goPokemon(evolutionNode.species)"
-                        src="{{getImageURL('poke', getIDFromUrl(evolutionNode.species.url))}}"
-                        alt="{{evolutionNode.species.name}}">
-                </div>
+                <app-evolution-node url="{{evolutionNode.species.url}}">
+                </app-evolution-node>
             </div>
             <!-- same as above, display blank -->
             <div class="evolution-chain" *ngIf="i > 0 && evolutionNode.species.name === evolutionLists[i - 1][j].species.name">
