@@ -1,6 +1,6 @@
 <div class="detail-page" *ngIf="pokemon && species">
   <div class="page-section">
-    <app-image class="pokemon-image" id="{{pokemon.id}}" type="poke" height="200"></app-image>
+    <app-image class="pokemon-image" [pokemonId]="pokemon.id" type="poke" height="200"></app-image>
     <h2 class="card-title text-center"> {{(species.names | language)[0].name}} </h2>
     <div class="text-center"> #{{pokemon.id.toString().padStart(3, '0')}} {{(species.genera | language)[0].genus}} </div>
     <div class="text-center">
