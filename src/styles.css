@@ -13,15 +13,23 @@
 }
 
 .list-item {
-  margin-top: .75rem;
-  margin-bottom: .75rem;
+  height: 40px;
   display: flex;
+  align-items: center;
 }
 
 .page-section {
   clear: left;
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+::scrollbar {
+  display: none;
 }
 
 /* stats styles */

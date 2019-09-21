@@ -1,9 +1,7 @@
-<div class="list-page" *ngIf="pokemonList">
-  <app-pokemon-list-item *ngFor="let pokemon of pokemonList.results" url='{{pokemon.url}}'>
+<div class="list-page" id="pokemon-list">
+  <app-pokemon-list-item *ngFor="let pokemon of pokemonList?.results" url='{{pokemon.url}}'>
   </app-pokemon-list-item>
 </div>
 
-<div class="quick-navigation"
-  (click)=onClick($event)
-  (swipe)=onSwipe($event)>
-</div>
+<app-quick-navigation targetId="pokemon-list">
+</app-quick-navigation>

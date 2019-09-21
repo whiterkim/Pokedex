@@ -23,6 +23,7 @@ import { MoveListItemComponent } from './move-list-item/move-list-item.component
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { PokemonListItemComponent } from './pokemon-list-item/pokemon-list-item.component';
+import { QuickNavigationComponent } from './quick-navigation/quick-navigation.component';
 import { StatsItemComponent } from './stats-item/stats-item.component';
 import { TypeNameComponent } from './type-name/type-name.component';
 // Service
@@ -62,6 +63,7 @@ import { VersionPipe } from './pipe/version.pipe';
     PokemonDetailComponent,
     PokemonListComponent,
     PokemonListItemComponent,
+    QuickNavigationComponent,
     StatsItemComponent,
     TypeNameComponent,
     // Pipe
