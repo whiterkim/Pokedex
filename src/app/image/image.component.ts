@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Utility } from '../utility';
 import { PokemonService } from '../service/pokemon.service';
 
 @Component({
@@ -21,8 +20,8 @@ export class ImageComponent implements OnInit {
   @Input()
   set key(value: string) {
     this._key = value;
-    this.getUrl();
-  }
+      this.getUrl();
+    }
   get key() {
     return this._key;
   }
@@ -48,6 +47,20 @@ export class ImageComponent implements OnInit {
       this.pokemonId = pokemon.id;
     }
 
-    this.url = Utility.getImageURL(this.type, this.pokemonId);
+    this.url = ImageComponent.getImageURL(this.type, this.pokemonId);
+  }
+
+  static getImageURL(folder: string, id: number): string {
+    var path = "../../assets/" + folder + "/";
+
+    var pokeDexId = Math.floor(id);
+    var formId = id * 10 % 10;
+    var file;
+    if (formId === 0)
+      file = pokeDexId + ".png";
+    else
+      file = pokeDexId + "-" + formId + ".png";
+
+    return path + file;
   }
 }

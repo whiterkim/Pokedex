@@ -2,7 +2,7 @@
     *ngIf="pokemon && species"
     (click)="goPokemonDetail()">
     <div class="pokemon-icon">
-        <img src="{{getImageURL('icon', pokemon.id)}}" alt="{{pokemon.name}}">
+        <app-image [pokemonId]="pokemon.id" type="icon" height="30"></app-image>
     </div>
     <div class="pokemon-name">
         {{(species.names | language)[0].name}}

@@ -9,6 +9,7 @@ import { NamedAPIResourceList } from '../model/utility';
 })
 export class PokemonListComponent implements OnInit {
   pokemonList: NamedAPIResourceList;
+  mock: number[];
 
   constructor(
     private pokemonService: PokemonService
@@ -16,5 +17,9 @@ export class PokemonListComponent implements OnInit {
 
   async ngOnInit():Promise<void> {
     this.pokemonList = await this.pokemonService.getPokemonList();
+    this.mock = [];
+    for (let i = 152; i <= 807; i++)
+      this.mock.push(i);
+    
   }
 }

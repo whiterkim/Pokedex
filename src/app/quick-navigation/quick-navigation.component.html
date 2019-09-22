@@ -2,4 +2,5 @@
   (touchmove)=onTouchMove($event)
   (touchstart)=onTouchStart($event)>
   <div class="scroll-indicator"></div>
+  <div *ngFor="let percentage of generationPercentage; index as i" class="bgl-g{{i + 1}}" [style.height.%]="percentage"></div>
 </div>

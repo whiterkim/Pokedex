@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { PokemonService } from '../service/pokemon.service';
 import { NamedAPIResource } from '../model/utility';
-import { Utility } from '../utility';
 import { Pokemon, PokemonSpecies } from '../model/pokemon';
 import { VersionGroupPipe } from '../pipe/version-group.pipe';
 import { MoveLearnMethodPipe } from '../pipe/move-learn-method.pipe';
@@ -26,8 +25,6 @@ export class PokemonDetailComponent implements OnInit {
     private versionGroupPipe: VersionGroupPipe,
     private moveLearnMethodPipe: MoveLearnMethodPipe
   ) { }
-
-  getImageURL = Utility.getImageURL;
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {

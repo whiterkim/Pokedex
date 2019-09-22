@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { PokemonService } from '../service/pokemon.service';
-import { Utility } from '../utility'
 import { Pokemon, PokemonSpecies } from '../model/pokemon';
 
 @Component({
@@ -21,8 +20,6 @@ export class PokemonListItemComponent implements OnInit {
     private router: Router,
     private pokemonService: PokemonService
   ) { }
-
-  getImageURL = Utility.getImageURL;
 
   async getPokemon(): Promise<void> {
       this.pokemon = await this.pokemonService.getPokemon(this.url);

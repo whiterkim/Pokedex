@@ -10,7 +10,11 @@ export class QuickNavigationComponent implements OnInit {
   @Input()
   targetId: string;
   targetElement: HTMLElement;
+  quickNavElement: HTMLElement;
   indicatorElement: HTMLElement;
+
+  generationBoundary: number[] = [0,151,251,386,493,649,721,809];
+  generationPercentage: number[] = [];
 
   constructor(
       private element: ElementRef
@@ -18,32 +22,35 @@ export class QuickNavigationComponent implements OnInit {
 
   ngOnInit(): void {
       this.targetElement = document.getElementById(this.targetId);
+      this.quickNavElement = this.element.nativeElement.firstChild;
       this.indicatorElement = this.element.nativeElement.querySelector('.scroll-indicator');
       document.addEventListener("scroll", () => {
-        // TODO event listener is not finished.
-        window.scrollY
+        this.updateIndicator();
       });
+
+      for (let i = 1; i <= 7; i++) {
+        this.generationPercentage.push((this.generationBoundary[i] - this.generationBoundary[i - 1]) / this.generationBoundary[7] * 100);
+      }
+  }
+
+  updateIndicator() {
+    let percentage = window.scrollY / (this.targetElement.clientHeight - screen.height);
+
+    let indicatorHeight = screen.height / this.targetElement.clientHeight * this.quickNavElement.clientHeight;
+    let indicatorMarginTop = (this.quickNavElement.clientHeight - indicatorHeight) * percentage;
+    this.indicatorElement.style.height = indicatorHeight + "px";
+    this.indicatorElement.style.marginTop = indicatorMarginTop + "px";
   }
 
   onTouchMove($event) {
     // set time out
-    let srcElement = this.element.nativeElement.firstChild;
-    let totalHeight = srcElement.clientHeight;
-    let touchHeight = $event.touches[0].clientY - srcElement.offsetTop;
-    let percentage = touchHeight / totalHeight;
-    
-    let contentHeight = this.targetElement.clientHeight; // 151 * 40
-    let screenHeight = screen.height; // 700?
-    
-    let scrollToHeight = (contentHeight - screenHeight) * percentage;
-    window.scrollTo(0, scrollToHeight);
-    console.log(this.element);
-    console.log(touchHeight, totalHeight, percentage, contentHeight);
+    let touchHeight = $event.touches[0].clientY - this.quickNavElement.offsetTop;
+    let percentage = touchHeight / this.quickNavElement.clientHeight;
 
-    let indicatorHeight = screenHeight / contentHeight * totalHeight;
-    let indicatorMarginTop = (totalHeight - indicatorHeight) * percentage;
-    this.indicatorElement.style.height = indicatorHeight + "px";
-    this.indicatorElement.style.marginTop = indicatorMarginTop + "px";
+    let scrollToHeight = (this.targetElement.clientHeight - screen.height) * percentage;
+    window.scrollTo(0, scrollToHeight);
+
+    this.updateIndicator();
   }
 
   onTouchStart($event) {

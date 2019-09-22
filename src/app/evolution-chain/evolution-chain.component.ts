@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { PokemonService } from '../service/pokemon.service';
 import { NamedAPIResource } from '../model/utility';
 import { EvolutionChain, ChainLink } from '../model/evolution';
-import { Utility } from '../utility';
 
 @Component({
   selector: 'app-evolution-chain',
@@ -22,9 +21,6 @@ export class EvolutionChainComponent implements OnInit {
     private pokemonService: PokemonService,
     private router: Router
   ) { }
-
-  getImageURL = Utility.getImageURL;
-  getIDFromUrl = Utility.getIDFromUrl;
 
   ngOnInit(): void {
     this.getEvolutionChain();

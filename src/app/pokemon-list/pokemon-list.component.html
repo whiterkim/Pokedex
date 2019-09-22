@@ -1,6 +1,7 @@
 <div class="list-page" id="pokemon-list">
-  <app-pokemon-list-item *ngFor="let pokemon of pokemonList?.results" url='{{pokemon.url}}'>
+  <app-pokemon-list-item class="list-item" *ngFor="let pokemon of pokemonList?.results" url='{{pokemon.url}}'>
   </app-pokemon-list-item>
+  <div class="list-item" *ngFor="let index of mock">#{{index}}</div>
 </div>
 
 <app-quick-navigation targetId="pokemon-list">
