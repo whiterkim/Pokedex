@@ -1,5 +1,6 @@
 <div class="detail-page" *ngIf="item">
     <div class="page-section">
+        <app-image class="item-image" [key]="item.name" type="item" height="90"></app-image>
         <h2 class="card-title text-center">{{(item.names | language)[0].name}}</h2>
         <div style="margin-bottom:1rem">{{(item.flavor_text_entries | language | versionGroup)[0].text}}</div>
         <div>{{(item.effect_entries | language)[0].effect}}</div>

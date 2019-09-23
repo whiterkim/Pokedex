@@ -20,8 +20,8 @@ export class ImageComponent implements OnInit {
   @Input()
   set key(value: string) {
     this._key = value;
-      this.getUrl();
-    }
+    this.getUrl();
+  }
   get key() {
     return this._key;
   }
@@ -41,13 +41,25 @@ export class ImageComponent implements OnInit {
     this.getUrl();
   }
 
-  async getUrl(): Promise<void> {
+  getUrl(): void {
+    if (this.type === 'pokemon') {
+      this.getPokemonImageUrl('poke');
+    } else if (this.type === 'pokemon-icon') {
+      this.getPokemonImageUrl('icon');
+    } else if (this.type === 'item') {
+      this.url = "../../assets/item/" + this.key + ".png";
+    } else if (this.type === 'item-icon') {
+      this.url = "../../assets/item/sprites/" + this.key + ".png";
+    }
+  }
+
+  async getPokemonImageUrl(folder: string): Promise<void> {
     if (this.pokemonId === undefined) {
       let pokemon = await this.pokemonService.getPokemonFromKey(this.key);
       this.pokemonId = pokemon.id;
     }
 
-    this.url = ImageComponent.getImageURL(this.type, this.pokemonId);
+    this.url = ImageComponent.getImageURL(folder, this.pokemonId);
   }
 
   static getImageURL(folder: string, id: number): string {

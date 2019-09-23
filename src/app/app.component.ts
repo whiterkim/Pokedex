@@ -8,7 +8,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'PokeDex';
+  title = 'PokéDex';
   constructor(
     private router: Router,
     private location: Location

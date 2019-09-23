@@ -2,7 +2,7 @@
     *ngIf="pokemon && species"
     (click)="goPokemonDetail()">
     <div class="pokemon-icon">
-        <app-image [pokemonId]="pokemon.id" type="icon" height="30"></app-image>
+        <app-image [pokemonId]="pokemon.id" type="pokemon-icon" height="30"></app-image>
     </div>
     <div class="pokemon-name">
         {{(species.names | language)[0].name}}

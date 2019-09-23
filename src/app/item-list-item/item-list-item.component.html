@@ -1,3 +1,4 @@
 <div class="list-item" *ngIf="item" (click)="goItem()">
+    <app-image [key]="item.name" type="item-icon" height="24"></app-image>
     <div class="item-name">{{(item.names | language)[0].name}}</div>
 </div>
