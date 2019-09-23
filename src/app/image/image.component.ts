@@ -43,23 +43,23 @@ export class ImageComponent implements OnInit {
 
   getUrl(): void {
     if (this.type === 'pokemon') {
-      this.getPokemonImageUrl('poke');
+      this.getPokemonImageUrl();
     } else if (this.type === 'pokemon-icon') {
-      this.getPokemonImageUrl('icon');
+      this.getPokemonImageUrl();
     } else if (this.type === 'item') {
       this.url = "../../assets/item/" + this.key + ".png";
     } else if (this.type === 'item-icon') {
-      this.url = "../../assets/item/sprites/" + this.key + ".png";
+      this.url = "../../assets/item-icon/" + this.key + ".png";
     }
   }
 
-  async getPokemonImageUrl(folder: string): Promise<void> {
+  async getPokemonImageUrl(): Promise<void> {
     if (this.pokemonId === undefined) {
       let pokemon = await this.pokemonService.getPokemonFromKey(this.key);
       this.pokemonId = pokemon.id;
     }
 
-    this.url = ImageComponent.getImageURL(folder, this.pokemonId);
+    this.url = ImageComponent.getImageURL(this.type, this.pokemonId);
   }
 
   static getImageURL(folder: string, id: number): string {
