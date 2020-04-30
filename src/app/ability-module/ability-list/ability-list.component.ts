@@ -6,8 +6,7 @@ import { NamedAPIResourceList, NamedAPIResource } from '../../model/utility';
 
 @Component({
   selector: 'app-ability-list',
-  templateUrl: './ability-list.component.html',
-  styleUrls: ['./ability-list.component.css']
+  templateUrl: './ability-list.component.html'
 })
 export class AbilityListComponent implements OnInit {
   abilityList: NamedAPIResourceList;

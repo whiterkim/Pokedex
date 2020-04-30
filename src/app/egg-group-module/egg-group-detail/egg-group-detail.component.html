@@ -1,0 +1,11 @@
+<div class="detail-page" *ngIf="eggGroup">
+    <div class="page-section">
+      <h2 class="card-title text-center">{{(eggGroup.names | language)[0].name}}</h2>
+      <h2 class="card-title text-center">Egg Group</h2>
+    </div>
+    <div class="page-section">
+      <app-pokemon-list-item *ngFor="let pokemon of eggGroup.pokemon_species" url="{{pokemon.url}}">
+      </app-pokemon-list-item>
+    </div>
+  </div>
+  

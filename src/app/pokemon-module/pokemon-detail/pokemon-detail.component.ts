@@ -59,6 +59,10 @@ export class PokemonDetailComponent implements OnInit {
     this.router.navigate(['/ability', ability.name]);
   }
 
+  goEggGroup(eggGroup: NamedAPIResource): void {
+    this.router.navigate(['/egg-group', eggGroup.name]);
+  }
+
   goMove(move: NamedAPIResource): void {
     this.router.navigate(['/move', move.name]);
   }

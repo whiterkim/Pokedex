@@ -10,7 +10,10 @@ import { AbilityDetailComponent } from './ability-module/ability-detail/ability-
 import { AbilityListComponent } from './ability-module/ability-list/ability-list.component';
 import { AbilityListItemComponent } from './ability-module/ability-list-item/ability-list-item.component';
 import { AbilityNameComponent } from './ability-module/ability-name/ability-name.component';
-import { EggGroupNameComponent } from './pokemon-module/egg-group-name/egg-group-name.component';
+import { EggGroupDetailComponent } from './egg-group-module/egg-group-detail/egg-group-detail.component';
+import { EggGroupListComponent } from './egg-group-module/egg-group-list/egg-group-list.component';
+import { EggGroupListItemComponent } from './egg-group-module/egg-group-list-item/egg-group-list-item.component';
+import { EggGroupNameComponent } from './egg-group-module/egg-group-name/egg-group-name.component';
 import { EvolutionChainComponent } from './pokemon-module/evolution-chain/evolution-chain.component';
 import { EvolutionNodeComponent } from './pokemon-module/evolution-node/evolution-node.component';
 import { ImageComponent } from './common-module/image/image.component';
@@ -53,6 +56,9 @@ import { VersionPipe } from './pipe/version.pipe';
     AbilityListComponent,
     AbilityListItemComponent,
     AbilityNameComponent,
+    EggGroupDetailComponent,
+    EggGroupListComponent,
+    EggGroupListItemComponent,
     EggGroupNameComponent,
     EvolutionChainComponent,
     EvolutionNodeComponent,

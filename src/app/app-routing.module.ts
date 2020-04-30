@@ -5,6 +5,8 @@ import { PokemonListComponent } from './pokemon-module/pokemon-list/pokemon-list
 import { PokemonDetailComponent } from './pokemon-module/pokemon-detail/pokemon-detail.component';
 import { AbilityListComponent } from './ability-module/ability-list/ability-list.component';
 import { AbilityDetailComponent } from './ability-module/ability-detail/ability-detail.component';
+import { EggGroupListComponent } from './egg-group-module/egg-group-list/egg-group-list.component';
+import { EggGroupDetailComponent } from './egg-group-module/egg-group-detail/egg-group-detail.component';
 import { MoveListComponent } from './move-module/move-list/move-list.component';
 import { MoveDetailComponent } from './move-module/move-detail/move-detail.component';
 import { ItemListComponent } from './item-module/item-list/item-list.component';
@@ -14,10 +16,12 @@ const routes: Routes = [
   {path: '', component: MainComponent},
   {path: 'pokemon-list', component: PokemonListComponent},
   {path: 'ability-list', component: AbilityListComponent},
+  {path: 'egg-group-list', component: EggGroupListComponent},
   {path: 'item-list', component: ItemListComponent},
   {path: 'move-list', component: MoveListComponent},
   {path: 'pokemon/:key', component: PokemonDetailComponent},
   {path: 'ability/:key', component: AbilityDetailComponent},
+  {path: 'egg-group/:key', component: EggGroupDetailComponent},
   {path: 'item/:key', component: ItemDetailComponent},
   {path: 'move/:key', component: MoveDetailComponent},
 ];

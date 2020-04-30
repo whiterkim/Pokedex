@@ -22,8 +22,13 @@ export class PokemonListItemComponent implements OnInit {
   ) { }
 
   async getPokemon(): Promise<void> {
+    if (this.url.includes('/pokemon/')) {
       this.pokemon = await this.pokemonService.getPokemon(this.url);
       this.species = await this.pokemonService.getSpecies(this.pokemon.species.url);
+    } else if (this.url.includes('/pokemon-species/')) {
+      this.species = await this.pokemonService.getSpecies(this.url);
+      this.pokemon = await this.pokemonService.getPokemon(this.species.varieties.find(x => x.is_default).pokemon.url);
+    }
   }
 
   ngOnInit() {

@@ -1,0 +1,5 @@
+<div class="list-page" *ngIf="eggGroupList">
+    <app-egg-group-list-item *ngFor="let eggGroup of eggGroupList.results" url="{{eggGroup.url}}">
+    </app-egg-group-list-item>
+  </div>
+  

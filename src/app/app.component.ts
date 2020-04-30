@@ -27,6 +27,8 @@ export class AppComponent {
       this.router.navigate(['/pokemon-list']);
     } else if (select === 'Ability') {
       this.router.navigate(['/ability-list']);
+    } else if (select === 'EggGroup') {
+      this.router.navigate(['/egg-group-list']);
     } else if (select === 'Item') {
       this.router.navigate(['/item-list']);
     } else if (select === 'Move') {

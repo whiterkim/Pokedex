@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { AbilityService } from '../../service/ability.service';
@@ -7,8 +7,7 @@ import { NamedAPIResource } from '../../model/utility';
 
 @Component({
   selector: 'app-ability-detail',
-  templateUrl: './ability-detail.component.html',
-  styleUrls: ['./ability-detail.component.css']
+  templateUrl: './ability-detail.component.html'
 })
 export class AbilityDetailComponent implements OnInit {
   ability: Ability;
