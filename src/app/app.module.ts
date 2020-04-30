@@ -10,6 +10,7 @@ import { AbilityDetailComponent } from './ability-detail/ability-detail.componen
 import { AbilityListComponent } from './ability-list/ability-list.component';
 import { AbilityListItemComponent } from './ability-list-item/ability-list-item.component';
 import { AbilityNameComponent } from './ability-name/ability-name.component';
+import { EggGroupNameComponent } from './egg-group-name/egg-group-name.component';
 import { EvolutionChainComponent } from './evolution-chain/evolution-chain.component';
 import { EvolutionNodeComponent } from './evolution-node/evolution-node.component';
 import { ImageComponent } from './image/image.component';
@@ -29,11 +30,13 @@ import { TypeNameComponent } from './type-name/type-name.component';
 // Service
 import { AbilityService } from './service/ability.service';
 import { ApiService } from './service/api.service';
+import { EggGroupService } from './service/egg-group.service';
 import { ItemService } from './service/item.service';
 import { MoveService } from './service/move.service';
 import { PokemonService } from './service/pokemon.service';
 import { TypeService } from './service/type.service';
 // Pipe
+import { GenderRatePipe } from './pipe/gender-rate.pipe';
 import { LanguagePipe } from './pipe/language.pipe';
 import { MoveLearnMethodPipe } from './pipe/move-learn-method.pipe';
 import { SlotPipe } from './pipe/slot.pipe';
@@ -50,6 +53,7 @@ import { VersionPipe } from './pipe/version.pipe';
     AbilityListComponent,
     AbilityListItemComponent,
     AbilityNameComponent,
+    EggGroupNameComponent,
     EvolutionChainComponent,
     EvolutionNodeComponent,
     ImageComponent,
@@ -67,6 +71,7 @@ import { VersionPipe } from './pipe/version.pipe';
     StatsItemComponent,
     TypeNameComponent,
     // Pipe
+    GenderRatePipe,
     LanguagePipe,
     MoveLearnMethodPipe,
     SlotPipe,
@@ -79,7 +84,7 @@ import { VersionPipe } from './pipe/version.pipe';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [AbilityService, ApiService, ItemService, MoveService, PokemonService, TypeService],
+  providers: [AbilityService, ApiService, EggGroupService, ItemService, MoveService, PokemonService, TypeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
