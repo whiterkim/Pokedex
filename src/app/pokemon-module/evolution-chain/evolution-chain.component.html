@@ -5,7 +5,19 @@
             <!-- display pokemon -->
             <div class="evolution-chain" *ngIf="i === 0 || evolutionNode.species.name !== evolutionLists[i - 1][j].species.name">
                 <div class="evolution-condition" *ngIf="j !== 0">
-                    {{evolutionNode.evolution_details[0].trigger.name}}
+                    <app-image [key]="getEvolutionContiditon(evolutionNode.evolution_details[0]).iconName" 
+                               [type]="getEvolutionContiditon(evolutionNode.evolution_details[0]).iconType" 
+                               height="20">
+                    </app-image>
+                    <div style="white-space:nowrap">
+                        {{getEvolutionContiditon(evolutionNode.evolution_details[0]).baseCondition}}
+                        <span *ngIf="getEvolutionContiditon(evolutionNode.evolution_details[0]).isExtraExplanation">
+                            *
+                        </span>
+                    </div>
+                    <div *ngIf="getEvolutionContiditon(evolutionNode.evolution_details[0]).appendCondition">
+                        ({{getEvolutionContiditon(evolutionNode.evolution_details[0]).appendCondition}})
+                    </div>
                 </div>
                 <app-evolution-node url="{{evolutionNode.species.url}}">
                 </app-evolution-node>
