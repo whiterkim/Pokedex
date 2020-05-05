@@ -41,3 +41,16 @@ export interface EvolutionTrigger {
     pokemon_species: NamedAPIResource[];
 }
 
+export interface EvolutionCondition {
+    iconType: string;
+    iconName: string;
+    iconText: string;
+    addonText: string;
+    description: string;
+}
+
+export interface EvolutionNode {
+    is_baby: boolean;
+    species: NamedAPIResource;
+    condition: EvolutionCondition;
+}

@@ -27,7 +27,6 @@ export class EvolutionNodeComponent implements OnInit {
 
   async getVarieties(): Promise<void> {
     let species = await this.pokemonService.getSpecies(this.url);
-    console.log(species.varieties);
     this.varieties = species.varieties;
   }
 

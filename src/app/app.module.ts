@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -88,7 +89,9 @@ import { VersionPipe } from './pipe/version.pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule,
+    NgbTooltipModule,
   ],
   providers: [AbilityService, ApiService, EggGroupService, ItemService, MoveService, PokemonService, TypeService],
   bootstrap: [AppComponent]
