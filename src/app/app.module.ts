@@ -5,7 +5,7 @@ import { NgbModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
-import { AppRoutingModule } from './/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 // Controller
 import { AbilityDetailComponent } from './ability-module/ability-detail/ability-detail.component';
 import { AbilityListComponent } from './ability-module/ability-list/ability-list.component';
@@ -15,9 +15,9 @@ import { EggGroupDetailComponent } from './egg-group-module/egg-group-detail/egg
 import { EggGroupListComponent } from './egg-group-module/egg-group-list/egg-group-list.component';
 import { EggGroupListItemComponent } from './egg-group-module/egg-group-list-item/egg-group-list-item.component';
 import { EggGroupNameComponent } from './egg-group-module/egg-group-name/egg-group-name.component';
-import { EvolutionChainComponent } from './pokemon-module/evolution-chain/evolution-chain.component';
-import { EvolutionConditionComponent } from './pokemon-module/evolution-condition/evolution-condition.component';
-import { EvolutionNodeComponent } from './pokemon-module/evolution-node/evolution-node.component';
+import { EvolutionChainComponent } from './evolution-module/evolution-chain/evolution-chain.component';
+import { EvolutionConditionComponent } from './evolution-module/evolution-condition/evolution-condition.component';
+import { EvolutionNodeComponent } from './evolution-module/evolution-node/evolution-node.component';
 import { ImageComponent } from './common-module/image/image.component';
 import { ItemDetailComponent } from './item-module/item-detail/item-detail.component';
 import { ItemListComponent } from './item-module/item-list/item-list.component';
@@ -29,7 +29,7 @@ import { MoveListItemComponent } from './move-module/move-list-item/move-list-it
 import { PokemonDetailComponent } from './pokemon-module/pokemon-detail/pokemon-detail.component';
 import { PokemonListComponent } from './pokemon-module/pokemon-list/pokemon-list.component';
 import { PokemonListItemComponent } from './pokemon-module/pokemon-list-item/pokemon-list-item.component';
-import { QuickNavigationComponent } from './pokemon-module/quick-navigation/quick-navigation.component';
+import { QuickNavigationComponent } from './common-module/quick-navigation/quick-navigation.component';
 import { StatsItemComponent } from './pokemon-module/stats-item/stats-item.component';
 import { TypeNameComponent } from './common-module/type-name/type-name.component';
 // Service
