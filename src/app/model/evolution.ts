@@ -48,9 +48,3 @@ export interface EvolutionCondition {
     addonText: string;
     description: string;
 }
-
-export interface EvolutionNode {
-    is_baby: boolean;
-    species: NamedAPIResource;
-    condition: EvolutionCondition;
-}

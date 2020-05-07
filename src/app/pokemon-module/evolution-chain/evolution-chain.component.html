@@ -4,20 +4,9 @@
         <div class="evolution-chain" *ngFor="let evolutionNode of evolutionList; let j = index">
             <!-- display pokemon -->
             <div class="evolution-chain" *ngIf="i === 0 || evolutionNode.species.name !== evolutionLists[i - 1][j].species.name">
-                <div class="evolution-condition" *ngIf="j !== 0" placement="top" ngbTooltip="{{evolutionNode.condition.description}}">
-                    <app-image [key]="evolutionNode.condition.iconName" [type]="evolutionNode.condition.iconType" height="20">
-                    </app-image>
-                    <div style="white-space:nowrap">
-                        {{evolutionNode.condition.iconText}}
-                        <span *ngIf="evolutionNode.condition.description !== null">
-                            *
-                        </span>
-                    </div>
-                    <div *ngIf="evolutionNode.condition.addonText">
-                        ({{evolutionNode.condition.addonText}})
-                    </div>
-                </div>
-                <app-evolution-node url="{{evolutionNode.species.url}}">
+                <app-evolution-condition *ngIf="j !== 0" [details]="evolutionNode.evolution_details">
+                </app-evolution-condition>
+                <app-evolution-node [url]="evolutionNode.species.url">
                 </app-evolution-node>
             </div>
             <!-- same as above, display blank -->

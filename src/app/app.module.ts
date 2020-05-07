@@ -16,6 +16,7 @@ import { EggGroupListComponent } from './egg-group-module/egg-group-list/egg-gro
 import { EggGroupListItemComponent } from './egg-group-module/egg-group-list-item/egg-group-list-item.component';
 import { EggGroupNameComponent } from './egg-group-module/egg-group-name/egg-group-name.component';
 import { EvolutionChainComponent } from './pokemon-module/evolution-chain/evolution-chain.component';
+import { EvolutionConditionComponent } from './pokemon-module/evolution-condition/evolution-condition.component';
 import { EvolutionNodeComponent } from './pokemon-module/evolution-node/evolution-node.component';
 import { ImageComponent } from './common-module/image/image.component';
 import { ItemDetailComponent } from './item-module/item-detail/item-detail.component';
@@ -62,6 +63,7 @@ import { VersionPipe } from './pipe/version.pipe';
     EggGroupListItemComponent,
     EggGroupNameComponent,
     EvolutionChainComponent,
+    EvolutionConditionComponent,
     EvolutionNodeComponent,
     ImageComponent,
     ItemDetailComponent,
