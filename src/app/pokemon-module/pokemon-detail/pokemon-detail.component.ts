@@ -17,6 +17,10 @@ export class PokemonDetailComponent implements OnInit {
   key: string;
   pokemon: Pokemon;
   species: PokemonSpecies;
+  levelUpMoves: Object[];
+  machineMoves: Object[];
+  eggMoves: Object[];
+  tutorMoves: Object[];
 
   constructor(
     private pokemonService: PokemonService,
@@ -36,6 +40,11 @@ export class PokemonDetailComponent implements OnInit {
   async getPokemon(): Promise<void> {
     this.pokemon = await this.pokemonService.getPokemonFromKey(this.key);
     this.species = await this.pokemonService.getSpecies(this.pokemon.species.url);
+
+    this.levelUpMoves = this.getMoves('level-up');
+    this.machineMoves = this.getMoves('machine');
+    this.eggMoves = this.getMoves('egg');
+    this.tutorMoves = this.getMoves('tutor');
   }
 
   getTotalStats(): number {
@@ -43,11 +52,21 @@ export class PokemonDetailComponent implements OnInit {
   }
 
   getMoves(moveLearnMethod: string) {
-    const result = this.pokemon.moves.filter(move => {
-      const versionGroupMatched = this.versionGroupPipe.transform(move.version_group_details);
+    let result = this.pokemon.moves.map(pokemonMove => {
+      const versionGroupMatched = this.versionGroupPipe.transform(pokemonMove.version_group_details);
       const moveLearnMethodMatched = this.moveLearnMethodPipe.transform(versionGroupMatched, moveLearnMethod);
-      return moveLearnMethodMatched.length > 0;
-    });
+      return {
+        move: pokemonMove.move,
+        // There should be only one or none matched.
+        detail: moveLearnMethodMatched[0],
+      };
+    }).filter(x => x.detail);
+
+    if (moveLearnMethod === "level-up") {
+      result.sort((x, y) => {
+        return x.detail.level_learned_at < y.detail.level_learned_at ? -1 : 1;
+      });
+    }
 
     if (result.length === 0)
       return null;

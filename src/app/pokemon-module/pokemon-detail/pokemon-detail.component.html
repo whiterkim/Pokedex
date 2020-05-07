@@ -90,27 +90,27 @@
 
   <div class="page-section">
     <h4 class="card-title text-center">Moves</h4>
-    <div *ngIf="getMoves('level-up'); let moves">
+    <div *ngIf="levelUpMoves.length > 0">
       <h5 style="margin-left:1rem">Level Up</h5>
-      <app-move-list-item  *ngFor="let move of moves" url='{{move.move.url}}'>
+      <app-move-list-item  *ngFor="let move of levelUpMoves" [url]='move.move.url' [detail]='move.detail'>
       </app-move-list-item>
     </div>
 
-    <div *ngIf="getMoves('machine'); let moves">
+    <div *ngIf="machineMoves.length > 0">
       <h5 style="margin-left:1rem">TM/HM</h5>
-      <app-move-list-item *ngFor="let move of moves" url='{{move.move.url}}'>
+      <app-move-list-item *ngFor="let move of machineMoves" [url]='move.move.url'>
       </app-move-list-item>
     </div>
 
-    <div *ngIf="getMoves('egg'); let moves">
+    <div *ngIf="eggMoves.length > 0">
       <h5 style="margin-left:1rem">Egg</h5>
-      <app-move-list-item *ngFor="let move of moves" url='{{move.move.url}}'>
+      <app-move-list-item *ngFor="let move of eggMoves" [url]='move.move.url'>
       </app-move-list-item>
     </div>
 
-    <div *ngIf="getMoves('tutor'); let moves">
+    <div *ngIf="tutorMoves.length > 0">
       <h5 style="margin-left:1rem">Tutor</h5>
-      <app-move-list-item *ngFor="let move of moves" url='{{move.move.url}}'>
+      <app-move-list-item *ngFor="let move of tutorMoves" [url]='move.move.url'>
       </app-move-list-item>
     </div>
   </div>
