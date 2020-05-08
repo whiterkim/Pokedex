@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
+import { Machine } from '../model/machines';
 import { Move, MoveDamageClass } from '../model/moves';
 import { NamedAPIResourceList } from '../model/utility';
 
@@ -19,6 +20,10 @@ export class MoveService {
   }
 
   getMoveDamageClass(url: string): Promise<MoveDamageClass> {
+    return this.apiService.get(url);
+  }
+
+  getMachine(url: string): Promise<Machine> {
     return this.apiService.get(url);
   }
 }

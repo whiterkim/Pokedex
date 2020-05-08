@@ -1,11 +1,14 @@
 <div class="list-item move-list-item"
     *ngIf="move"
     (click)="goMove()">
+    <div *ngIf="method === 'level-up'">
+        {{getLevelInfo()}}
+    </div>
+    <div *ngIf="method === 'machine' && machineItem">
+        {{(machineItem.names | language)[0].name}}
+    </div>
     <div class="move-name">
         {{(move.names | language)[0].name}}
-    </div>
-    <div *ngIf="detail && detail.move_learn_method.name === 'level-up'">
-        {{detail.level_learned_at}}
     </div>
     <div class="move-power">
         {{move.power === null ? '-' : move.power}}

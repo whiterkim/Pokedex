@@ -92,25 +92,25 @@
     <h4 class="card-title text-center">Moves</h4>
     <div *ngIf="levelUpMoves.length > 0">
       <h5 style="margin-left:1rem">Level Up</h5>
-      <app-move-list-item  *ngFor="let move of levelUpMoves" [url]='move.move.url' [detail]='move.detail'>
+      <app-move-list-item  *ngFor="let move of levelUpMoves" [url]='move.move.url' method='level-up' [level]='move.level_learned_at'>
       </app-move-list-item>
     </div>
 
     <div *ngIf="machineMoves.length > 0">
       <h5 style="margin-left:1rem">TM/HM</h5>
-      <app-move-list-item *ngFor="let move of machineMoves" [url]='move.move.url'>
+      <app-move-list-item *ngFor="let move of machineMoves" [url]='move.move.url' method='machine'>
       </app-move-list-item>
     </div>
 
     <div *ngIf="eggMoves.length > 0">
       <h5 style="margin-left:1rem">Egg</h5>
-      <app-move-list-item *ngFor="let move of eggMoves" [url]='move.move.url'>
+      <app-move-list-item *ngFor="let move of eggMoves" [url]='move.move.url' method='egg'>
       </app-move-list-item>
     </div>
 
     <div *ngIf="tutorMoves.length > 0">
       <h5 style="margin-left:1rem">Tutor</h5>
-      <app-move-list-item *ngFor="let move of tutorMoves" [url]='move.move.url'>
+      <app-move-list-item *ngFor="let move of tutorMoves" [url]='move.move.url' method='tutor'>
       </app-move-list-item>
     </div>
   </div>
