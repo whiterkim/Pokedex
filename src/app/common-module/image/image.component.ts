@@ -47,9 +47,9 @@ export class ImageComponent implements OnInit {
     } else if (this.type === 'pokemon-icon') {
       this.getPokemonImageUrl();
     } else if (this.type === 'item') {
-      this.url = "../../assets/item/" + this.key + ".png";
+      this.url = "assets/item/" + this.key + ".png";
     } else if (this.type === 'item-icon') {
-      this.url = "../../assets/item-icon/" + this.key + ".png";
+      this.url = "assets/item-icon/" + this.key + ".png";
     }
   }
 
@@ -63,7 +63,7 @@ export class ImageComponent implements OnInit {
   }
 
   static getImageURL(folder: string, id: number): string {
-    var path = "../../assets/" + folder + "/";
+    var path = "assets/" + folder + "/";
 
     var pokeDexId = Math.floor(id);
     var formId = id * 10 % 10;
