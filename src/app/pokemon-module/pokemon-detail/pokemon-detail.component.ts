@@ -198,4 +198,12 @@ export class PokemonDetailComponent implements OnInit {
   goMove(move: NamedAPIResource): void {
     this.router.navigate(['/move', move.name]);
   }
+
+  getMaxMoveIndex(): number[] {
+    let max: number = this.levelUpMoves.length;
+    max = Math.max(max, this.machineMoves.length);
+    max = Math.max(max, this.eggMoves.length);
+    max = Math.max(max, this.tutorMoves.length);
+    return Array(max).fill(0).map((x, i) => i);
+  }
 }
