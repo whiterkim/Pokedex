@@ -96,7 +96,7 @@
         <a ngbNavLink class="move-nav-link {{levelUpMoves.length > 0 ? '' : 'disabled'}}">Level up</a>
         <ng-template ngbNavContent>
           <div *ngFor="let index of getMaxMoveIndex()">
-            <app-move-list-item *ngIf="levelUpMoves[index]" [url]='levelUpMoves[index].move.url' method='tutor'>
+            <app-move-list-item *ngIf="levelUpMoves[index]" [url]='levelUpMoves[index].move.url' method='level-up' [level]='levelUpMoves[index].level_learned_at'>
             </app-move-list-item>
             <div class="list-item" *ngIf="!levelUpMoves[index]">
             </div>
@@ -107,7 +107,7 @@
         <a ngbNavLink class="move-nav-link {{machineMoves.length > 0 ? '' : 'disabled'}}">Machine</a>
         <ng-template ngbNavContent>
           <div *ngFor="let index of getMaxMoveIndex()">
-            <app-move-list-item *ngIf="machineMoves[index]" [url]='machineMoves[index].move.url' method='tutor'>
+            <app-move-list-item *ngIf="machineMoves[index]" [url]='machineMoves[index].move.url' method='machine'>
             </app-move-list-item>
             <div class="list-item" *ngIf="!machineMoves[index]">
             </div>
@@ -118,7 +118,7 @@
         <a ngbNavLink class="move-nav-link {{eggMoves.length > 0 ? '' : 'disabled'}}">Egg</a>
         <ng-template ngbNavContent>
           <div *ngFor="let index of getMaxMoveIndex()">
-            <app-move-list-item *ngIf="eggMoves[index]" [url]='eggMoves[index].move.url' method='tutor'>
+            <app-move-list-item *ngIf="eggMoves[index]" [url]='eggMoves[index].move.url' method='egg'>
             </app-move-list-item>
             <div class="list-item" *ngIf="!eggMoves[index]">
             </div>
