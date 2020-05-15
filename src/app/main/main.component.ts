@@ -20,10 +20,6 @@ export class MainComponent implements OnInit {
   }
 
   async load() {
-    let baseUrl = "https://pokeapi.co/api/v2/";
-    for (let i = 1; i <= 5; i++) {
-      await this.apiService.get(baseUrl + 'item/' + i.toString());
-    }
     this.router.navigate(['/pokemon-list']);
   }
 

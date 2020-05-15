@@ -91,7 +91,7 @@ export class EvolutionConditionComponent implements OnInit {
 
   private async getLocationCondition(detail: EvolutionDetail): Promise<EvolutionCondition> {
     if (detail.location !== null) {
-      let location = await this.apiService.get(detail.location.url);
+      let location = await this.apiService.getFromUrl(detail.location.url);
       return {
         iconType: "item-icon",
         iconName: "town-map",

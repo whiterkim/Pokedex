@@ -11,10 +11,14 @@ export class EggGroupService {
   ) { }
 
   getEggGroups(): Promise<NamedAPIResourceList> {
-      return <any> this.apiService.get("https://pokeapi.co/api/v2/egg-group/");
+    return <any> this.apiService.getFromApi('egg-group');
+  }
+
+  getEggGroupFromKey(key: string): Promise<EggGroup> {
+    return this.apiService.getFromApi('egg-group', key);
   }
 
   getEggGroup(url: string): Promise<EggGroup> {
-    return this.apiService.get(url);
+    return this.apiService.getFromUrl(url);
   }
 }

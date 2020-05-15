@@ -11,10 +11,10 @@ export class TypeService {
   ) { }
 
   getTypes(): Promise<NamedAPIResourceList> {
-      return <any> this.apiService.get("https://pokeapi.co/api/v2/type/");
+      return <any> this.apiService.getFromApi('type');
   }
 
   getType(url: string): Promise<Type> {
-    return this.apiService.get(url);
+    return this.apiService.getFromUrl(url);
   }
 }

@@ -27,8 +27,7 @@ export class AbilityDetailComponent implements OnInit {
   }
 
   async getAbility(key: string): Promise<void> {
-    var url = "https://pokeapi.co/api/v2/ability/" + key + "/";
-    this.ability = await this.abilityService.getAbility(url);
+    this.ability = await this.abilityService.getAbilityFromKey(key);
   }
 
   goPokemon(pokemon: NamedAPIResource): void {

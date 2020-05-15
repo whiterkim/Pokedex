@@ -27,8 +27,7 @@ export class EggGroupDetailComponent implements OnInit {
   }
 
   async getEggGroup(key: string): Promise<void> {
-    var url = "https://pokeapi.co/api/v2/egg-group/" + key + "/";
-    this.eggGroup = await this.eggGroupService.getEggGroup(url);
+    this.eggGroup = await this.eggGroupService.getEggGroupFromKey(key);
   }
 
   goPokemon(pokemon: NamedAPIResource): void {

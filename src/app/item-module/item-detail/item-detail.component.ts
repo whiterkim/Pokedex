@@ -27,7 +27,6 @@ export class ItemDetailComponent implements OnInit {
   }
 
   async getItem(key: string): Promise<void> {
-    var url = "https://pokeapi.co/api/v2/item/" + key + "/";
-    this.item = await this.itemService.getItem(url);
+    this.item = await this.itemService.getItemFromKey(key);
   }
 }

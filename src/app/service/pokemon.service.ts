@@ -12,23 +12,22 @@ export class PokemonService {
   ) { }
 
   getPokemonList(): Promise<NamedAPIResourceList> {
-    return this.apiService.get("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151");
+    return this.apiService.getFromApi('pokemon', null, {offset: 0, limit: 151})
   }
 
   getPokemonFromKey(key: string): Promise<Pokemon> {
-    let url = "https://pokeapi.co/api/v2/pokemon/" + key + "/";
-    return this.getPokemon(url);
+    return this.apiService.getFromApi('pokemon', key);
   }
 
   getPokemon(url: string): Promise<Pokemon> {
-    return this.apiService.get(url);
+    return this.apiService.getFromUrl(url);
   }
 
   getSpecies(url: string): Promise<PokemonSpecies> {
-    return this.apiService.get(url);
+    return this.apiService.getFromUrl(url);
   }
 
   getEvolutionChain(url: string): Promise<EvolutionChain> {
-    return this.apiService.get(url);
+    return this.apiService.getFromUrl(url);
   }
 }

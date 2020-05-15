@@ -11,10 +11,14 @@ export class AbilityService {
   ) { }
 
   getAbilities(): Promise<NamedAPIResourceList> {
-    return this.apiService.get("https://pokeapi.co/api/v2/ability/");
+    return this.apiService.getFromApi('ability');
+  }
+
+  getAbilityFromKey(key: string): Promise<Ability> {
+    return this.apiService.getFromApi('ability', key);
   }
 
   getAbility(url: string): Promise<Ability> {
-    return this.apiService.get(url);
+    return this.apiService.getFromUrl(url);
   }
 }

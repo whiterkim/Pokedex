@@ -12,18 +12,22 @@ export class MoveService {
   ) { }
 
   getMoves(): Promise<NamedAPIResourceList> {
-    return this.apiService.get("https://pokeapi.co/api/v2/move/");
+    return this.apiService.getFromApi('move');
+  }
+
+  getMoveFromKey(key: string): Promise<Move> {
+    return this.apiService.getFromApi('move', key);
   }
 
   getMove(url: string): Promise<Move> {
-    return this.apiService.get(url);
+    return this.apiService.getFromUrl(url);
   }
 
   getMoveDamageClass(url: string): Promise<MoveDamageClass> {
-    return this.apiService.get(url);
+    return this.apiService.getFromUrl(url);
   }
 
   getMachine(url: string): Promise<Machine> {
-    return this.apiService.get(url);
+    return this.apiService.getFromUrl(url);
   }
 }

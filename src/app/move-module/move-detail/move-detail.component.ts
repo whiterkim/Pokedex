@@ -27,8 +27,7 @@ export class MoveDetailComponent implements OnInit {
   }
 
   async getMove(key: string): Promise<void> {
-    var url = "https://pokeapi.co/api/v2/move/" + key + "/"
-    this.move = await this.moveService.getMove(url);
+    this.move = await this.moveService.getMoveFromKey(key);
   }
 
 

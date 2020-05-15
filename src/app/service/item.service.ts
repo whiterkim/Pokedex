@@ -11,10 +11,14 @@ export class ItemService {
   ) { }
 
   getItemList(): Promise<NamedAPIResourceList> {
-    return this.apiService.get("https://pokeapi.co/api/v2/item/");
+    return this.apiService.getFromApi('item');
+  }
+
+  getItemFromKey(key: string): Promise<Item> {
+    return this.apiService.getFromApi('item', key);
   }
 
   getItem(url: string): Promise<Item> {
-    return this.apiService.get(url);
+    return this.apiService.getFromUrl(url);
   }
 }
