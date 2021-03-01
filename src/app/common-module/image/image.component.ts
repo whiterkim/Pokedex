@@ -33,6 +33,8 @@ export class ImageComponent implements OnInit {
   height: number;
   url: string;
 
+  static baseUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
+
   constructor(
     private pokemonService: PokemonService
   ) { }
@@ -59,10 +61,21 @@ export class ImageComponent implements OnInit {
       this.pokemonId = pokemon.id;
     }
 
-    this.url = ImageComponent.getImageURL(this.type, this.pokemonId);
+    this.url = ImageComponent.getOnlineImageUrl(this.type, this.pokemonId);
   }
 
-  static getImageURL(folder: string, id: number): string {
+  static getOnlineImageUrl(type: string, id: number): string {
+    var typePath = "";
+    if (type === "pokemon") {
+      typePath = "other/official-artwork/";
+    } else if (type === "pokemon-icon") {
+      typePath = "versions/generation-viii/icons/"
+    }
+
+    return ImageComponent.baseUrl + typePath + id + ".png"
+  }
+
+  static getLocalImageUrl(folder: string, id: number): string {
     var path = "assets/" + folder + "/";
 
     var pokeDexId = Math.floor(id);

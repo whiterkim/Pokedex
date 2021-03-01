@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { ApiService } from './api.service';
 import { NamedAPIResourceList } from '../model/utility';
 import { Pokemon, PokemonSpecies } from '../model/pokemon';
@@ -12,7 +12,11 @@ export class PokemonService {
   ) { }
 
   getPokemonList(): Promise<NamedAPIResourceList> {
-    return this.apiService.get("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151");
+    if (isDevMode()) {
+      return this.apiService.get("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151");
+    }
+
+    return this.apiService.get("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=898");
   }
 
   getPokemonFromKey(key: string): Promise<Pokemon> {

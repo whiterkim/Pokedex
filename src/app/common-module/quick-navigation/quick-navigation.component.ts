@@ -13,7 +13,7 @@ export class QuickNavigationComponent implements OnInit {
   quickNavElement: HTMLElement;
   indicatorElement: HTMLElement;
 
-  generationBoundary: number[] = [0,151,251,386,493,649,721,809];
+  generationBoundary: number[] = [0,151,251,386,493,649,721,809,898];
   generationPercentage: number[] = [];
 
   constructor(
@@ -28,8 +28,8 @@ export class QuickNavigationComponent implements OnInit {
         this.updateIndicator();
       });
 
-      for (let i = 1; i <= 7; i++) {
-        this.generationPercentage.push((this.generationBoundary[i] - this.generationBoundary[i - 1]) / this.generationBoundary[7] * 100);
+      for (let i = 1; i <= 8; i++) {
+        this.generationPercentage.push((this.generationBoundary[i] - this.generationBoundary[i - 1]) / this.generationBoundary[8] * 100);
       }
   }
 
