@@ -5,13 +5,15 @@ import { Ability } from '../../model/pokemon';
 
 @Component({
   selector: 'app-ability-name',
-  inputs: ['url'],
+  inputs: ['url', 'isHidden'],
   templateUrl: './ability-name.component.html',
   styleUrls: ['./ability-name.component.css']
 })
 export class AbilityNameComponent implements OnInit {
   @Input()
   url: string;
+  @Input()
+  isHidden: string;
   ability: Ability;
 
   constructor(

@@ -1,19 +1,16 @@
-<div class="page-section">
-    <h4 class="card-title text-center">Evolutions</h4>
-    <div class="evolution-chain" *ngFor="let evolutionList of evolutionLists; let i = index">
-        <div class="evolution-chain" *ngFor="let evolutionNode of evolutionList; let j = index">
-            <!-- display pokemon -->
-            <div class="evolution-chain" *ngIf="i === 0 || evolutionNode.species.name !== evolutionLists[i - 1][j].species.name">
-                <app-evolution-condition *ngIf="j !== 0" [details]="evolutionNode.evolution_details">
-                </app-evolution-condition>
-                <app-evolution-node [url]="evolutionNode.species.url">
-                </app-evolution-node>
-            </div>
-            <!-- same as above, display blank -->
-            <div class="evolution-chain" *ngIf="i > 0 && evolutionNode.species.name === evolutionLists[i - 1][j].species.name">
-                <div class="evolution-condition" *ngIf="j !== 0">&nbsp;</div>
-                <div class="evolution-node">&nbsp;</div>
-            </div>
+<div class="evolution-chain" *ngFor="let evolutionList of evolutionLists; let i = index">
+    <div class="evolution-chain" *ngFor="let evolutionNode of evolutionList; let j = index">
+        <!-- display pokemon -->
+        <div class="evolution-chain" *ngIf="i === 0 || evolutionNode.species.name !== evolutionLists[i - 1][j].species.name">
+            <app-evolution-condition *ngIf="j !== 0" [details]="evolutionNode.evolution_details">
+            </app-evolution-condition>
+            <app-evolution-node [url]="evolutionNode.species.url">
+            </app-evolution-node>
+        </div>
+        <!-- same as above, display blank -->
+        <div class="evolution-chain" *ngIf="i > 0 && evolutionNode.species.name === evolutionLists[i - 1][j].species.name">
+            <div class="evolution-condition" *ngIf="j !== 0">&nbsp;</div>
+            <div class="evolution-node">&nbsp;</div>
         </div>
     </div>
 </div>

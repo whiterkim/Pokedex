@@ -1,4 +1,4 @@
 
-<div class="evolution-node border" *ngFor="let variety of varieties" (click)="goPokemon(variety.pokemon)">
+<div class="evolution-node" *ngFor="let variety of varieties" (click)="goPokemon(variety.pokemon)">
     <app-image class="evolution-image" [key]="variety.pokemon.name" type="pokemon" height="68"></app-image>
 </div>

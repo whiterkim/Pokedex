@@ -9,31 +9,49 @@
     </div>
   </div>
 
-  <div class="info-box-collection">
-    <div class="info-box">
-      <div class="info-box-title">Abilities</div>
-      <div class="info-box-content">
-        <div class="info-box-content-item" (click)="goAbility(ability.ability)" *ngIf="pokemon.abilities | slot:1; let ability">
-          <app-ability-name url="{{ability.ability.url}}"></app-ability-name>
-          <span *ngIf="ability.is_hidden" style="font-size:0.75rem">
-            <br> Hidden
-          </span>
-        </div>
-        <div class="info-box-content-item" (click)="goAbility(ability.ability)" *ngIf="pokemon.abilities | slot:2; let ability">
-          <app-ability-name url="{{ability.ability.url}}"></app-ability-name>
-          <span *ngIf="ability.is_hidden" style="font-size:0.75rem">
-            <br> Hidden
-          </span>
-        </div>
-        <div class="info-box-content-item" (click)="goAbility(ability.ability)" *ngIf="pokemon.abilities | slot:3; let ability">
-          <app-ability-name url="{{ability.ability.url}}"></app-ability-name>
-          <span *ngIf="ability.is_hidden" style="font-size:0.75rem">
-            <br> Hidden
-          </span>
-        </div>
-      </div>
-    </div>
+  <!-- PokeDex Entry -->
+  <div class="page-section">
+    <div class="text-section">{{(species.flavor_text_entries | language | version)[0].flavor_text}}</div>
+  </div>
+  <hr>
 
+  <!-- Base Stats -->
+  <div class="page-section">
+    <div class="stats-list">
+      <app-stats-item header="HP" value="{{pokemon.stats | stats:'hp'}}" key="hp"></app-stats-item>
+      <app-stats-item header="ATK" value="{{pokemon.stats | stats:'attack'}}" key="attack"></app-stats-item>
+      <app-stats-item header="DEF" value="{{pokemon.stats | stats:'defense'}}" key="defense"></app-stats-item>
+      <app-stats-item header="SPA" value="{{pokemon.stats | stats:'special-attack'}}" key="special-attack"></app-stats-item>
+      <app-stats-item header="SPD" value="{{pokemon.stats | stats:'special-defense'}}" key="special-defense"></app-stats-item>
+      <app-stats-item header="SPD" value="{{pokemon.stats | stats:'speed'}}" key="speed"></app-stats-item>
+      <app-stats-item header="Total" value="{{getTotalStats()}}"></app-stats-item>
+    </div>
+  </div>
+  <hr>
+
+  <!-- Evolution -->
+  <div class="page-section">
+    <app-evolution-chain url='{{species.evolution_chain.url}}'>
+    </app-evolution-chain>
+  </div>
+  <hr>
+
+  <!-- Ability -->
+  <div class="page-section text-section">
+    <div (click)="goAbility(ability.ability)" *ngIf="pokemon.abilities | slot:1; let ability">
+      <app-ability-name url="{{ability.ability.url}}" isHidden="{{ability.is_hidden}}"></app-ability-name>
+    </div>
+    <div (click)="goAbility(ability.ability)" *ngIf="pokemon.abilities | slot:2; let ability">
+      <app-ability-name url="{{ability.ability.url}}" isHidden="{{ability.is_hidden}}"></app-ability-name>
+    </div>
+    <div (click)="goAbility(ability.ability)" *ngIf="pokemon.abilities | slot:3; let ability">
+      <app-ability-name url="{{ability.ability.url}}" isHidden="{{ability.is_hidden}}"></app-ability-name>
+    </div>
+  </div>
+  <hr>
+
+  <!-- General information -->
+  <div class="page-section info-box-collection">
     <div class="info-box">
       <div class="info-box-title">Egg Groups</div>
       <div class="info-box-content">
@@ -66,31 +84,10 @@
       <div class="info-box-content info-box-content-item">{{pokemon.weight/10}}kg</div>
     </div>
   </div>
+  <hr>
 
+  <!-- Moves -->
   <div class="page-section">
-    <h4 class="card-title text-center">Base Stats</h4>
-    <div class="stats-list">
-      <app-stats-item header="HP" value="{{pokemon.stats | stats:'hp'}}" key="hp"></app-stats-item>
-      <app-stats-item header="ATK" value="{{pokemon.stats | stats:'attack'}}" key="attack"></app-stats-item>
-      <app-stats-item header="DEF" value="{{pokemon.stats | stats:'defense'}}" key="defense"></app-stats-item>
-      <app-stats-item header="SPA" value="{{pokemon.stats | stats:'special-attack'}}" key="special-attack"></app-stats-item>
-      <app-stats-item header="SPD" value="{{pokemon.stats | stats:'special-defense'}}" key="special-defense"></app-stats-item>
-      <app-stats-item header="SPD" value="{{pokemon.stats | stats:'speed'}}" key="speed"></app-stats-item>
-      <app-stats-item header="Total" value="{{getTotalStats()}}"></app-stats-item>
-    </div>
-  </div>
-
-  <app-evolution-chain url='{{species.evolution_chain.url}}'>
-  </app-evolution-chain>
-
-  <div class="page-section">
-    <h4 class="card-title text-center">PokeDex Entry</h4>
-    <div>{{(species.flavor_text_entries | language | version)[0].flavor_text}}</div>
-  </div>
-
-  <div class="page-section">
-    <h4 class="card-title text-center">Moves</h4>
-
     <ul ngbNav #nav="ngbNav" class="nav-pills nav-justified">
       <li [ngbNavItem]="1">
         <a ngbNavLink class="move-nav-link {{levelUpMoves.length > 0 ? '' : 'disabled'}}">Level up</a>

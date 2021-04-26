@@ -1,4 +1,12 @@
 <span class="ability-name"
     *ngIf="ability">
-    {{(ability.names | language)[0].name}}
+    <h5>
+        {{(ability.names | language)[0].name}}
+        <span *ngIf="isHidden === 'true'" style="font-size:0.75rem">
+            Hidden
+        </span>
+    </h5>
+    <div style="margin-bottom:1rem">
+        {{(ability.flavor_text_entries | language | versionGroup)[0].flavor_text}}
+    </div>
 </span>
