@@ -2,7 +2,7 @@
     <div class="evolution-chain" *ngFor="let evolutionNode of evolutionList; let j = index">
         <!-- display pokemon -->
         <div class="evolution-chain" *ngIf="i === 0 || evolutionNode.species.name !== evolutionLists[i - 1][j].species.name">
-            <app-evolution-condition *ngIf="j !== 0" [details]="evolutionNode.evolution_details">
+            <app-evolution-condition *ngIf="j !== 0" [evolutionNode]="evolutionNode">
             </app-evolution-condition>
             <app-evolution-node [url]="evolutionNode.species.url">
             </app-evolution-node>

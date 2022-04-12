@@ -5,9 +5,10 @@ import { ItemService } from '../../service/item.service';
 import { MoveService } from '../../service/move.service';
 import { TypeService } from '../../service/type.service';
 import { PokemonService } from '../../service/pokemon.service';
-import { EvolutionDetail, EvolutionCondition } from '../../model/evolution';
+import { ChainLink, EvolutionDetail, EvolutionCondition } from '../../model/evolution';
 import { NamedAPIResource } from '../../model/utility';
 import { LanguagePipe } from '../../pipe/language.pipe';
+import { PokemonSpeciesVariety } from '../../model/pokemon';
 
 @Component({
   selector: 'app-evolution-condition',
@@ -17,8 +18,9 @@ import { LanguagePipe } from '../../pipe/language.pipe';
 })
 export class EvolutionConditionComponent implements OnInit {
   @Input()
-  details: EvolutionDetail[];
+  evolutionNode: ChainLink;
   condition: EvolutionCondition;
+  conditions: EvolutionCondition[] = [];
 
   constructor(
     private apiService: ApiService,
@@ -30,10 +32,49 @@ export class EvolutionConditionComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getEvolutionContiditon(this.details[0]);
+    this.getConditions();
   }
 
-  private async getEvolutionContiditon(detail: EvolutionDetail): Promise<void> {
+  private async getConditions(): Promise<void> {
+    let varieties = await this.getVarieties();
+    for (let variety of varieties) {
+      if (variety.is_default) {
+        this.conditions.push(await this.getEvolutionContiditon(this.evolutionNode.evolution_details[0]));
+      } else if (this.isVarietyMega(variety)) {
+        this.conditions.push({
+          iconType: 'special-icon',
+          iconName: 'mega-icon',
+          iconText: 'Mega',
+          addonText: null,
+          description: null,
+        });
+      } else if (this.isVarietyGmax(variety)) {
+        this.conditions.push({
+          iconType: 'special-icon',
+          iconName: 'gmax-icon',
+          iconText: 'G-Max',
+          addonText: null,
+          description: null,
+        });
+      }
+    }
+  }
+
+  private isVarietyMega(variety: PokemonSpeciesVariety) : boolean {
+    return variety.pokemon.name.indexOf('mega') >= 0;
+  }
+
+  private isVarietyGmax(variety: PokemonSpeciesVariety) : boolean {
+    return variety.pokemon.name.indexOf('gmax') >= 0;
+  }
+
+  private async getVarieties(): Promise<PokemonSpeciesVariety[]> {
+    let url = this.evolutionNode.species.url;
+    let species = await this.pokemonService.getSpecies(url);
+    return species.varieties;
+  }
+
+  private async getEvolutionContiditon(detail: EvolutionDetail): Promise<EvolutionCondition> {
     if (detail === undefined) { return null; }
     let result: EvolutionCondition;
 
@@ -48,7 +89,7 @@ export class EvolutionConditionComponent implements OnInit {
     // Make sure getLevelUpCondition is the last condition, because it is the default condition.
     if (result === null) { result = this.getLevelUpCondition(detail); }
 
-    this.condition = result;
+    return result;
   }
 
   private getHappinessOrAffectionCondition(detail: EvolutionDetail): EvolutionCondition {

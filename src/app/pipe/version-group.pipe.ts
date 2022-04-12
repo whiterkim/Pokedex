@@ -21,7 +21,7 @@ export class VersionGroupPipe implements PipeTransform {
     "omega-ruby-alpha-sapphire",
     "sun-moon",
     "ultra-sun-ultra-moon",
-    "lets-go",
+    "lets-go-pikachu-lets-go-eevee",
     "sword-shield",
   ];
 

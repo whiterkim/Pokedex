@@ -89,7 +89,7 @@
   <!-- Moves -->
   <div class="page-section">
     <ul ngbNav #nav="ngbNav" class="nav-pills nav-justified">
-      <li [ngbNavItem]="1">
+      <li [ngbNavItem]="1" *ngIf="levelUpMoves">
         <a ngbNavLink class="move-nav-link {{levelUpMoves.length > 0 ? '' : 'disabled'}}">Level up</a>
         <ng-template ngbNavContent>
           <div *ngFor="let index of getMaxMoveIndex()">
@@ -100,7 +100,7 @@
           </div>
         </ng-template>
       </li>
-      <li [ngbNavItem]="2">
+      <li [ngbNavItem]="2" *ngIf="machineMoves">
         <a ngbNavLink class="move-nav-link {{machineMoves.length > 0 ? '' : 'disabled'}}">Machine</a>
         <ng-template ngbNavContent>
           <div *ngFor="let index of getMaxMoveIndex()">
@@ -111,7 +111,7 @@
           </div>
         </ng-template>
       </li>
-      <li [ngbNavItem]="3">
+      <li [ngbNavItem]="3" *ngIf="eggMoves">
         <a ngbNavLink class="move-nav-link {{eggMoves.length > 0 ? '' : 'disabled'}}">Egg</a>
         <ng-template ngbNavContent>
           <div *ngFor="let index of getMaxMoveIndex()">
@@ -122,7 +122,7 @@
           </div>
         </ng-template>
       </li>
-      <li [ngbNavItem]="4">
+      <li [ngbNavItem]="4" *ngIf="tutorMoves">
         <a ngbNavLink class="move-nav-link {{tutorMoves.length > 0 ? '' : 'disabled'}}">Tutor</a>
         <ng-template ngbNavContent>
           <div *ngFor="let index of getMaxMoveIndex()">

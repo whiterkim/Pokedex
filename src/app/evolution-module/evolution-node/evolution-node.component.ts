@@ -27,7 +27,34 @@ export class EvolutionNodeComponent implements OnInit {
 
   async getVarieties(): Promise<void> {
     let species = await this.pokemonService.getSpecies(this.url);
-    this.varieties = species.varieties;
+    let varieties = species.varieties;
+
+    let ignoreList = [
+      "pikachu-rock-star",
+      "pikachu-belle",
+      "pikachu-pop-star",
+      "pikachu-phd",
+      "pikachu-libre",
+      "pikachu-cosplay",
+      "pikachu-original-cap",
+      "pikachu-hoenn-cap",
+      "pikachu-sinnoh-cap",
+      "pikachu-unova-cap",
+      "pikachu-kalos-cap",
+      "pikachu-alola-cap",
+      "pikachu-partner-cap",
+      "pikachu-world-cap",
+
+      "pikachu-starter",
+      "eevee-starter",
+    ];
+
+    this.varieties = [];
+    for (let variety of varieties) {
+      if (!ignoreList.includes(variety.pokemon.name)) {
+        this.varieties.push(variety)
+      }
+    }
   }
 
   goPokemon(pokemon: NamedAPIResource): void {

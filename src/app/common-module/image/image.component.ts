@@ -52,6 +52,8 @@ export class ImageComponent implements OnInit {
       this.url = "assets/item/" + this.key + ".png";
     } else if (this.type === 'item-icon') {
       this.url = "assets/item-icon/" + this.key + ".png";
+    } else if (this.type === 'special-icon') {
+      this.url = "assets/special-icon/" + this.key + ".png";
     }
   }
 

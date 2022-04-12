@@ -1,13 +1,15 @@
-<div class="evolution-condition" *ngIf="condition" placement="top" triggers="click" [autoClose]="'outside'" ngbTooltip="{{condition.description}}">
-    <app-image [key]="condition.iconName" [type]="condition.iconType" height="20">
-    </app-image>
-    <div style="white-space:nowrap">
-        {{condition.iconText}}
-        <span *ngIf="condition.description !== null">
-            *
-        </span>
-    </div>
-    <div *ngIf="condition.addonText">
-        ({{condition.addonText}})
+<div *ngFor="let condition of conditions">
+    <div class="evolution-condition" placement="top" triggers="click" [autoClose]="'outside'" ngbTooltip="{{condition.description}}">
+        <app-image [key]="condition.iconName" [type]="condition.iconType" height="20">
+        </app-image>
+        <div style="white-space:nowrap">
+            {{condition.iconText}}
+            <span *ngIf="condition.description !== null">
+                *
+            </span>
+        </div>
+        <div *ngIf="condition.addonText">
+            ({{condition.addonText}})
+        </div>
     </div>
 </div>
