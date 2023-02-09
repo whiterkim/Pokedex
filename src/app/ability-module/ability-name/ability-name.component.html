@@ -6,7 +6,8 @@
             Hidden
         </span>
     </h5>
-    <div style="margin-bottom:1rem">
-        {{(ability.flavor_text_entries | language | versionGroup)[0].flavor_text}}
+    <div style="margin-bottom:1rem" *ngIf="ability.flavor_text_entries | language | versionGroup else noFlavorText; let flavor_text_entries">
+        {{flavor_text_entries[0].flavor_text}}
     </div>
+    <ng-template style="margin-bottom:1rem" #noFlavorText>Unknown</ng-template>
 </span>

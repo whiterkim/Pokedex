@@ -16,7 +16,7 @@ export class PokemonService {
       return this.apiService.get("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151");
     }
 
-    return this.apiService.get("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=898");
+    return this.apiService.get("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1008");
   }
 
   getPokemonFromKey(key: string): Promise<Pokemon> {

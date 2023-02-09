@@ -381,3 +381,12 @@
 .t-g8, .t-g8 a { color: #AC379E !important; }
 .tl-g8, .tl-g8 a { color: #C97DC0 !important; }
 .td-g8, .td-g8 a { color: #702467 !important; }
+.bg-g9 { color:#013224 !important; }
+.bgl-g9 { background-color:#D45455 !important; }
+.bgd-g9 { background-color:#E39091 !important; }
+.b-g9 { background-color:#8A3737 !important; }
+.bl-g9 { border-color:#D45455; }
+.bd-g9 { border-color:#E39091; }
+.t-g9,.t-g9 a { border-color:#8A3737; }
+.tl-g9,.tl-g9 a { color:#D45455 !important; }
+.td-g9,.td-g9 a { color:#E39091 !important; }

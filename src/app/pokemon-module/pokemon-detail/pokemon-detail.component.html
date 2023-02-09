@@ -11,7 +11,10 @@
 
   <!-- PokeDex Entry -->
   <div class="page-section">
-    <div class="text-section">{{(species.flavor_text_entries | language | version)[0].flavor_text}}</div>
+    <div class="text-section" *ngIf="species.flavor_text_entries | language | version else noFlavorText; let flavor_text_entries">
+      {{flavor_text_entries[0].flavor_text}}
+    </div>
+    <ng-template class="text-section" #noFlavorText>Unknown</ng-template>
   </div>
   <hr>
 

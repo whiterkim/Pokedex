@@ -19,7 +19,7 @@ export class PokemonListComponent implements OnInit {
     this.pokemonList = await this.pokemonService.getPokemonList();
     this.mock = [];
     if (isDevMode()) {
-      for (let i = 152; i <= 898; i++) {
+      for (let i = 152; i <= 1008; i++) {
         this.mock.push(i);
       }
     }

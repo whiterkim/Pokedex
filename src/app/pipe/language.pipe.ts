@@ -11,6 +11,11 @@ export class LanguagePipe implements PipeTransform {
       result = list.filter(x => x.language.name === LanguagePipe.fallback_language);
     }
 
+    // Pick any language rather than return null.
+    if (result.length === 0) {
+      result = list;
+    }
+
     return result;
   }
 }
