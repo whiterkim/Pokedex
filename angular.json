@@ -139,5 +139,8 @@
       }
     }
   },
-  "defaultProject": "pokedex"
+  "defaultProject": "pokedex",
+  "cli": {
+    "analytics": false
+  }
 }
