@@ -45,9 +45,9 @@ export class ImageComponent implements OnInit {
 
   getUrl(): void {
     if (this.type === 'pokemon') {
-      this.getPokemonImageUrl();
+      this.getPokemonImageUrl(true);
     } else if (this.type === 'pokemon-icon') {
-      this.getPokemonImageUrl();
+      this.getPokemonImageUrl(false);
     } else if (this.type === 'item') {
       this.url = "assets/item/" + this.key + ".png";
     } else if (this.type === 'item-icon') {
@@ -57,13 +57,16 @@ export class ImageComponent implements OnInit {
     }
   }
 
-  async getPokemonImageUrl(): Promise<void> {
+  async getPokemonImageUrl(isOnline: boolean): Promise<void> {
     if (this.pokemonId === undefined) {
       let pokemon = await this.pokemonService.getPokemonFromKey(this.key);
       this.pokemonId = pokemon.id;
     }
 
-    this.url = ImageComponent.getOnlineImageUrl(this.type, this.pokemonId);
+    if (isOnline)
+      this.url = ImageComponent.getOnlineImageUrl(this.type, this.pokemonId);
+    else
+      this.url = ImageComponent.getLocalImageUrl(this.type, this.pokemonId);
   }
 
   static getOnlineImageUrl(type: string, id: number): string {
