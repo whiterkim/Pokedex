@@ -64,6 +64,8 @@
             "browserTarget": "pokedex:build"
           },
           "configurations": {
+            "development": {
+            },
             "production": {
               "browserTarget": "pokedex:build:production"
             }

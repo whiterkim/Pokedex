@@ -1,8 +1,8 @@
 .type-name-box {
     display: inline-block;
-    min-width: 64px;
-    font-size: 0.75rem;
-    border: 1px solid #656557;
+    min-width: 48px;
+    font-size: 0.8rem;
+    color: white;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 6px;
 }

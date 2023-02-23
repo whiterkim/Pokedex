@@ -2,9 +2,8 @@
     display: inline-block;
     min-width: 36px;
     font-size: 13px;
-    border: 1px solid #656557;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 6px;
 }
 
 .move-category-icon {

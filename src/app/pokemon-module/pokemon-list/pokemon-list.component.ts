@@ -1,7 +1,8 @@
-import { Component, OnInit, isDevMode } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { PokemonService } from '../../service/pokemon.service';
 import { NamedAPIResourceList } from '../../model/utility';
+import { isProdMode } from '../../../main';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -18,7 +19,7 @@ export class PokemonListComponent implements OnInit {
   async ngOnInit():Promise<void> {
     this.pokemonList = await this.pokemonService.getPokemonList();
     this.mock = [];
-    if (isDevMode()) {
+    if (!isProdMode()) {
       for (let i = 152; i <= 1008; i++) {
         this.mock.push(i);
       }

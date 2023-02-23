@@ -16,7 +16,8 @@
   font-size: 0.9rem;
   height: 40px;
   display: flex;
-  align-items: center;
+  align-items: end;
+  width: 90%;
 }
 
 .page-section {
@@ -275,6 +276,27 @@
 .t-shadow, .t-shadow a { color: #604E82 !important; }
 .tl-shadow, .tl-shadow a { color: #978CAE !important; }
 .td-shadow, .td-shadow a { color: #3E3355 !important; }
+
+/* G9 type style */
+.type-background-9-normal{background-color:#9fa19f}
+.type-background-9-fighting{background-color:#ff8000}
+.type-background-9-flying{background-color:#81b9ef}
+.type-background-9-poison{background-color:#9141cb}
+.type-background-9-ground{background-color:#915121}
+.type-background-9-rock{background-color:#afa981}
+.type-background-9-bug{background-color:#91a119}
+.type-background-9-ghost{background-color:#704170}
+.type-background-9-steel{background-color:#60a1b8}
+.type-background-9-fire{background-color:#e62829}
+.type-background-9-water{background-color:#2980ef}
+.type-background-9-grass{background-color:#3fa129}
+.type-background-9-electric{background-color:#fac000}
+.type-background-9-psychic{background-color:#ef4179}
+.type-background-9-ice{background-color:#3fd8ff}
+.type-background-9-dragon{background-color:#5060e1}
+.type-background-9-dark{background-color:#50413f}
+.type-background-9-fairy{background-color:#ef70ef}
+.type-background-9-unknown {background-color: #44685E}
 
 /* move category style */
 .ts-physical, .ts-physical a { color: #FFCC00 !important; }

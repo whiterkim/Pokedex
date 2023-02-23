@@ -1,17 +1,17 @@
 .quick-navigation {
-    height: 60%;
-    width: 12px;
+    height: 80%;
+    width: 32px;
     position: fixed;
     z-index: 1;
-    top: 20%;
-    right: 4px;
+    top: 10%;
+    right: 10px;
     overflow-x: hidden;
     border-radius: 6px;
   }
-  
-  .scroll-indicator {
-      position: absolute;
-      width: 100%;
-      background: #656557;
-      border-radius: 6px;
-  }
+
+.scroll-indicator {
+    position: absolute;
+    width: 100%;
+    background: #656557;
+    border-radius: 6px;
+}

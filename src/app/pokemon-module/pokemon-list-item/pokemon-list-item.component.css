@@ -1,9 +1,11 @@
 .pokemon-icon {
+    margin-left: 12px;
     min-width: 48px;
 }
 
 .pokemon-name {
-    min-width: 150px;
+    margin-left: 12px;
+    min-width: 120px;
 }
 
 .pokemon-types {
